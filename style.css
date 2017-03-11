@@ -11,6 +11,14 @@ body {
 	padding: 20px;
 }
 
+
+
+h4 {
+	padding-bottom: 0px;
+	margin-bottom: 4px;
+}
+
+
 .imgpadding {
 	padding-left: 20px;
 	padding-right: 20px;
@@ -18,38 +26,68 @@ body {
 	box-sizing: border-box;
 }
 
-
 .videopadding {
 	padding-left: 20px;
 	padding-right: 20px;
 }
 
-table {
-	table-layout: fixed;
+
+/* copyright table */
+/* --------------- */
+#copyright {
+	text-align: center;
+	font-size: .75em;
 }
 
-th, td {
+#copyright td {
     padding: 3px 10px;
 }
 
+
+/* weblink table */
+/* ------------- */
+#weblink {
+	text-align: left;
+	/* font-size: .75em; */
+    border-collapse: collapse;
+}
+
+#weblink th {
+	font-weight: normal
+}
+
+#weblink td, #weblink th {
+    border: 1px solid #ccc;
+    padding: 4px 15px;
+}
+
+
+
 /* allow text to overlay the top of the image on the banner */
+/* -------------------------------------------------------- */
 .nomargin {
 	margin-top: 0px;
 	margin-bottom: 0px;
 }
+
 .isblock {
 	display: block;
 }
+
 .overlayimage {
 	position: relative;
 }
+
 .overlaytext {
 	position: absolute;
 	top: 10px;
 	left: 20px;
 }
 
+
+
 /* pretty tables */
+/* ------------- */
 #prettytable {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 	font-size: .75em;
@@ -62,7 +100,14 @@ th, td {
     padding: 4px 8px;
 }
 
-#prettytable tr:nth-child(even){background-color: #f2f2f2;}
+#prettytable tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+#prettytable td:first-child {
+	color: #0099ff;
+	font-weight: bold;
+}
 
 #prettytable th {
     padding: 6px 8px;
@@ -82,17 +127,22 @@ p:before {
 }
 
 
+
 /* hide the email address */
+/* ---------------------- */
 /* html has this <my-hidden data-user="uname" data-domain="gmail.com" /> */
 my-hidden::after {
 content: attr(data-domain);
 }
+
 my-hidden::before {
 content: attr(data-user) "\0040";
 }
 
 
+
 /* horizontal navigation bar */
+/* ------------------------- */
 ul {
     list-style-type: none;
     margin: 0;
