@@ -4,10 +4,32 @@ body {
 	margin: 0px;
 }
 
+
+
 /* provides a white padding inside the dark gray border */
 .mainpadding {
+	padding: 20px;
+}
+
+.imgpadding {
 	padding-left: 20px;
 	padding-right: 20px;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+
+.videopadding {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+table {
+	table-layout: fixed;
+}
+
+th, td {
+    padding: 3px 10px;
 }
 
 /* allow text to overlay the top of the image on the banner */
@@ -15,15 +37,41 @@ body {
 	margin-top: 0px;
 	margin-bottom: 0px;
 }
+.isblock {
+	display: block;
+}
 .overlayimage {
 	position: relative;
 }
 .overlaytext {
 	position: absolute;
-	margin-top: 5px;
 	top: 10px;
 	left: 20px;
 }
+
+/* pretty tables */
+#prettytable {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: .75em;
+    border: 2px solid #aaa;
+    border-collapse: collapse;
+}
+
+#prettytable td, #prettytable th {
+    border: 1px solid #ccc;
+    padding: 4px 8px;
+}
+
+#prettytable tr:nth-child(even){background-color: #f2f2f2;}
+
+#prettytable th {
+    padding: 6px 8px;
+    text-align: left;
+    background-color: #0099ff;
+    color: white;
+}
+
+
 
 /* this keeps text from flowing around an image when it is too narrow to look good */
 p:before {
@@ -31,4 +79,50 @@ p:before {
   width: 18em;
   display: block;
   overflow: hidden;
+}
+
+
+/* hide the email address */
+/* html has this <my-hidden data-user="uname" data-domain="gmail.com" /> */
+my-hidden::after {
+content: attr(data-domain);
+}
+my-hidden::before {
+content: attr(data-user) "\0040";
+}
+
+
+/* horizontal navigation bar */
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+	/* border-right: 1px solid #bbb; */
+}
+
+/* li:last-child {
+    border-right: none;
+} */
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: #111;
+}
+
+.active {
+    background-color: #a2712a;
 }

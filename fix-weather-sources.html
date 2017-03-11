@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+
+
+<body>
+
+<div class="overlayimage">
+<img class="isblock" src="banner.png" alt="FullScreen" width="100%"  />
+<div class="overlaytext">
+<h1 class="nomargin">Weekend Flyer</h1>
+<h5 class="nomargin">Making forecasting days in advance easy.</h5>
+</div>
+</div>
+
+<ul>
+  <li><a href="index.html">Introduction</a></li>
+  <li><a href="#news">Tips for use</a></li>
+  <li><a href="fix-weather-sources.html">Bug reports</a></li>
+  <li style="float:right"><a class="active" href="fix-weather-sources.html">Fix weather download</a></li>
+</ul>
+
+<div class="mainpadding">
+
+
+
+
+
+<strong>Important - This page is intended for a future feature for Weekend Flyer. The link Update Internet Weather Sources found below will not work for currently released versions.</strong><p>
+
+To work propery this webpage is meant to be viewed in Safari on your iPad or iPhone.<p>
+
+Trouble downloading weather in the App can be caused by accidentally editing the internet weather sources in the app's settings, general internet connect issues, problems with servers at the national weather service or the unlikely case of the weather service re-arranging their website.<p>
+
+To further debug your problem click the appropriate link in the following list:<p>
+
+<table>
+	<tr>
+		<th>
+			24 hour weather:
+		</th>
+		<td>
+			<a href="http://www.nws.noaa.gov/cgi-bin/lamp/getlav.pl?sta=KMSP"><span style="color:red;">&#x21BB;</span> button is red</a>
+		</td>
+		<td>
+			<a href="http://www.nws.noaa.gov/mdl/gfslamp/lavlamp.shtml">Download fails</a>
+		</td>
+	</tr>
+	<tr>
+		<th>
+			3 day weather:
+		</th>
+		<td>
+			<a href="http://www.nws.noaa.gov/cgi-bin/mos/getmav.pl?sta=KMSP"><span style="color:red;">&#x21BB;</span> button is red</a>
+		</td>
+		<td>
+			<a href="http://www.nws.noaa.gov/mdl/forecast/text/avnmav.txt">Download fails</a>
+		</td>
+	</tr>
+	<tr>
+	<tr>
+		<th>
+			Winds aloft (try all):
+		</th>
+		<td>
+			<a href="http://www.aviationweather.gov/products/nws/all">0-hour</a>
+		</td>
+		<td>
+			<a href="http://www.aviationweather.gov/products/nws/all?fint=12">12-hour</a>
+		</td>
+		<td>
+			<a href="http://www.aviationweather.gov/products/nws/all?fint=24">24-hour</a>
+		</td>
+	</tr>
+</table>
+
+<p>
+Each of the links should show appropriate weather data as a long table of mostly numbers. If they all do show weather correctly then click on this link:
+<a href="wefly://?http3d=http://www.nws.noaa.gov/mdl/forecast/text/avnmav.txt;http24hCheck=http://www.nws.noaa.gov/cgi-bin/lamp/getlav.pl?sta=KMSP;http3dCheck=http://www.nws.noaa.gov/cgi-bin/mos/getmav.pl?sta=KMSP;httpwind24h=http://www.aviationweather.gov/products/nws/all?fint=24;http24h=http://www.nws.noaa.gov/mdl/gfslamp/lavlamp.shtml;httpwind12h=http://www.aviationweather.gov/products/nws/all?fint=12;httpwind0h=http://www.aviationweather.gov/products/nws/all;pw=ISQq8dittkBkJVBfDDmP4O9MLbQ=">Update Internet Weather Sources</a></p>
+If this doesn't launch Weekend Flyer then update your iPad or iPhone to the latest version in the App Store and try clicking the link again from your iPad or iPhone.</p>
+If they don't show correct weather data and your internet is otherwise working without problems please contact me at: <my-hidden data-user="wefly" data-domain="tcourt.net"></my-hidden><p>
+
+
+
+
+
+<table width=100% style="text-align: center; font-size: .75em">
+<td>
+Copyright &#xA9; 2017
+<td>
+Thomas Court Software Development, LLC
+<td>
+All Rights Reserved
+</table>
+
+</body>
+</html>
