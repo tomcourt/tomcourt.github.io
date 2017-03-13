@@ -143,7 +143,7 @@ content: attr(data-user) "\0040";
 
 /* horizontal navigation bar */
 /* ------------------------- */
-ul {
+ul#menutabs {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -151,16 +151,16 @@ ul {
     background-color: #333;
 }
 
-li {
+ul#menutabs li {
     float: left;
 	/* border-right: 1px solid #bbb; */
 }
 
-/* li:last-child {
+/* #menutabs li:last-child {
     border-right: none;
 } */
 
-li a {
+ul#menutabs li a {
     display: block;
     color: white;
     text-align: center;
@@ -169,10 +169,10 @@ li a {
 }
 
 /* Change the link color to #111 (black) on hover */
-li a:hover {
+ul#menutabs li a:hover {
     background-color: #111;
 }
 
-.active {
+ul#menutabs .active {
     background-color: #a2712a;
 }
