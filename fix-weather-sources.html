@@ -27,11 +27,21 @@
 
 
 
-
-<strong>Important - This page is intended for a future feature for Weekend Flyer. The link Update Internet Weather Sources found below will not work for currently released versions.</strong><p>
-
+<strong id="hideWhenIOS">
 To work propery this webpage is meant to be viewed in Safari on your iPad or iPhone.<p>
+</strong>
 
+<script>
+var isIOS = /iPad/.test(navigator.userAgent) || /iPhone/.test(navigator.userAgent);
+
+if (isIOS) {
+  document.getElementById("hideWhenIOS").style.display="none";
+}
+</script>
+
+	
+	
+	
 Trouble downloading weather in the App can be caused by accidentally editing the internet weather sources in the app's settings, general internet connect issues, problems with servers at the national weather service or the unlikely case of the weather service re-arranging their website.<p>
 
 To further debug your problem click the appropriate link in the following list:<p>
