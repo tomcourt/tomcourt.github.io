@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="refresh" content="1">
+</head>
+<body>
+
+<svg viewBox="-50 -50 1467 1100">
+	<defs>
+		<!-- 800 wide for 100-500 deg -->
+		<g id="cht">
+			<rect x="0" y="80" width="100" height="40" fill="yellow"/>
+			<rect x="100" y="80" width="500" height="40" fill="green"/>
+			<rect x="600" y="80" width="194" height="40" fill="yellow"/>
+			<rect x="794" y="80" width="6"  height="40" fill="red"/>
+			<rect x="-1" y="79" width="802" height="42" rx="3" ry="3" fill="none" stroke="black" stroke-width="2"/>
+		</g>
+		<!-- 400 high for 16-0 gal -->
+		<g id="fuel">
+			<rect x="39" y="109" width="42" height="402" rx="3" ry="3" fill="none" stroke="black" stroke-width="2"/>
+			<rect x="40" y="110" width="40" height="275" fill="green"/>
+			<rect x="40" y="385" width="40" height="62" fill="yellow"/>
+			<rect x="40" y="447" width="40" height="63" fill="red"/>
+			<g stroke="gray" stroke-width="2">
+				<line x1="25" y1="134" x2="95" y2="134"/>
+				<line x1="25" y1="259" x2="95" y2="259"/>
+				<line x1="25" y1="384" x2="95" y2="384"/>
+				<line x1="25" y1="447" x2="95" y2="447"/>
+			</g>
+		</g>
+		<g id="hmark">
+			<path d="M0 31 l-5 -5 v-52 l5 -5 l5 5 v52 Z">
+		</g>
+		<g id="vmark">
+			<path d="M31 0 l-5 -5 h-52 l-5 5 l5 5 h52 Z">
+		</g>
+	</defs>
+	
+	<g transform="translate(150 200)">
+		<!-- <circle r="150" fill="gray"/>
+		<circle r="5" fill="white"/> -->
+		<path d="M-112 65 A 130 130 0 1 1 112 65" fill="none" stroke="black" stroke-width="44" />
+		<path d="M-112 65 A 130 130 0 1 1 112 65" fill="none" stroke="green" stroke-width="40" />
+		<g transform="rotate(-30)">
+			<use xlink:href="#vmark" x="-130" y="0"/>
+		</g>
+
+	</g>
+
+	<!-- CHT/EGT -->
+	<g transform="translate(333 650)">
+		<g font-size="30" text-anchor="middle" fill="dimgrey">
+			<text x="290" y="50">200&deg;F</text>
+			<text x="490" y="50">300&deg;F</text>
+			<text x="690" y="50">400&deg;F</text>
+		</g>
+		<g font-size="50">
+			<g text-anchor="start">
+				<text x="0" y="50" fill="dimgrey">CHT</text>
+				<rect x="0" y="70" width="85" height="55" rx="9" ry="9" fill="yellow" />
+				<text x="7" y="115">425</text>
+				<text x="7" y="195">350</text>
+				<text x="7" y="275">325</text>
+				<text x="7" y="355">350</text>
+			</g>
+			<g text-anchor="end">
+				<text x="1000" y="50" fill="dimgrey">EGT</text>
+				<text x="1000" y="115">1350</text>
+				<text x="1000" y="195">1350</text>
+				<text x="1000" y="275">1350</text>
+				<text x="1000" y="355">1350</text>
+			</g>
+		</g>
+		
+		<use xlink:href="#cht" x="90" y="0"/>
+		<use xlink:href="#cht" x="90" y="80"/>
+		<use xlink:href="#cht" x="90" y="160"/>
+		<use xlink:href="#cht" x="90" y="240"/>
+
+		<g stroke="gray" stroke-width="2">
+			<line x1="289" y1="65" x2="289" y2="375"/>
+			<line x1="489" y1="65" x2="489" y2="375"/>
+			<line x1="689" y1="65" x2="689" y2="375"/>
+		</g>
+		
+		<use xlink:href="#hmark" x="732" y="100"/>
+		<use xlink:href="#hmark" x="580" y="180"/>
+		<use xlink:href="#hmark" x="532" y="260"/>
+		<use xlink:href="#hmark" x="580" y="340"/>
+	</g>
+	
+	<g transform="translate(358 0)">
+		<!-- Oil-Pres 0-100 psi -->
+		<g transform="translate(0 0)">
+			<rect x="39" y="109" width="42" height="402" rx="3" ry="3" fill="none" stroke="black" stroke-width="2"/>
+			<rect x="40" y="110" width="40" height="20" fill="red"/>
+			<rect x="40" y="130" width="40" height="160" fill="green"/>
+			<rect x="40" y="290" width="40" height="120" fill="yellow"/>
+			<rect x="40" y="410" width="40" height="100" fill="red"/>
+			<g stroke="gray" stroke-width="2">
+				<line x1="25" y1="190" x2="95" y2="190"/>
+				<line x1="25" y1="270" x2="95" y2="270"/>
+				<line x1="25" y1="350" x2="95" y2="350"/>
+				<line x1="25" y1="430" x2="95" y2="430"/>
+			</g>
+			<g fill="dimgrey" text-anchor="middle">
+				<g font-size="50">
+					<text x="60" y="50">OIL</text>
+					<text x="60" y="92">PRES</text>
+				</g>
+				<g font-size="30" text-anchor="start">
+					<text x="100" y="200">80</text>
+					<text x="100" y="280">60</text>
+					<text x="100" y="360">40</text>
+					<text x="100" y="440">20</text>
+				</g>
+				<g font-size="30">
+					<text x="60" y="590">psi</text>
+				</g>
+			</g>
+			<g font-size="50" text-anchor="middle">
+				<text x="60" y="560">65</text>
+			</g>
+			<use xlink:href="#vmark" x="60" y="260"/>
+		</g>
+		<!-- Oil-Temp 50-250 F -->
+		<g transform="translate(175 0)">
+			<rect x="39" y="109" width="42" height="402" rx="3" ry="3" fill="none" stroke="black" stroke-width="2"/>
+			<rect x="40" y="110" width="40" height="10" fill="red"/>
+			<rect x="40" y="120" width="40" height="210" fill="green"/>
+			<rect x="40" y="330" width="40" height="180" fill="yellow"/>
+			<g stroke="gray" stroke-width="2">
+				<line x1="25" y1="210" x2="95" y2="210"/>
+				<line x1="25" y1="310" x2="95" y2="310"/>
+				<line x1="25" y1="410" x2="95" y2="410"/>
+			</g>
+			<g fill="dimgrey" text-anchor="middle">
+				<g font-size="50">
+					<text x="60" y="50">OIL</text>
+					<text x="60" y="92">TEMP</text>
+				</g>
+				<g font-size="30" text-anchor="start">
+					<text x="100" y="220">200</text>
+					<text x="100" y="320">150</text>
+					<text x="100" y="420">100</text>
+				</g>
+				<g font-size="30">
+					<text x="60" y="590">&deg;F</text>
+				</g>
+			</g>
+			<g font-size="50" text-anchor="middle">
+				<text x="60" y="560">160</text>
+			</g>
+			<use xlink:href="#vmark" x="60" y="290"/>
+		</g>
+		<!-- Voltage 10-16 V -->
+		<g transform="translate(350 0)">
+			<rect x="39" y="109" width="42" height="402" rx="3" ry="3" fill="none" stroke="black" stroke-width="2"/>
+			<rect x="40" y="110" width="40" height="10" fill="red"/>
+			<rect x="40" y="120" width="40" height="57" fill="yellow"/>
+			<rect x="40" y="177" width="40" height="133" fill="green"/>
+			<rect x="40" y="310" width="40" height="133" fill="yellow"/>
+			<rect x="40" y="443" width="40" height="67" fill="red"/>
+			<g stroke="gray" stroke-width="2">
+				<line x1="25" y1="243" x2="95" y2="243"/>
+				<line x1="25" y1="377" x2="95" y2="377"/>
+			</g>
+			<g fill="dimgrey" text-anchor="middle">
+				<g font-size="50">
+					<text x="60" y="92">VOLT</text>
+				</g>
+				<g font-size="30" text-anchor="start">
+					<text x="100" y="253">14</text>
+					<text x="100" y="387">12</text>
+				</g>
+				<g font-size="30">
+					<text x="60" y="590">volt</text>
+				</g>
+			</g>
+			<g font-size="50" text-anchor="middle">
+				<text x="60" y="560">13.5</text>
+			</g>
+			<use xlink:href="#vmark" x="60" y="278"/>
+		</g>
+		<!-- Fuel-Pres 0-10 psi -->
+		<g transform="translate(525 0)">
+			<rect x="39" y="109" width="42" height="402" rx="3" ry="3" fill="none" stroke="black" stroke-width="2"/>
+			<rect x="40" y="110" width="40" height="80" fill="red"/>
+			<rect x="40" y="190" width="40" height="80" fill="yellow"/>
+			<rect x="40" y="270" width="40" height="160" fill="green"/>
+			<rect x="40" y="430" width="40" height="60" fill="yellow"/>
+			<rect x="40" y="490" width="40" height="20" fill="red"/>
+			<g stroke="gray" stroke-width="2">
+				<line x1="25" y1="190" x2="95" y2="190"/>
+				<line x1="25" y1="270" x2="95" y2="270"/>
+				<line x1="25" y1="350" x2="95" y2="350"/>
+				<line x1="25" y1="430" x2="95" y2="430"/>
+			</g>
+			<g fill="dimgrey" text-anchor="middle">
+				<g font-size="50">
+					<text x="60" y="50">FUEL</text>
+					<text x="60" y="92">PRES</text>
+				</g>
+				<g font-size="30" text-anchor="start">
+					<text x="100" y="200">8</text>
+					<text x="100" y="280">6</text>
+					<text x="100" y="360">4</text>
+					<text x="100" y="440">2</text>
+				</g>
+				<g font-size="30">
+					<text x="60" y="590">psi</text>
+				</g>
+			</g>
+			<g font-size="50" text-anchor="middle">
+				<text x="60" y="560">3.0</text>
+			</g>
+			<use xlink:href="#vmark" x="60" y="390"/>
+		</g>
+		<!-- Fuel gauges -->
+		<g transform="translate(700 0)">
+			<use xlink:href="#fuel"/>
+			<use xlink:href="#fuel" x="150"/>
+			<g fill="dimgrey" text-anchor="middle">
+				<g font-size="50">
+					<text x="140" y="50">FUEL</text>
+					<text x="60" y="92">LEFT</text>
+					<text x="210" y="92">RGT</text>
+				</g>
+				<g font-size="30">
+					<text x="135" y="142">15</text>
+					<text x="135" y="267">10</text>
+					<text x="135" y="392">5</text>
+					<text x="135" y="454">2.5</text>
+					<text x="60" y="590">gal</text>
+					<text x="210" y="590">gal</text>
+				</g>
+			</g>
+			<g font-size="50" text-anchor="middle">
+				<text x="60" y="560">15.5</text>
+				<text x="210" y="560">14.0</text>
+			</g>
+			<use xlink:href="#vmark" x="60" y="122"/>
+			<use xlink:href="#vmark" x="210" y="160"/>
+		</g>
+	</g>
+</svg>
+
+</body>
+
+</html>
+
