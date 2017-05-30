@@ -36,20 +36,58 @@
 		</g>
 	</defs>
 	
-	<!-- Round gauge 240 degree sweep, 150 radius -->
-	<g transform="translate(150 200)">
-		<!-- <circle r="150" fill="gray"/>
-		<circle r="5" fill="white"/> -->
+	<!-- Tachometer round gauge 240 degree sweep, 130 radius, width 40, 0-3000 rpm -->
+	<g transform="translate(150 180)">
+		<!-- -31 to 31 degrees -->
 		<path d="M-111.4 67 A 130 130 0 1 1 111.4 67" fill="none" stroke="black" stroke-width="45" />
+		<!-- -30 to 30 degrees -->
 		<path d="M-112.6 65 A 130 130 0 1 1 112.6 65" fill="none" stroke="green" stroke-width="40" />
-		<g transform="rotate(-30)">
-			<use xlink:href="#vmark" x="-130" y="0"/>
-		</g>
+		<!-- 500 rpm -30 to 10 degrees -->
+		<path d="M-112.6 65 A 130 130 0 0 1 -128 -22.6" fill="none" stroke="yellow" stroke-width="40" />
+		<!-- 2700 rpm - 6 to 30 degrees -->
+		<path d="M129.2 13.6 A 130 130 0 0 1 112.6 65" fill="none" stroke="red" stroke-width="40" />
+		
+		<use xlink:href="#vmark" x="-130" y="0" transform="rotate(110)"/>
+
 		<g font-size="50" text-anchor="middle" fill="dimgrey">
 			<text x="0" y="-20">TACH</text>
 			<text x="0" y="35" fill="black">1750</text>
 			<text x="0" y="70" font-size="30">rpm</text>
 		</g>
+	</g>
+
+	<!-- Manifold Pressure round gauge 240 degree sweep, 130 radius, width 40, 10-35 in-hg -->
+	<g transform="translate(150 520)">
+		<!-- -31 to 31 degrees -->
+		<path d="M-111.4 67 A 130 130 0 1 1 111.4 67" fill="none" stroke="black" stroke-width="45" />
+		<!-- -30 to 30 degrees -->
+		<path d="M-112.6 65 A 130 130 0 1 1 112.6 65" fill="none" stroke="green" stroke-width="40" />
+		
+		<use xlink:href="#vmark" x="-130" y="0" transform="rotate(66)"/>
+
+		<g font-size="50" text-anchor="middle" fill="dimgrey">
+			<text x="0" y="-20">MP</text>
+			<text x="0" y="35" fill="black">20.0</text>
+			<text x="0" y="70" font-size="30">in-hg</text>
+		</g>
+	</g>
+	
+	<text x="150" y="330" font-size="50" text-anchor="middle">44%</text>
+	
+	<!-- MISC -->
+	<g transform="translate(0 700)" font-size="50">
+		<g fill="dimgrey">
+			<text x="0" y="0">OAT</text>
+			<text x="0" y="75">Flight</text>
+			<text x="0" y="150">Hobbs</text>
+		</g>
+		<g>
+			<text x="150" y="0">24&deg;C</text>
+			<text x="150" y="75">1:15</text>
+			<text x="150" y="150">430.2</text>
+		</g>
+		<rect x="30" y="200" width="200" height="100" rx="9" ry="9" fill="lightgrey" stroke="black" stroke-width="4"/>
+		<text x="130" y="265" text-anchor="middle">LEAN</text>
 	</g>
 
 	<!-- CHT/EGT -->
