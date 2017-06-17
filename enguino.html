@@ -486,21 +486,43 @@ pre.editor-colors .fold-marker:after {
   </head>
   <body class='markdown-preview' data-use-github-style><h1 id="enguino">Enguino</h1>
 <h2 id="general-description">General Description</h2>
-<p>Enguino is an inexpensive <em>(about $100)</em>, lightweight <em>(2 ounces w/o case or cables)</em>, small <em>(about the size of cigarette pack)</em>, <a href="https://en.wikipedia.org/wiki/Open-source_model">open source</a> engine monitor for experimental aircraft. The engine monitor is displayed on a tablet as a web page. Here is an <a href="http://www.tcourt.net/efis">example</a> of a typical Enguino display. The tablet can be an iPad, an Android or any other tablet that includes a modern web browser and has wifi.</p>
+<p>Enguino (a portmanteau of engine and Arduino) is an inexpensive <em>(about $100)</em>, lightweight <em>(2 ounces w/o case or cables)</em>, small <em>(about the size of cigarette pack)</em>, <a href="https://en.wikipedia.org/wiki/Open-source_model">open source</a> engine monitor for experimental aircraft. The engine monitor is displayed on a tablet as a web page. Here is an <a href="http://www.tcourt.net/efis">example</a> of a typical Enguino display. The tablet can be an iPad, an Android or any other tablet that includes a modern web browser and has wifi.</p>
 <p>Enguino is intended to work with the <a href="http://stratux.me">Stratux</a> ADS-B receiver which is also open source. The Stratux acts as a Wifi access point for Enguino. For airplanes not equipped with a Stratux it is still possible to create an Enguino system with slightly different hardware and a small change to the configuration.</p>
 <p>The hardware consists of a tiny single board computer called an <a href="https://www.arduino.cc">Arduino</a>. This board is similar to the Raspberry Pi used in the Stratux, although the Arduino has a much simpler computer on it. Despite the simple computer, the Arduino is much better at connecting to the real world.</p>
-<p>Because of the complexity of tablets and wifi communication it is recommended that you don&#39;t replace your fuel gauges, tachometer and in the case of a constant speed prop your manifold pressure gauge with Enguino. To allow flying without the Enguino display, either because of system issues or your tablet is also being used for its GPS, a number of status lights are also included in Enguino that will display your oil pressure, oil temperature and voltage status.</p>
+<p>Tableta and and wifi communication alone shouldn&#39;t be counted upon for critical flight information. Therefore it is recommended that you don&#39;t replace your fuel gauges, tachometer and in the case of a constant speed prop your manifold pressure gauge with Enguino. To allow flying without the Enguino display, either because of tablet or wifi issues or your tablet also multitasks as a moving map a number of physical status lights(LEDs) are also included in Enguino that will display your oil pressure, oil temperature and voltage status constantly without requiring the tablet.</p>
 <h2 id="hardware">Hardware</h2>
 <p>The main board is a particular type of Arduino called the <a href="http://www.arduino.org/products/boards/arduino-leonardo-eth">Leonardo ETH</a>. This Arduino contains an  ethernet adapter which is then attached to the Stratux via an RJ-45 cable.</p>
 <p>Arduino expansion boards are referred as <em>shields</em>. Attached to the Leonardo is an 8 input <a href="https://oceancontrols.com.au/KTA-259.html">thermocouple shield</a>. This assumes you want CHT/EGT temperatures. If not a simple <a href="https://www.amazon.com/Arduino-Proto-Shield-R3-Assembled/dp/B007QXTRNA">proto shield</a> can be used instead.</p>
 <p>The prototyping area of the shield will have a number of resistors and other components added to it to complete the Enguino. Some basic soldering will be required to complete this project. A parts list can be found further down. <strong>TBD</strong> - Instructions for assembly.</p>
 <p>The engine sensors themselves are fairly generic. The default configuration uses Vans Aircraft engine sensors. Although the thermocouple board is designed for the K-style thermocouples that Van&#39;s uses for CHT and EGT, J-style can also be used with it with a configuration change. Most other sensors are of the &#39;resistive&#39; type, typically 33-240 ohms. <strong>TBD</strong> - The tach and MP sensors currently need further study.</p>
 <h2 id="software">Software</h2>
-<p>The firmware is installed on the Arduino using the Arduino IDE. First install the <a href="https://www.arduino.cc/en/Main/Software">Arduino IDE</a>. Then download the [Enguino source code]. Any configuration must be done before installing the firmware. Configuration involves editing the config.h file. After editing the configuration, connect the Arduino to your PC via a USB cable. This will also power up the Arduino and a green light will appear next to the USB connector. Start up the Arduino software on your PC. Go <code>File</code>, <code>Open</code> and select the file <code>enigno.ino</code>. Then go <code>Sketch</code> and <code>Upload</code>. The other green LED next to the power LED will flash until the file is uploaded. Done Uploading will appear near the bottom of the window.</p>
+<p>The firmware is installed on the Arduino using the Arduino IDE. First install the <a href="https://www.arduino.cc/en/Main/Software">Arduino IDE</a>. Add the Ethernet 2 libary <strong>TBD</strong> add detailed instructions. Then download the [Enguino source code]. Any configuration must be done before installing the firmware. Configuration involves editing the config.h file. After editing the configuration, connect the Arduino to your PC via a USB cable. This will also power up the Arduino and a green light will appear next to the USB connector. Start up the Arduino software on your PC. Go <code>File</code>, <code>Open</code> and select the file <code>enigno.ino</code>. Then go <code>Sketch</code> and <code>Upload</code>. The other green LED next to the power LED will flash until the file is uploaded. Done Uploading will appear near the bottom of the window.</p>
 <h2 id="configuration">Configuration</h2>
 <h3 id="sensors">Sensors</h3>
 <h3 id="layout">Layout</h3>
 <h3 id="ranges">Ranges</h3>
+<p>Setting the ranges of the gauges (green, yellow, red regions) will require updating a spreadsheet and then pasting the values into a file. Details are <strong>TBD</strong>.</p>
+<h2 id="stratux">Stratux</h2>
+<p>The Stratux has to be configured to route network traffic between the wired ethernet to the Enguino and the wifi connecting to a tablet. Note - these instructions are for Stratux v0.8r2, newer versions may require modification.</p>
+<ul>
+<li>Boot the Stratux. For first boot, wait 3 minutes, for rebooting wait 30 seconds.</li>
+<li>Either connect a monitor and keyboard to the Rapberry Pi and login with un: <code>pi</code>, pw: <code>raspberry</code> then skip ahead in these instructions to sudo nano...</li>
+<li>Or connect to the Stratux wifi network (this will need to be repeated when rebooting)</li>
+<li>On the Mac, start terminal. On a PC, run PuTTY.</li>
+<li>Once connected type <code>ssh pi@192.168.10.1</code></li>
+<li>You may get a message &quot;Are you sure you want to continue connecting (yes/no)?&quot; <code>yes</code></li>
+<li>Password: <code>raspberry</code></li>
+</ul>
+<p><code>sudo nano /etc/dhcp/dhcpd.conf</code></p>
+<p>Scroll to the bottom and right after the <em>subnet...</em>  and <em>range...</em> lines add</p>
+<pre class="editor-colors lang-text"><div class="line"><span class="syntax--text syntax--plain"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="syntax--meta syntax--paragraph syntax--text"><span>option&nbsp;routers&nbsp;192.168.0.1;</span></span></span></div></pre><p>Ctrl-o, enter, ctrl-x</p>
+<p><code>sudo nano /etc/network/interfaces</code></p>
+<p>Change <em>iface eth0 inet dhcp</em> to the following:</p>
+<pre class="editor-colors lang-text"><div class="line"><span class="syntax--text syntax--plain"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="syntax--meta syntax--paragraph syntax--text"><span>auto&nbsp;eth0</span></span></span></div><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>&nbsp;&nbsp;&nbsp;&nbsp;iface&nbsp;eth0&nbsp;inet&nbsp;static</span></span></span></div><div class="line"><span class="syntax--text syntax--plain"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="syntax--meta syntax--paragraph syntax--text"><span>address&nbsp;192.168.0.1</span></span></span></div><div class="line"><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;netmask&nbsp;255.255.255.0</span></span></span></div></pre><p>Ctrl-o, enter, ctrl-x</p>
+<p><code>sudo nano /etc/sysctl.conf</code></p>
+<p>Scroll to bottom and add</p>
+<pre class="editor-colors lang-text"><div class="line"><span class="syntax--text syntax--plain"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="syntax--meta syntax--paragraph syntax--text"><span>net.ipv4.ip_forward=1 </span></span></span></div></pre><p>Ctrl-o, enter, ctrl-x</p>
+<p>Reboot.<br>Connect to stratux network again.<br>Browse to 192.168.10.1, confirm Stratux control panel shows up.<br>Browse to 192.168.0.111, confirm Engiuno panel shows up.</p>
 <h2 id="design-details">Design Details</h2>
 <h3 id="arduino">Arduino</h3>
 <p>The Leonardo is rated to run from 6-20 volts although they suggest keeping it between 7-12 volts. They claim to worry about the voltage regulator overheating and &#39;damaging the board&#39;, but the regulator chip (88% efficient) does have a thermal shutdown feature at 150 deg C. The text appears to be a carry over from previous Arduino&#39;s which used a linear supply.</p>
@@ -644,14 +666,48 @@ pre.editor-colors .fold-marker:after {
 </ul>
 <p>The main webpage has a timer running in Javascript on the tablet that invokes a reload of the dynamic portion of the page using an AJAX request. The dynamic portion is drawn using SVG (scaled vectored graphics) that is created on the fly by the Enguino.ino file. The configuration tables in config.h control how the SVG is drawn, for example the layout of the gauges on the screen.</p>
 <h3 id="sensors">Sensors</h3>
-<p>The resistive sensors will have a 220 ohm(1%) pull up to Vcc. This will require up to 20 ma per sensor, or for the typical 5 sensors (fuel x 2, oil-p, oil-t, fuel-p) 100 ma total. This provides a good compromise between power usage, heat and loss of resolution. This provides about 9 bits of resolution. To limit resistor heating to reasonable levels, .5 watt resistors should be used. Resistor temp. rise should be no more than 100 deg. C in free air. A resistance &lt; 27 ohms will register as a short failure. &gt; 300 ohms will register as an open failure. To convert from ADC units to ohms use this formula <code>ohms = 220 * (adc / (1024-adc))</code>.</p>
-<p>All but the oil-temp sensor are 33.5-240 ohm sensors. The scale is as follow: zero=240, half=103, full=33.5 ohms. The oil temperature sensor (for a Rochester 3080-37) as follows (degF=ohms): 100=497, 150=179, 200=72, 250=34. By inverting the resistance, the oil temperature linear fits very well, R^2=.99 using the formula <code>F = 8903/R + 87</code>. This can&#39;t be exactly right though as the gauge measures down to 50 degrees. <strong>TBD</strong> - use the gauge and a potentiometer to figure out 50 deg. F resistance and rerun the linear fit.</p>
-<p>For resistive sensors still attached to the gauge, the gauge itself provides the pull up resistance and voltage. For Vans Aircraft engine instruments the pull up is 5 volts and the resistor is about 227 ohms(measured externally, <strong>TBD</strong> find exact value). The pin can be directly connected if the voltage can&#39;t exceed Vcc by more than .5v. Otherwise a series resistor as discussed later could be attached to isolate the pin.</p>
+<p>The sensor system is fairly generic but currently only Van&#39;s Aircraft engine sensors have predefined configurations. The resistive sensors will have a 240 ohm(1%) pull up to Vcc. This will require up to 18 ma per sensor, or for the typical 5 sensors (fuel x 2, oil-p, oil-t, fuel-p) 90 ma total. This provides a good compromise between power usage, heat and loss of resolution. This provides 9 bits of resolution. To limit resistor heating to reasonable levels, .5 watt resistors should be used. Resistor temp. rise should be no more than 100 deg. C in free air. A resistance &lt; 16 ohms will register as a short failure. &gt; 480 ohms will register as an open failure. To convert from ADC units to ohms use this formula <code>ohms = 240 * (adc / (1024-adc))</code>.</p>
+<p>All but the oil-temp sensor are 33.5-240 ohm sensors. The scale is as follow: zero=240, half=103, full=33.5 ohms. The oil temperature sensor (for a Rochester 3080-37) as follows (degF=ohms): 100=497, 150=179, 200=72, 250=34. This is a thermistor. Using a Steinhar-Hart calculator the conversion formula becomes <code>degrees Kelvin = 1 / (0.0016207535760566691 + 0.0002609330007304247 * log(R) + -1.0278556187396396e-7 * log(R)^3)</code>. A lookup table will certainly be required.</p>
+<p>For resistive sensors still attached to the gauge, the gauge itself provides the pull up resistance and voltage. For Vans Aircraft engine instruments the pull up is 5 volts and the resistor is about 227 ohms(measured externally, internally the resistor appears to be 240 ohms, 5%). The pin can be directly connected if the voltage can&#39;t exceed Vcc by more than .5v. Otherwise a series resistor as discussed later could be attached to isolate the pin.</p>
 <p>For thermocouple sensors the board will detect both open and short. It directly reads out in degrees C (.25 resolution). This will optionally be converted to F. To support J style thermocouples, the C output will be adjusted by taking the thermocouple reading (before the CJT adjustment) <code>newC = oldC * 46677 / 65536</code></p>
 <p>For the voltage sensor a 4:1 voltage divider consisting of a 1k and 3.01k (1%) resistor is used. This limits the draw to .1 watt at 20 volts or .05 at 14 volts.</p>
-<p>For a sensor that might contain a voltage higher than Vcc using a voltage divider as used on the voltage sensor will cause a significant load which could create issues. Alternatively a 15K ohm resistor between the sensor and the pin will safely clip voltages between 20.5 and -15.5 volts. The goal here is to limit the internal clamping diodes to no more than 1ma after the .7 volt diode drop.</p>
-<h3 id="warning-lights">Warning Lights</h3>
-<p>The board has 4 caution/warning LEDs. Each is a Red/Green common cathode <a href="http://www.kingbrightusa.com/images/catalog/SPEC/WP59EGW.pdf">bicolor LED</a>. By turning Red and Green on at the same time Yellow can also be produced.  Dimming could be provided by biases the ground of the common cathodes or by using the Arduino&#39;s PWM to drive a FET. The LED&#39;s anodes are connected to a <a href="http://ww1.microchip.com/downloads/en/DeviceDoc/21919e.pdf">MCP23008</a> I2C I/O expander through 8 dropping resistors. Typically three of the LEDs will be for Oil Temperature, Oil Pressure and Voltage. Another alternative would be to use a module like the <a href="https://www.sparkfun.com/products/13884">BOB-13884</a> to provide 3 RGB LED&#39;s.</p>
+<p>Typical sensors are Stewart Warner. The tachometer is supplied with 12 volts, a hall effect sensor that returns 5 volt pulses, 8/16 PPR, TBD. The manifold pressure sensor is believed to be 0-100mV ratio-metric.</p>
+<p>For a sensor that might contain a voltage higher than Vcc using a voltage divider as used on the voltage sensor will cause a significant load which could create issues if still attached to a backup gauge. Alternatively a 15K ohm resistor between the sensor and the pin will safely clip voltages between 20.5 and -15.5 volts. The goal here is to limit the internal clamping diodes to no more than 1ma after the .7 volt diode drop.</p>
+<h3 id="warning-lights-auxiliary-display">Warning Lights / Auxiliary Display</h3>
+<p>The board has 4 caution/warning LEDs. These are intended it to be more useful than <em>idiot</em> lights because of self diagnostics and their ability to display both caution and warning indications. Each is a Red/Green common cathode <a href="http://www.kingbrightusa.com/images/catalog/SPEC/WP59EGW.pdf">bicolor LED</a>. By turning Red and Green on at the same time Yellow can also be produced.  Dimming could be provided by biases the ground of the common cathodes or by using the Arduino&#39;s PWM to drive a FET. The LED&#39;s anodes are connected to a <a href="http://ww1.microchip.com/downloads/en/DeviceDoc/21919e.pdf">MCP23008</a> I2C I/O expander through 8 dropping resistors. Typically three of the LEDs will be for Oil Temperature, Oil Pressure and Voltage. Another alternative would be to use a module like the <a href="https://www.sparkfun.com/products/13884">BOB-13884</a> to provide 3 RGB LED&#39;s.</p>
+<p>An alternative to the warning LEDs is an auxiliary display. This would consist of one or two lines of a 4 digit <a href="https://www.adafruit.com/product/878">7 segment LED displays</a>. Limited text would be shown on the display. Some letters are displayed in the wrong case, for example &#39;t&#39; instead of &#39;T&#39;. The letters &#39;M&#39;, &#39;W&#39; and &#39;X&#39; can not be displayed in an any form. Others like &#39;V&#39; end up looking the same as &#39;U&#39;. For this reason the first line may be a <a href="https://www.adafruit.com/product/1911">14 segment LED display</a>.</p>
+<p>In normal operation the tachometer and fuel for left and right tank in gallons would be shown as <code>2300</code> / <code>15:10</code>. For a single line display these would alternate. Excessive RPM&#39;s would cause the tachometer to blink. On power up the following sequence would be shown:</p>
+<ul>
+<li><code>Hobb</code> / <code>123.4</code>    only last 4 digits of hobbs shown</li>
+<li><code>bAt</code> / <code>12.2</code>      alternator-battery voltage</li>
+<li><code>0</code> / <code>15:10</code></li>
+</ul>
+<p>Whenever out of range indicators happen the display would switch to showing the condition and the value, for example <code>OPLo</code> / <code>2.4</code>. A &#39;warning&#39; (red) out of range will be indicated by the first line blinking quickly. Pressing the &#39;Acknowledge&#39; button would return the display to showing tachometer and fuel. To indicate a caution condition (yellow) still remains, the rightmost decimal point on the first line would be lit. To indicate a warning condition (red) remains, all of the decimal points on the first line would be lit. On power up, most of the warnings would be acknowledged by default. Holding the acknowledge button for longer than a second would show previously acknowledged warnings, followed by cautions, followed by readings with each press. A long hold again would return the display to tachometer and fuel.</p>
+<p>The warning/cautions are prioritized as follows:</p>
+<ul>
+<li><code>FPLo</code></li>
+<li><code>OPLo</code></li>
+<li><code>Fuel</code>  low fuel for either tank</li>
+<li><code>OPHi</code></li>
+<li><code>AltH</code>  &gt; 15 volts</li>
+<li><code>OTHi</code></li>
+<li><code>ChtH</code></li>
+<li><code>OTLo</code></li>
+</ul>
+<p>Other messages would include:</p>
+<ul>
+<li><code>AltL</code></li>
+<li><code>bAt</code>   normal battery when not charging   </li>
+<li><code>batL</code></li>
+<li><code>Alt</code>   normal charge system voltage</li>
+<li><code>OP</code></li>
+<li><code>Ot</code></li>
+<li><code>FP</code></li>
+<li><code>Cht</code></li>
+<li><code>Shrt</code>  short circuit, shown on second line</li>
+<li><code>OPEn</code>  open circuit, shown on second line</li>
+</ul>
+<p>To prevent having to re-acknowledge warnings there would be both temporal and range hysteresis built in.</p>
 <h3 id="parts-list">Parts list</h3>
 <ul>
 <li>Arduino Leonardo ETH ($46 amazon)</li>
@@ -659,10 +715,14 @@ pre.editor-colors .fold-marker:after {
 <li>Arduino Stackable Header Kit - R3 ($1.50 sparkfun)</li>
 <li>Break Away Headers - Straight ($1.50 sparkfun)</li>
 <li>More digikey parts - make above parts digikey as well</li>
+<li>Note - stackable headers are Samtec SAM1206-#pins-ND, no workable shorter lengths available</li>
+<li>Digikey 929647-05-35-ND .025 square breakaway headers will probably work well on the thermocouple board w/o a header extension.</li>
 </ul>
 <h3 id="future-stuff">Future stuff</h3>
 <ul>
 <li>It may be possible to support 2 thermocouples without the thermocouple multiplexer shield by using the differential mode ADC, 40x gain and a thermistor. Only 8 bits are usable with 40x. 488 uV per count works out to 21.5 deg. F resolution with a K type thermocouple. The 2.56 volt internal reference would double the resolution and oversampling could probably double it again.</li>
+<li>The Arduino Yun would support airplanes lacking a Stratux. The code would need to use the &#39;bridge&#39; objects instead of the ethernet objects. Use #ifdef AVR_YUN to flex the code.</li>
+<li>Themes - a dark theme could be created easily enough by adjusting the styles. A larger text theme for the gauges would involve more defines and stringizing them for the SVG.</li>
 </ul>
 <h3 id="to-be-added">To be added</h3>
 <p>[Enguino source code]</p></body>
