@@ -43,8 +43,8 @@ if (isIOS) {
 
 
 Trouble downloading weather in the App can be caused by accidentally editing the internet weather sources in the app's settings, general internet connect issues, problems with servers at the national weather service or the unlikely case of the weather service re-arranging their website.<p>
-
-Febuary 8,2019- 24-hour and 3 day weather not updating - National Weather Service website issue. NWS fixing it.<p>
+<del>July 1, 2020 - 3 day weather broken - National Weather Service website change.</del>Run Fix it to fix<p>
+<del>Febuary 8,2019 - 24-hour and 3 day weather not updating - National Weather Service website issue. NWS fixing it.</del><p>
 <del>August 24,2018 - Winds aloft not updating - aviationweather.gov rearranged website.</del> Links updated.<p>
 <del>April 27,2017 - Winds aloft not updating - aviationweather.gov outage due to website maintenance.</del> Restored.<p>
 <del>April 4,2017- 24-hour weather not updating - National Weather Service outage due to maintenance.</del> Restored.<p>
@@ -70,10 +70,10 @@ To further debug your problem click the appropriate link in the following list:<
 			3 day weather:
 		</th>
 		<td>
-			<a href="http://www.nws.noaa.gov/cgi-bin/mos/getmav.pl?sta=KMSP"><span style="color:red;">&#x21BB;</span> button is red</a>
+			<a href="https://www.weather.gov/mdl/mos_getbull?ele=mav&cyc=00&sta=kmsp&newwin=yes"><span style="color:red;">&#x21BB;</span> button is red</a>
 		</td>
 		<td>
-			<a href="http://www.nws.noaa.gov/mdl/forecast/text/avnmav.txt">Download fails</a>
+			<a href="https://www.weather.gov/source/mdl/MOS/GFSMAV.txt">Download fails</a>
 		</td>
 		<td>
 		</td>
@@ -97,7 +97,7 @@ To further debug your problem click the appropriate link in the following list:<
 
 <p>
 Each of the links should show appropriate weather data as a long table of mostly numbers. If they all do show weather correctly then click on this link:
-<a href="wefly://?httpwind0h=https://www.aviationweather.gov/windtemp/data?level=low&fcst=06&region=all;http3dCheck=http://www.nws.noaa.gov/cgi-bin/mos/getmav.pl?sta=KMSP;http3d=http://www.nws.noaa.gov/mdl/forecast/text/avnmav.txt;http24hCheck=http://www.nws.noaa.gov/cgi-bin/lamp/getlav.pl?sta=KMSP;http24h=http://www.nws.noaa.gov/mdl/gfslamp/lavlamp.shtml;httpwind24h=https://www.aviationweather.gov/windtemp/data?level=low&fcst=24&region=all;httpwind12h=https://www.aviationweather.gov/windtemp/data?level=low&fcst=12&region=all;httpairportid=https://nfdc.faa.gov/nfdcApps/services/ajv5/airportDisplay.jsp?airportId=;pw=cFznHbcHlb5Mk1gAz14DFsvlV+w=">Update Internet Weather Sources</a></p>
+<a href="wefly://?httpwind0h=https://www.aviationweather.gov/windtemp/data?level=low&fcst=06&region=all;http3dCheck=https://www.weather.gov/mdl/mos_getbull?ele=mav&cyc=00&sta=kmsp&newwin=yes;http3d=https://www.weather.gov/mdl/mos_gfsmos_home;http24hCheck=http://www.nws.noaa.gov/cgi-bin/lamp/getlav.pl?sta=KMSP;http24h=http://www.nws.noaa.gov/mdl/gfslamp/lavlamp.shtml;httpwind24h=https://www.aviationweather.gov/windtemp/data?level=low&fcst=24&region=all;httpwind12h=https://www.aviationweather.gov/windtemp/data?level=low&fcst=12&region=all;httpairportid=https://nfdc.faa.gov/nfdcApps/services/ajv5/airportDisplay.jsp?airportId=;pw=cFznHbcHlb5Mk1gAz14DFsvlV+w=">Update Internet Weather Sources</a></p>
 If this doesn't launch Weekend Flyer then update your iPad or iPhone to the latest version in the App Store and try clicking the link again from your iPad or iPhone.</p>
 If they don't show correct weather data and your internet is otherwise working without problems please contact me at <my-hidden data-user="wefly" data-domain="tcourt.net"></my-hidden><p>
 
