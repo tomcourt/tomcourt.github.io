@@ -22,15 +22,14 @@ table { /* disable selection of buttons, etc.  */
   background-color: #0010FF;
   color: white;
   border-color: #0010FF;
-  width: 40px;
-  padding-left: 2px;
-  padding-right: 2px;
-  padding-top: 6px;
-  padding-bottom: 6px;
+  width: 80px;
+  height: 40px;
   border: 2px;
+  padding: 10px;
   font-family: "system-ui";
-  font-size: 10px;
+  font-size: 30px;
   text-align: center;
+  vertical-align: middle;
 }
 
 /* display */
@@ -39,6 +38,7 @@ table { /* disable selection of buttons, etc.  */
   background-color: white;
   border-color: black;
   width: 100%;
+  font-size: 30px;
   font-family: 'Lucida Console', Monaco, monospace;
 }
 
