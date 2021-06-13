@@ -23,13 +23,39 @@ table { /* disable selection of buttons, etc.  */
   color: white;
   border-color: #0010FF;
   width: 80px;
-  height: 40px;
+  height: 35px;
   border: 2px;
   padding: 10px;
   font-family: "system-ui";
-  font-size: 30px;
+  font-size: 28px;
   text-align: center;
   vertical-align: middle;
+}
+
+/* iphone, fullscreen */
+@media (max-device-width : 450px),
+       (max-device-height : 450px) {
+  .button {
+    border-radius: 10px;
+    width: 80px;
+    height: 35px;
+    border: 2px;
+    padding: 10px;
+    font-size: 28px;
+  }
+}
+
+/* tablet or computer, fixed size */
+@media (min-device-width : 451px) and
+       (min-device-height : 451px) {
+  .button {
+    border-radius: 10px;
+    width: 10vmin;
+    height: 4vmin;
+    border: 2px;
+    padding: 10px;
+    font-size: 3.5vmin;
+  }
 }
 
 /* display */
@@ -38,8 +64,22 @@ table { /* disable selection of buttons, etc.  */
   background-color: white;
   border-color: black;
   width: 100%;
-  font-size: 30px;
+  font-size: 35px;
   font-family: 'Lucida Console', Monaco, monospace;
+}
+
+#listView {
+  font-size: 28px;
+}
+
+input[type=button] {
+  -webkit-appearance: none;
+  font-size: 28px;
+  height: 40px;
+  background-color: #0010FF;
+  color: white;
+  border-color: #0010FF;
+  border-radius: 10px;
 }
 
 /* Remove default bullets */
