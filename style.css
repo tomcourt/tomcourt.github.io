@@ -43,7 +43,7 @@ table { /* disable selection of buttons, etc.  */
 }
 
 /* tablet or computer, fixed size */
-@media only screen and (min-height : 399px) {
+@media only screen and (min-height : 429px) {
   .button {
     height: 55px;
     font-size: 28px;
@@ -54,11 +54,11 @@ table { /* disable selection of buttons, etc.  */
   }
 }
 
-@media only screen and (max-height : 400px) {
+@media only screen and (max-height : 430px) {
   .button {
-    height: calc(calc(100vh - 100px) / 6);
-    font-size: calc(calc(100vh - 100px) / 8);
-    line-height: calc(calc(100vh - 100px) / 8);
+    height: calc(calc(100vh - 130px) / 6);
+    font-size: calc(calc(100vh - 130px) / 8);
+    line-height: calc(calc(100vh - 130px) / 8);
   }
 
   #display {
