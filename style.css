@@ -18,53 +18,59 @@ table { /* disable selection of buttons, etc.  */
 
 /* calculator buttons */
 .button {
-  border-radius: 10px;
   background-color: #0010FF;
   color: white;
   border-color: #0010FF;
-  width: 80px;
-  height: 35px;
-  border: 2px;
-  padding: 10px;
   font-family: "system-ui";
-  font-size: 28px;
   text-align: center;
+  border-radius: 2vw;
+  display: table-cell;
   vertical-align: middle;
 }
 
-/* iphone, fullscreen */
-@media (max-device-width : 450px),
-       (max-device-height : 450px) {
+/* tablet or computer, fixed size */
+@media only screen and (min-width : 799px) {
   .button {
-    border-radius: 10px;
-    width: 80px;
-    height: 35px;
-    border: 2px;
-    padding: 10px;
-    font-size: 28px;
+    width: 87px;
+  }
+}
+
+/* iphone, fullscreen */
+@media only screen and (max-width : 800px) {
+  .button {
+    width: 11.2vw;
   }
 }
 
 /* tablet or computer, fixed size */
-@media (min-device-width : 451px) and
-       (min-device-height : 451px) {
+@media only screen and (min-height : 399px) {
   .button {
-    border-radius: 10px;
-    width: 10vmin;
-    height: 4vmin;
-    border: 2px;
-    padding: 10px;
-    font-size: 3.5vmin;
+    height: 55px;
+    font-size: 28px;
+  }
+
+  #display {
+    font-size: 35px;
   }
 }
 
-/* display */
+@media only screen and (max-height : 400px) {
+  .button {
+    height: calc(calc(100vh - 100px) / 6);
+    font-size: calc(calc(100vh - 100px) / 8);
+    line-height: calc(calc(100vh - 100px) / 8);
+  }
+
+  #display {
+    font-size: 10vh;
+  }
+}
+
 #display {
   text-align: right;
   background-color: white;
   border-color: black;
   width: 100%;
-  font-size: 35px;
   font-family: 'Lucida Console', Monaco, monospace;
 }
 
