@@ -1,178 +1,83 @@
-/* provide a dark gray border around the whole page */
-body {
-	border: 30px solid #333;
-	margin: 0px;
+table { /* disable selection of buttons, etc.  */
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* others */
 }
 
-
-
-/* provides a white padding inside the dark gray border */
-.mainpadding {
-	padding: 20px;
+#display { /* allow select in display */
+  -webkit-touch-callout: auto; /* iOS Safari */
+    -webkit-user-select: auto; /* Safari */
+     -khtml-user-select: auto; /* Konqueror HTML */
+       -moz-user-select: auto; /* Firefox */
+        -ms-user-select: auto; /* Internet Explorer/Edge */
+            user-select: auto; /* others */
 }
 
-
-
-h4 {
-	padding-bottom: 0px;
-	margin-bottom: 4px;
+/* calculator buttons */
+.button {
+  border-radius: 10px;
+  background-color: #0010FF;
+  color: white;
+  border-color: #0010FF;
+  width: 40px;
+  padding-left: 2px;
+  padding-right: 2px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  border: 2px;
+  font-family: "system-ui";
+  font-size: 10px;
+  text-align: center;
 }
 
-
-.imgpadding {
-	padding-left: 20px;
-	padding-right: 20px;
-	width: 100%;
-	box-sizing: border-box;
+/* display */
+#display {
+  text-align: right;
+  background-color: white;
+  border-color: black;
+  width: 100%;
+  font-family: 'Lucida Console', Monaco, monospace;
 }
 
-.videopadding {
-	padding-left: 20px;
-	padding-right: 20px;
+/* Remove default bullets */
+ul, #constTreeView, #unitTreeView {
+  list-style-type: none;
 }
 
-
-/* copyright table */
-/* --------------- */
-#copyright {
-	text-align: center;
-	font-size: .75em;
+/* Remove margins and padding from the parent ul */
+#constTreeView, #unitTreeView {
+  margin: 0;
+  padding: 0;
 }
 
-#copyright td {
-    padding: 3px 10px;
+/* Style the caret/arrow */
+.caret {
+  cursor: pointer;
+  user-select: none; /* Prevent text selection */
 }
 
-
-/* weblink table */
-/* ------------- */
-#weblink {
-	text-align: left;
-	/* font-size: .75em; */
-    border-collapse: collapse;
+/* Create the caret/arrow with a unicode, and style it */
+.caret::before {
+  content: "\25B6";
+  color: black;
+  display: inline-block;
+  margin-right: 6px;
 }
 
-#weblink th {
-	font-weight: normal
+/* Rotate the caret/arrow icon when clicked on (using JavaScript) */
+.caret-down::before {
+  transform: rotate(90deg);
 }
 
-#weblink td, #weblink th {
-    border: 1px solid #ccc;
-    padding: 4px 15px;
+/* Hide the nested list */
+.nested {
+  display: none;
 }
 
-
-
-/* allow text to overlay the top of the image on the banner */
-/* -------------------------------------------------------- */
-.nomargin {
-	margin-top: 0px;
-	margin-bottom: 0px;
-}
-
-.isblock {
-	display: block;
-}
-
-.overlayimage {
-	position: relative;
-}
-
-.overlaytext {
-	position: absolute;
-	top: 10px;
-	left: 20px;
-}
-
-
-
-/* pretty tables */
-/* ------------- */
-#prettytable {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-	font-size: .75em;
-    border: 2px solid #aaa;
-    border-collapse: collapse;
-}
-
-#prettytable td, #prettytable th {
-    border: 1px solid #ccc;
-    padding: 4px 8px;
-}
-
-#prettytable tr:nth-child(even) {
-	background-color: #f2f2f2;
-}
-
-#prettytable td:first-child {
-	color: #0099ff;
-	font-weight: bold;
-}
-
-#prettytable th {
-    padding: 6px 8px;
-    text-align: left;
-    background-color: #0099ff;
-    color: white;
-}
-
-
-
-/* this keeps text from flowing around an image when it is too narrow to look good */
-p:before {
-  content: "";
-  width: 18em;
+/* Show the nested list when the user clicks on the caret/arrow (with JavaScript) */
+.active {
   display: block;
-  overflow: hidden;
-}
-
-
-
-/* hide the email address */
-/* ---------------------- */
-/* html has this <my-hidden data-user="uname" data-domain="gmail.com" /> */
-my-hidden::after {
-content: attr(data-domain);
-}
-
-my-hidden::before {
-content: attr(data-user) "\0040";
-}
-
-
-
-/* horizontal navigation bar */
-/* ------------------------- */
-ul#menutabs {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-}
-
-ul#menutabs li {
-    float: left;
-	/* border-right: 1px solid #bbb; */
-}
-
-/* #menutabs li:last-child {
-    border-right: none;
-} */
-
-ul#menutabs li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-/* Change the link color to #111 (black) on hover */
-ul#menutabs li a:hover {
-    background-color: #111;
-}
-
-ul#menutabs .active {
-    background-color: #a2712a;
 }

@@ -1,0 +1,99 @@
+<a href="calculator.html">Done</a> <a href="todo.html" style="position:absolute; left:250px;" >Todo list</a>
+<span style="white-space: pre;">
+
+Introduction
+
+  The physical calculator is intended to help solve physics problems. Unlike a
+  conventional calculator, this calculator works with measurements. A measurement
+  has a numeric value as well as a unit (such as meters, kilograms or seconds).
+  Units are carried through a calculation, so if you take 20 m (meters) and
+  divide it by 5 s (seconds), the results would be 4 m/s (a speed). Or if you
+  cube a length like 0.1 m, the result would be 0.001 m^3 (a volume of 1 liter).
+
+  Just like when you solve physics problems on paper this helps ensure sensible
+  answers. However for this calculator, it also helps provides several other
+  features. All units are handled internally as SI units, in this way conversions
+  are easily done, constants only need to be provided in one common form and
+  formulas also only need to be provided in one form.
+
+General
+
+  Buttons are mostly similar to a TI scientific calculator.
+
+  Math operations happen to both the value and the unit. Multiplying and dividing
+  combine the units of the two operands. Adding must be done with identical units.
+  Operations that result in non-sensible units, such as square root of a volume
+  are not allowed. Operations such as sin or log can only be done on scalars
+  (numbers with no units).
+
+Units
+
+  To enter a measurement with a unit, enter a number, then press the 'unit'
+  button. The 'unit' button shows a list of most commonly used units. The units
+  are arranged largely in rows, length, mass, time, electrical, temperature.
+  Units are multipled as they are entered. Pressing 'm' once will be a length in
+  meters. A second time becomes m*m (shown as m^2), an area. A third time m^3, a
+  volume. Pressing 'unit' again will exit unit mode.
+
+  To enter a ratio'd unit such as speed:
+    enter the numeric value
+    press 'unit'
+    press a length such as 'm'
+    press the '1/un' key, note how the diamond cursor moves to the denominator
+    press a time such as 's'
+    press 'unit' again to exit the unit mode
+
+  Units can be editted by using the '1/un' key to cancel out units. For example
+  m^2 can be changed to m by pressing 1/un and then m. The numerator and
+  denominator m's cancel out leaving m. Press '#' to remove all units (convert to
+  scalar).
+
+Conversions
+
+  The unit screen can also be used to handle unit conversions. If a unit type
+  such as 'kg' already exists, but a different unit of the same dimension,
+  (in this case mass) is pressed such as 'oz', the value will be converted to
+  the new unit. This works for more complex units also, such as m/s being changed
+  to mi/h.
+
+  Note - be careful with energy conversions, for example Joules (Watt Seconds) to
+  Watt Hours. You may try to simply press 'h' in units for hours to do so, this
+  will lead to non-sense results. Use 'list' to find Watt hours instead. This is
+  because Watt Seconds (kg m^2 s/s^3) is internally (kg m^2/s^2) and 'h' changes
+  the denominator factors when it should only change the (missing) numerator factor.
+
+Constants
+
+  The 'cnst' button shows a list of useful constants. The 'list' button shows
+  additional constants. Pressing 'cnst' again returns to normal mode without
+  entering a constant.
+
+Implicit formulas
+
+  An automatic solver (using dimensional analyis) will solve simple physics
+  problems that don't require any physical constants. This includes ohm's laws,
+  speed/distance/time problems and similar.
+
+  For example, enter the following:
+    '20', 'unit', 'm', '1/un', 's', 'kwn'     (given a speed of 20 m/s)
+    '5', 'unit', 'm', 'kwn'                   (and given a distance of 5 m)
+    'unit', 's', 'unkn'                       (how long would it take to travel)
+    Note - for the unknown, the value is ignored, onlty the units are significant.
+
+  Pressing 'list' (followed possibly by the 'implicit' button) will show the
+  formula used to perform the calculation.
+
+Explicit formulas
+
+  For more complex problems, the explicit solver searchs a library of physical
+  formulas to provide a solution. It works identically to the implicit solver.
+  Some implicit correct formulas are also included in explicit form to put a
+  name to the physical law and assist in showing the result is correct.
+
+  When 'list' is shown (and 'explicit' is selected), multiple solutions may be
+  provided. These can be scrolled through using the arrow keys provided.
+
+Note
+
+  The 'mode' button is not yet implemented.
+</span>

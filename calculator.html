@@ -1,0 +1,104 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+  <meta charset=utf-8 />
+</head>
+
+<body/>
+  <table border="1" id="calculator">
+    <caption id="message"></caption>
+    <tr>
+      <td colspan="9" style="padding-left:10px;padding-right:10px"><p style="font-size:20" id="display"></p></td>
+    </tr>
+    <tr>
+      <td><p class="button" mode-norm="CE/C" mode-2nd="CE/C" mode-unit="CE/C" mode-const="CE/C" onclick="keyButton()"></p></td>
+      <td><p class="button" mode-norm="π"    mode-2nd="π"    mode-unit="m"    mode-const="π"    onclick="keyButton()"></p></td>
+      <td><p class="button" mode-norm="ln"   mode-2nd="log"  mode-unit="mm"   mode-const="c"    onclick="keyButton()"></p></td>
+      <td><p class="button" mode-norm="EE"   mode-2nd="EE"   mode-unit="km"   mode-const="h"    onclick="keyButton()"></p></td>
+      <td><p class="button" mode-norm="("    mode-2nd="("    mode-unit="ft"   mode-const="ħ"    onclick="keyButton()"></p></td>
+      <td><p class="button" mode-norm=")"    mode-2nd=")"    mode-unit="in"   mode-const=""     onclick="keyButton()"></p></td>
+      <td><p class="button" mode-norm="÷"    mode-2nd="÷"    mode-unit="mi"   mode-const="ε₀"   onclick="keyButton()"></p></td>
+      <td><p class="button" mode-norm="¹/ₓ"  mode-2nd="¹/ₓ"  mode-unit="1/un" mode-const=""     id="un1"  onclick="keyButton()"></p></td>
+    </tr>
+    <tr>
+      <td><p class="button" mode-norm="mode" mode-2nd="mode" mode-unit="kwn"  mode-const=""     onclick="keyButton()"></p></td>
+      <td><p class="button" mode-norm=""     mode-2nd=""     mode-unit="kg"   mode-const="µ₀"   onclick="keyButton()"></p></td>
+      <td><p class="button" mode-norm="eˣ"   mode-2nd="10ˣ"  mode-unit="g"    mode-const="Z₀"   onclick="keyButton()"></p></td>
+      <td><p class="button" mode-norm="7"    mode-2nd="7"    mode-unit="mg"   mode-const="e"    onclick="keyButton()"></p></td>
+      <td><p class="button" mode-norm="8"    mode-2nd="8"    mode-unit="lb"   mode-const="L"    onclick="keyButton()"></p></td>
+      <td><p class="button" mode-norm="9"    mode-2nd="9"    mode-unit="oz"   mode-const="k"    onclick="keyButton()"></p></td>
+      <td><p class="button" mode-norm="×"    mode-2nd="×"    mode-unit="gal"  mode-const=""     onclick="keyButton()"></p></td>
+      <td><p class="button" mode-norm="yˣ"   mode-2nd="ˣ√y"  mode-unit="l"    mode-const="R"    onclick="keyButton()"></p></td>
+    </tr>
+    <tr>
+      <td><p class="button" mode-norm="2nd"  mode-2nd="2nd"  mode-unit="unkn" mode-const=""     id="nd2" onclick="keyButton()"></p></td>
+      <td><p class="button" mode-norm=""     mode-2nd=""     mode-unit="s"    mode-const=""     onclick="keyButton()"></p></td>
+      <td><p class="button" mode-norm="sin"  mode-2nd="sin⁻¹" mode-unit="min" mode-const=""     onclick="keyButton()"></p></td>
+      <td><p class="button" mode-norm="4"    mode-2nd="4"    mode-unit="h"    mode-const=""     onclick="keyButton()"></p></td>
+      <td><p class="button" mode-norm="5"    mode-2nd="5"    mode-unit="d"    mode-const=""     onclick="keyButton()"></p></td>
+      <td><p class="button" mode-norm="6"    mode-2nd="6"    mode-unit="yr"   mode-const=""     onclick="keyButton()"></p></td>
+      <td><p class="button" mode-norm="-"    mode-2nd="-"    mode-unit=""     mode-const=""     onclick="keyButton()"></p></td>
+      <td><p class="button" mode-norm="√x"   mode-2nd="³√x"  mode-unit=""     mode-const=""     onclick="keyButton()"></p></td>
+    </tr>
+    <tr>
+      <td><p class="button" mode-norm="cnst" mode-2nd="cnst" mode-unit="cnst" mode-const="cnst" id="cnst" onclick="keyButton()"></p></td>
+      <td><p class="button" mode-norm=""     mode-2nd=""     mode-unit="A"    mode-const=""     onclick="keyButton()"></p></td>
+      <td><p class="button" mode-norm="cos"  mode-2nd="cos⁻¹" mode-unit="V"   mode-const=""     onclick="keyButton()"></p></td>
+      <td><p class="button" mode-norm="1"    mode-2nd="1"    mode-unit="Ω"    mode-const=""     onclick="keyButton()"></p></td>
+      <td><p class="button" mode-norm="2"    mode-2nd="2"    mode-unit="J"    mode-const=""     onclick="keyButton()"></p></td>
+      <td><p class="button" mode-norm="3"    mode-2nd="3"    mode-unit="W"    mode-const=""     onclick="keyButton()"></p></td>
+      <td><p class="button" mode-norm="+"    mode-2nd="+"    mode-unit="N"    mode-const=""     onclick="keyButton()"></p></td>
+      <td><p class="button" mode-norm="x²"   mode-2nd="x³"   mode-unit="Pa"   mode-const=""     onclick="keyButton()"></p></td>
+    </tr>
+    <tr>
+      <td><p class="button" mode-norm="unit" mode-2nd="unit" mode-unit="unit" mode-const=""     id="unit" onclick="keyButton()"></p></td>
+      <td><p class="button" mode-norm=""     mode-2nd=""     mode-unit="K"    mode-const="G"    onclick="keyButton()"></p></td>
+      <td><p class="button" mode-norm="tan" mode-2nd="tan⁻¹" mode-unit="°C"   mode-const="g₀"   onclick="keyButton()"></p></td>
+      <td><p class="button" mode-norm="0"    mode-2nd="0"    mode-unit="°F"   mode-const="M⊙"   onclick="keyButton()"></p></td>
+      <td><p class="button" mode-norm="."    mode-2nd="."    mode-unit="cd"   mode-const="M🜨"   onclick="keyButton()"></p></td>
+      <td><p class="button" mode-norm="±"    mode-2nd="±"    mode-unit="mol"  mode-const="au"   onclick="keyButton()"></p></td>
+      <td><p class="button" mode-norm="="    mode-2nd="="    mode-unit="#"    mode-const="R🜨"   onclick="keyButton()"></p></td>
+      <td><p class="button" mode-norm="list" mode-2nd="list" mode-unit="list" mode-const="list" id="list" onclick="keyButton()"></p></td>
+    </tr>
+  </table>
+  <a href="help.html" style="position:absolute; top:6px; left:6px;">Help</a>
+
+  <div id="constTreeDiv" style="display:none"> <div style="display:inherit;">
+  <input type="button" value="&#10005;" onclick="cancelTreeButton('const')" />
+  <ul id="constTreeView">
+    <!--  dynamically populated -->
+    <!--  <li> <span class="caret">mass</span> <ul id="tree-mass" class="nested"> </ul> </li> -->
+    <!--  <li onclick="unitSelected('kg', 1, '')"                > kilogram (kg)     </li> -->
+  </ul>
+  </div> </div>
+
+  <div id="unitTreeDiv" style="display:none"> <div style="display:inherit;">
+  <input type="button" value="&#10005;" onclick="cancelTreeButton('unit')" />
+  <ul id="unitTreeView">
+    <!--  dynamically populated, like const -->
+  </ul>
+  </div> </div>
+
+  <div id="listDiv" style="display:none"> <div style="display:inherit;">
+    <span style="display:inline">
+      <input type="button" value="&#10005;" onclick="cancelListButton()" />
+      <input type="button" value="Exact"   id="exactButton"      onclick="exactListButton()" />
+      <input type="button" value="Missing" id="missingButton"    onclick="missingListButton()" />
+      <input type="button" value="Extra"   id="extraButton"      onclick="extraListButton()" />
+      <input type="button" value="Implict" id="implicitButton"   onclick="implicitListButton()" />
+      <input type="button" value="&#8678;" id="leftArrowButton"  onclick="leftArrowListButton()" />
+      <span id="pageListText">1 of 1</span>
+      <input type="button" value="&#8680;" id="rightArrowButton" onclick="rightArrowListButton()" />
+    </span>
+    <table id="listView" border="1" width="410px" style="table-layout:fixed;">
+      <tr> <td colspan="2"> <p id="formula"></p> </td> </tr>
+      <tr> <td> <p id="list0"></p> </td> <td <p id="list5"></p> </td> </tr>
+      <tr> <td> <p id="list1"></p> </td> <td <p id="list6"></p> </td> </tr>
+      <tr> <td> <p id="list2"></p> </td> <td <p id="list7"></p> </td> </tr>
+      <tr> <td> <p id="list3"></p> </td> <td <p id="list8"></p> </td> </tr>
+      <tr> <td> <p id="list4"></p> </td> <td <p id="list9"></p> </td> </tr>
+    </table>
+  </div> </div>
+</html>
