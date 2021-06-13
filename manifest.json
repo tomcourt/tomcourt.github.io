@@ -1,4 +1,10 @@
 {
-    "display":      "standalone", /* Could be "fullscreen", "standalone", "minimal-ui", or "browser" */
-    "orientation":  "landscape", /* Could be "landscape" or "portrait" */
+  "name": "Physical Calculator",
+  "short_name": "Calculator",
+  "theme_color": "#fff",
+  "background_color": "#fff",
+  "display": "browser",
+  "orientation": "landscape",
+  "scope": "/",
+  "start_url": "/"
 }
