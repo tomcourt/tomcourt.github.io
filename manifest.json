@@ -6,5 +6,5 @@
   "display": "browser",
   "orientation": "landscape",
   "scope": "/",
-  "start_url": "/calculator.html"
+  "start_url": "http://www.tcourt.net/calculator.html"
 }
