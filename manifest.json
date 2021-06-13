@@ -6,5 +6,5 @@
   "display": "browser",
   "orientation": "landscape",
   "scope": "/",
-  "start_url": "/calculator"
+  "start_url": "/calculator.html"
 }
