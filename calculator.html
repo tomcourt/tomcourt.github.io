@@ -5,9 +5,13 @@
   <link rel="manifest" href="manifest.json">
   <script src="script.js"></script>
   <meta charset=utf-8 />
+  <meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name=apple-mobile-web-app-capable content=yes>
+  <meta name=apple-mobile-web-app-status-bar-style content=black>
+  <title>Calculator</title>
 </head>
 
-<body/>
+<body><div id=page>
   <table border="1" id="calculator">
     <caption id="message"></caption>
     <tr>
@@ -64,7 +68,7 @@
       <td><p class="button" mode-norm="list" mode-2nd="list" mode-unit="list" mode-const="list" id="list" onclick="keyButton()"></p></td>
     </tr>
   </table>
-  <a href="help.html" style="position:absolute; top:6px; left:6px;">Help</a>
+  <a href="help.html" id="helpButton" style="position:absolute; top:6px; left:6px;">Help</a>
 
   <div id="constTreeDiv" style="display:none"> <div style="display:inherit;">
   <input type="button" value="&#10005;" onclick="cancelTreeButton('const')" />
@@ -82,7 +86,7 @@
   </ul>
   </div> </div>
 
-  <div id="listDiv" style="display:none;"> <div style="display:inherit; position:relative; top:20px;">
+  <div id="listDiv" style="display:none;"> <div style="display:inherit; position:relative; top:40px;">
     <span style="display:inline">
       <input type="button" value="&#10005;" onclick="cancelListButton()" />
       <input type="button" value="Exact"   id="exactButton"      onclick="exactListButton()" />
@@ -90,10 +94,10 @@
       <input type="button" value="Extra"   id="extraButton"      onclick="extraListButton()" />
       <input type="button" value="Implict" id="implicitButton"   onclick="implicitListButton()" />
       <input type="button" value="&#8678;" id="leftArrowButton"  onclick="leftArrowListButton()" />
-      <span id="pageListText">1 of 1</span>
+      <span id="pageListText" style="font-size: 28px;">1 of 1</span>
       <input type="button" value="&#8680;" id="rightArrowButton" onclick="rightArrowListButton()" />
     </span>
-    <table id="listView" border="1" width="410px" style="table-layout:fixed;">
+    <table id="listView" border="1" width="800px" style="table-layout:fixed;">
       <tr> <td colspan="2"> <p id="formula"></p> </td> </tr>
       <tr> <td> <p id="list0"></p> </td> <td <p id="list5"></p> </td> </tr>
       <tr> <td> <p id="list1"></p> </td> <td <p id="list6"></p> </td> </tr>
@@ -102,4 +106,5 @@
       <tr> <td> <p id="list4"></p> </td> <td <p id="list9"></p> </td> </tr>
     </table>
   </div> </div>
+</div></body>
 </html>

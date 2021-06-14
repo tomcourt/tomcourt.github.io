@@ -16,6 +16,20 @@ table { /* disable selection of buttons, etc.  */
             user-select: auto; /* others */
 }
 
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+#page {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 8px solid #f00;
+}
+
 /* calculator buttons */
 .button {
   background-color: #0010FF;
