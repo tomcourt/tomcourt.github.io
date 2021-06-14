@@ -38,7 +38,7 @@ table { /* disable selection of buttons, etc.  */
 /* iphone, fullscreen */
 @media only screen and (max-width : 800px) {
   .button {
-    width: 11.2vw;
+    width: 11.2vmax;
   }
 }
 
@@ -56,13 +56,13 @@ table { /* disable selection of buttons, etc.  */
 
 @media only screen and (max-height : 430px) {
   .button {
-    height: calc(calc(100vh - 130px) / 6);
-    font-size: calc(calc(100vh - 130px) / 8);
-    line-height: calc(calc(100vh - 130px) / 8);
+    height: calc(calc(100vmin - 130px) / 6);
+    font-size: calc(calc(100vmin - 130px) / 8);
+    line-height: calc(calc(100vmin - 130px) / 8);
   }
 
   #display {
-    font-size: 10vh;
+    font-size: 10vmin;
   }
 }
 
