@@ -922,6 +922,7 @@ function selectUnitByName(name, tree) {
     setDisplay(operands[operands.length - 1].toString());
     document.getElementById("unitTreeDiv").style.display = 'none';
     document.getElementById("calculator").hidden = false;
+    document.getElementById("helpButton").hidden = false;
     if (tree)
         setButtonMode("mode-norm");
 }
@@ -939,6 +940,7 @@ function selectConstByName(button, tree) {
     setDisplay(operands[operands.length - 1].toString());
     document.getElementById("constTreeDiv").style.display = 'none';
     document.getElementById("calculator").hidden = false;
+    document.getElementById("helpButton").hidden = false;
     if (tree)
         setButtonMode("mode-norm");
 }
@@ -1184,12 +1186,16 @@ function keyButton(evnt) {
         case 'cnst':
             setButtonMode((currentMode == 'mode-const') ? "mode-norm" : "mode-const");
             break;
+        case 'help':
+            window.location.href = "help.html";
+            break;
         default:
             if (currentMode == 'mode-unit') {
                 switch (elemt.innerHTML) {
                     case 'list':
                         document.getElementById("unitTreeDiv").style.display = 'block';
                         document.getElementById("calculator").hidden = true;
+                        document.getElementById("helpButton").hidden = true;
                         break;
                     case '1/un':
                         unitSign = -unitSign;
@@ -1209,6 +1215,7 @@ function keyButton(evnt) {
                 if (elemt.innerHTML == 'list') {
                     document.getElementById("constTreeDiv").style.display = 'block';
                     document.getElementById("calculator").hidden = true;
+                    document.getElementById("helpButton").hidden = true;
                 }
                 else {
                     selectConstByName(elemt.innerHTML);
@@ -1226,6 +1233,7 @@ function keyButton(evnt) {
                     case 'list':
                         document.getElementById("listDiv").style.display = 'block';
                         document.getElementById("calculator").hidden = true;
+                        document.getElementById("helpButton").hidden = true;
                         break;
                     case '0':
                     case '1':
@@ -1315,10 +1323,12 @@ function keyButton(evnt) {
 function cancelTreeButton(tree) {
     document.getElementById(tree + 'TreeDiv').style.display = 'none';
     document.getElementById('calculator').hidden = false;
+    document.getElementById('helpButton').hidden = false;
 }
 function cancelListButton() {
     document.getElementById('listDiv').style.display = 'none';
     document.getElementById('calculator').hidden = false;
+    document.getElementById('helpButton').hidden = false;
 }
 function exactListButton() {
     listedFormulas = exactFormulas;
@@ -1348,3 +1358,30 @@ function leftArrowListButton() {
     inxFormulas--;
     populateList();
 }
+if (navigator.userAgent.indexOf('Android') >= 0) {
+    window.onscroll = function () {
+        document.getElementById('page').style.height = window.innerHeight + 'px';
+    };
+}
+var lastWidth = 0;
+window.onresize = function () {
+    var pageWidth = document.getElementById('page').offsetWidth;
+    if (lastWidth == pageWidth)
+        return;
+    lastWidth = pageWidth;
+    window.onload = function () {
+        var iphone = (navigator.userAgent.indexOf('iPhone') >= 0) || (navigator.userAgent.indexOf('iPod') >= 0);
+        var ipad = (navigator.userAgent.indexOf('iPad') >= 0);
+        if (iphone || ipad) {
+            var height = document.documentElement.clientHeight;
+            var fullscreen = (window.navigator['standalone'] == true);
+            if (iphone && !fullscreen)
+                height += 60;
+            document.getElementById('page').style.height = height + 'px';
+        }
+        else if (navigator.userAgent.indexOf('Android') >= 0) {
+            document.getElementById('page').style.height = (window.innerHeight + 56) + 'px';
+        }
+        setTimeout(window.scrollTo, 0, 0, 1);
+    };
+};
