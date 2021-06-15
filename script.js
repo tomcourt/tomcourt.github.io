@@ -1132,7 +1132,7 @@ function populateList() {
         document.getElementById('formula').innerHTML = 'no formula found';
         document.getElementById('list0').innerHTML = 'u = ' + knowns[0].toString();
         for (var i = 1; i < 9; i++)
-            document.getElementById('list' + i.toString()).innerHTML = ((i < knowns.length) ? 'k' + i.toString() + ' = ' + knowns[i].toString() : '');
+            document.getElementById('list' + i.toString()).innerHTML = ((i < knowns.length) ? 'k' + i.toString() + ' = ' + knowns[i].toString() : '&nbsp');
     }
 }
 function toggleUnitMode() {
