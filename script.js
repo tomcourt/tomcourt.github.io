@@ -637,6 +637,7 @@ window.onload = function () {
     for (var i = 0; i < arrayOfFormula.length; i++)
         listOfFormulas.push(create(Formulas, arrayOfFormula[i]));
     setButtonMode('mode-norm');
+    setupScroll();
 };
 function setButtonMode(newMode) {
     var buttons = document.getElementsByClassName("button");
@@ -1359,25 +1360,28 @@ if (navigator.userAgent.indexOf('Android') >= 0) {
         document.getElementById('page').style.height = window.innerHeight + 'px';
     };
 }
+function setupScroll() {
+    var iphone = (navigator.userAgent.indexOf('iPhone') >= 0) || (navigator.userAgent.indexOf('iPod') >= 0);
+    var ipad = (navigator.userAgent.indexOf('iPad') >= 0);
+    if (iphone || ipad) {
+        var height = document.documentElement.clientHeight;
+        var fullscreen = (window.navigator['standalone'] == true);
+        if (iphone && !fullscreen)
+            height += 60;
+        document.getElementById('page').style.height = height + 'px';
+    }
+    else if (navigator.userAgent.indexOf('Android') >= 0) {
+        document.getElementById('page').style.height = (window.innerHeight + 56) + 'px';
+    }
+    setTimeout(scrollTo, 0, 0, 1);
+}
 var lastWidth = 0;
-window.onresize = function () {
+function onResize() {
     var pageWidth = document.getElementById('page').offsetWidth;
     if (lastWidth == pageWidth)
         return;
     lastWidth = pageWidth;
-    window.onload = function () {
-        var iphone = (navigator.userAgent.indexOf('iPhone') >= 0) || (navigator.userAgent.indexOf('iPod') >= 0);
-        var ipad = (navigator.userAgent.indexOf('iPad') >= 0);
-        if (iphone || ipad) {
-            var height = document.documentElement.clientHeight;
-            var fullscreen = (window.navigator['standalone'] == true);
-            if (iphone && !fullscreen)
-                height += 60;
-            document.getElementById('page').style.height = height + 'px';
-        }
-        else if (navigator.userAgent.indexOf('Android') >= 0) {
-            document.getElementById('page').style.height = (window.innerHeight + 56) + 'px';
-        }
-        setTimeout(scrollTo, 0, 0, 1);
-    };
-};
+    setupScroll();
+}
+window.onresize = onResize;
+onResize();
