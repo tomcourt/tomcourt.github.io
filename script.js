@@ -636,6 +636,10 @@ window.onload = function () {
     listOfFormulas = [];
     for (var i = 0; i < arrayOfFormula.length; i++)
         listOfFormulas.push(create(Formulas, arrayOfFormula[i]));
+    fillTreeInHTML(listOfConstants, 'constTreeView', 'selectConstByName');
+    fillTreeInHTML(listOfUnits, 'unitTreeView', 'selectUnitByName');
+    clearButton(true);
+    wireUpTreeTogglerInHTML();
     setButtonMode('mode-norm');
     setupScroll();
 };
@@ -919,7 +923,6 @@ function selectUnitByName(name, tree) {
     setDisplay(operands[operands.length - 1].toString());
     document.getElementById("unitTreeDiv").style.display = 'none';
     document.getElementById("calculator").hidden = false;
-    document.getElementById("helpButton").hidden = false;
     if (tree)
         setButtonMode("mode-norm");
 }
@@ -937,7 +940,6 @@ function selectConstByName(button, tree) {
     setDisplay(operands[operands.length - 1].toString());
     document.getElementById("constTreeDiv").style.display = 'none';
     document.getElementById("calculator").hidden = false;
-    document.getElementById("helpButton").hidden = false;
     if (tree)
         setButtonMode("mode-norm");
 }
@@ -1184,7 +1186,7 @@ function keyButton(evnt) {
             setButtonMode((currentMode == 'mode-const') ? "mode-norm" : "mode-const");
             break;
         case 'help':
-            window.location.href = "help.html";
+            window.open('help.html', '_blank');
             break;
         default:
             if (currentMode == 'mode-unit') {
@@ -1192,7 +1194,6 @@ function keyButton(evnt) {
                     case 'list':
                         document.getElementById("unitTreeDiv").style.display = 'block';
                         document.getElementById("calculator").hidden = true;
-                        document.getElementById("helpButton").hidden = true;
                         break;
                     case '1/un':
                         unitSign = -unitSign;
@@ -1212,7 +1213,6 @@ function keyButton(evnt) {
                 if (elemt.innerHTML == 'list') {
                     document.getElementById("constTreeDiv").style.display = 'block';
                     document.getElementById("calculator").hidden = true;
-                    document.getElementById("helpButton").hidden = true;
                 }
                 else {
                     selectConstByName(elemt.innerHTML);
@@ -1230,7 +1230,6 @@ function keyButton(evnt) {
                     case 'list':
                         document.getElementById("listDiv").style.display = 'block';
                         document.getElementById("calculator").hidden = true;
-                        document.getElementById("helpButton").hidden = true;
                         break;
                     case '0':
                     case '1':
@@ -1320,12 +1319,10 @@ function keyButton(evnt) {
 function cancelTreeButton(tree) {
     document.getElementById(tree + 'TreeDiv').style.display = 'none';
     document.getElementById('calculator').hidden = false;
-    document.getElementById('helpButton').hidden = false;
 }
 function cancelListButton() {
     document.getElementById('listDiv').style.display = 'none';
     document.getElementById('calculator').hidden = false;
-    document.getElementById('helpButton').hidden = false;
 }
 function exactListButton() {
     listedFormulas = exactFormulas;
@@ -1384,4 +1381,3 @@ function onResize() {
     setupScroll();
 }
 window.onresize = onResize;
-onResize();
