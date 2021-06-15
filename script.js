@@ -443,8 +443,9 @@ var Formulas = (function () {
         return f;
     };
     Formulas.prototype.matchVariables = function () {
-        for (var i = 0; i < knowns.length; i++)
-            knowns[i].formulaVar = '';
+        knowns[0].formulaVar = 'u';
+        for (var i = 1; i < knowns.length; i++)
+            knowns[i].formulaVar = 'k' + i.toString();
         for (var i = 0; i < this.varUnits.length; i++) {
             for (var j = 0; j < knowns.length; j++)
                 if (this.varUnits[i].isEqualArray(knowns[j].unitPowers)) {
