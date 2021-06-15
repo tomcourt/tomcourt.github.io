@@ -1124,7 +1124,7 @@ function populateList() {
         setDisplay(top.toString());
         document.getElementById('formula').innerHTML = formula.desc + ': ' + formula.prettyMatching();
         for (var i = 0; i < 9; i++)
-            document.getElementById('list' + i.toString()).innerHTML = ((i < knowns.length) ? knowns[i].formulaVar + ' = ' + knowns[i].toString() : '');
+            document.getElementById('list' + i.toString()).innerHTML = ((i < knowns.length) ? knowns[i].formulaVar + ' = ' + knowns[i].toString() : '&nbsp');
     }
     else {
         var unknown = ((knowns[0].nPowers() == 0) ? '0' : '1');
