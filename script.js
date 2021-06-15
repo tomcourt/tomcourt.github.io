@@ -623,7 +623,7 @@ var extraTermFormulas;
 var listedFormulas = implicitFormula;
 var inxFormulas = 0;
 var knowns = [new Measurement(0)];
-window.onload = function () {
+function finishSetup() {
     function create(constructor, argList) {
         return new (Function.prototype.bind.apply(constructor, [null].concat(argList)));
     }
@@ -641,7 +641,7 @@ window.onload = function () {
     clearButton(true);
     wireUpTreeTogglerInHTML();
     setButtonMode('mode-norm');
-};
+}
 function setButtonMode(newMode) {
     var buttons = document.getElementsByClassName("button");
     for (var i = 0; i < buttons.length; i++)
@@ -1382,6 +1382,7 @@ window.onresize = function () {
         else if (navigator.userAgent.indexOf('Android') >= 0) {
             document.getElementById('page').style.height = (window.innerHeight + 56) + 'px';
         }
-        setTimeout(window.scrollTo, 0, 0, 1);
+        setTimeout(scrollTo, 0, 0, 1);
+        finishSetup();
     };
 };
