@@ -88,12 +88,12 @@ html, body {
 }
 
 #listView {
-  font-size: 28px;
+  font-size: 20px;
 }
 
 input[type=button] {
   -webkit-appearance: none;
-  font-size: 28px;
+  font-size: 20px;
   height: 40px;
   background-color: #0010FF;
   color: white;
