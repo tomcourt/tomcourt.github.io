@@ -623,7 +623,7 @@ var extraTermFormulas;
 var listedFormulas = implicitFormula;
 var inxFormulas = 0;
 var knowns = [new Measurement(0)];
-function finishSetup() {
+window.onload = function () {
     function create(constructor, argList) {
         return new (Function.prototype.bind.apply(constructor, [null].concat(argList)));
     }
@@ -636,12 +636,8 @@ function finishSetup() {
     listOfFormulas = [];
     for (var i = 0; i < arrayOfFormula.length; i++)
         listOfFormulas.push(create(Formulas, arrayOfFormula[i]));
-    fillTreeInHTML(listOfConstants, 'constTreeView', 'selectConstByName');
-    fillTreeInHTML(listOfUnits, 'unitTreeView', 'selectUnitByName');
-    clearButton(true);
-    wireUpTreeTogglerInHTML();
     setButtonMode('mode-norm');
-}
+};
 function setButtonMode(newMode) {
     var buttons = document.getElementsByClassName("button");
     for (var i = 0; i < buttons.length; i++)
@@ -1383,6 +1379,5 @@ window.onresize = function () {
             document.getElementById('page').style.height = (window.innerHeight + 56) + 'px';
         }
         setTimeout(scrollTo, 0, 0, 1);
-        finishSetup();
     };
 };
