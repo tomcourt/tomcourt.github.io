@@ -1,0 +1,10 @@
+BEGIN:VCARD
+VERSION:2.1
+N:Court;Thomas;;
+FN:Thomas Court
+ORG:Thomas Court Software Development LLC
+TITLE:Senior Software Engineer
+TEL;CELL:(612)875-7511
+ADR;DOM;HOME;WORK:;;15404 Court Rd.;Minnetonka;MN;55345;
+EMAIL:tcourt@gmail.com
+END:VCARD
