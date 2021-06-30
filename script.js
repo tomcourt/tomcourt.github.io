@@ -1,4 +1,4 @@
-var arrayOfUnits = [
+const arrayOfUnits = [
     ['kg', 'kg', 'mass', 'kilogram', 1],
     ['m', 'm', 'length', 'meter', 1],
     ['s', 's', 'time', 'second', 1],
@@ -92,7 +92,7 @@ var arrayOfUnits = [
     ['kg m2/s2 A2', 'H', 'electromag', 'henry', 1],
     ['cd/m2', 'lx', 'other', 'lux', 1],
 ];
-var arrayOfConstants = [
+const arrayOfConstants = [
     ['1', Math.PI, 'π', 'basic', 'pi', 'pi'],
     ['1/mol', 6.02214076E23, 'L', 'physics', 'Avogadro constant'],
     ['kg m2/s2 K', 1.380649E-23, 'k', 'physics', 'Boltzmann constant'],
@@ -117,7 +117,7 @@ var arrayOfConstants = [
     ['m', 149597870700, 'au', 'astronomy', 'astronomical unit length'],
     ['m', 6378137, 'R🜨', 'astronomy', 'equatorial radius of Earth', 'Rearth'],
 ];
-var arrayOfFormula = [
+const arrayOfFormula = [
     ['ohms law', 'electrical',
         ['v = r * i', 'i = v / r', 'r = v / i'],
         ['v=kg m2/s3 A', 'i=A', 'r=kg m2/s3 A2']],
@@ -194,6 +194,61 @@ var arrayOfFormula = [
         ['p = n*$R*t / v', 'v = n*$R / p', 'n = p*v / ($R*t)', 't = p*v / (n*$R)'],
         ['t=K', 'p=kg/m s2', 'n=mol', 'v=m3']],
 ];
+const arrayOfButtons = [
+    [
+        ["CE/C", "CE/C", "CE/C", "CE/C"],
+        ["π", "π", "m", "π"],
+        ["LN", "LOG", "mm", "c"],
+        ["EE", "EE", "km", "h"],
+        ["(", "(", "ft", "ħ"],
+        [")", ")", "in", ""],
+        ["÷", "÷", "mi", "ε₀"],
+        ["¹/ₓ", "¹/ₓ", "1/UN", ""]
+    ], [
+        ["MODE", "MODE", "kwn", ""],
+        ["STR", "SUM", "kg", "µ₀"],
+        ["eˣ", "10ˣ", "g", "Z₀"],
+        ["7", "7", "mg", "e"],
+        ["8", "8", "lb", "L"],
+        ["9", "9", "oz", "k"],
+        ["×", "×", "gal", ""],
+        ["yˣ", "ˣ√y", "l", "R"]
+    ], [
+        ["2nd", "2nd", "unkn", ""],
+        ["RCL", "EXCH", "s", ""],
+        ["SIN", "SIN⁻¹", "min", ""],
+        ["4", "4", "h", ""],
+        ["5", "5", "d", ""],
+        ["6", "6", "yr", ""],
+        ["-", "-", "", ""],
+        ["√x", "³√x", "", ""]
+    ], [
+        ["CNST", "CNST", "", "CNST"],
+        ["", "", "A", ""],
+        ["COS", "COS⁻¹", "V", ""],
+        ["1", "1", "Ω", ""],
+        ["2", "2", "J", ""],
+        ["3", "3", "W", ""],
+        ["+", "+", "N", ""],
+        ["x²", "x³", "Pa", ""]
+    ], [
+        ["UNIT", "UNIT", "UNIT", ""],
+        ["", "", "K", "G"],
+        ["TAN", "TAN⁻¹", "°C", "g₀"],
+        ["0", "0", "°F", "M⊙"],
+        [".", ".", "cd", "M🜨"],
+        ["±", "±", "mol", "au"],
+        ["=", "=", "#", "R🜨"],
+        ["LIST", "LIST", "LIST", "LIST"]
+    ]
+];
+var buttonElements = new Map([
+    ['unit', undefined],
+    ['list', undefined],
+    ['cnst', undefined],
+    ['2nd', undefined],
+    ['1/un', undefined],
+]);
 function format(n) {
     var p = n.toPrecision(8);
     if (/^-?0.0?0?[1-9]/.test(p))
@@ -207,8 +262,8 @@ function format(n) {
         return n.toExponential(4);
     return p;
 }
-var ShortUnits = (function () {
-    function ShortUnits(str, powers) {
+class ShortUnits {
+    constructor(str, powers) {
         if (str == undefined) {
             this.powers = powers.slice();
             return;
@@ -236,16 +291,16 @@ var ShortUnits = (function () {
             }
         }
     }
-    ShortUnits.prototype.copy = function () {
+    copy() {
         return new ShortUnits(undefined, this.powers);
-    };
-    ShortUnits.prototype.isEqual = function (other) {
+    }
+    isEqual(other) {
         return (this.powers.toString() == other.powers.toString());
-    };
-    ShortUnits.prototype.isEqualArray = function (other) {
+    }
+    isEqualArray(other) {
         return (this.powers.toString() == other.toString());
-    };
-    ShortUnits.prototype.toString = function () {
+    }
+    toString() {
         var ret = '';
         for (var i = 0; i < 7; i++) {
             if (this.powers[i] > 1)
@@ -269,13 +324,11 @@ var ShortUnits = (function () {
         if (ret.substr(-1, 1) == '/')
             ret = ret.substr(0, ret.length - 1);
         return ret;
-    };
-    ShortUnits.names = ['kg', 'm', 's', 'K', 'A', 'cd', 'mol'];
-    return ShortUnits;
-}());
-var Unit = (function () {
-    function Unit(shortUnits, name, group, desc, factor, offset) {
-        if (offset === void 0) { offset = 0; }
+    }
+}
+ShortUnits.names = ['kg', 'm', 's', 'K', 'A', 'cd', 'mol'];
+class Unit {
+    constructor(shortUnits, name, group, desc, factor, offset = 0) {
         this.units = new ShortUnits(shortUnits);
         this.name = name;
         this.group = group;
@@ -283,26 +336,26 @@ var Unit = (function () {
         this.factor = factor;
         this.offset = offset;
     }
-    Unit.prototype.nPowers = function () {
+    nPowers() {
         var n = 0;
         for (var i = 0; i < 7; i++)
             if (this.units.powers[i] != 0)
                 n++;
         return n;
-    };
-    Unit.prototype.isComposite = function () {
+    }
+    isComposite() {
         return this.name.includes('/');
-    };
-    Unit.prototype.isComplex = function () {
+    }
+    isComplex() {
         return ((this.nPowers() > 1 || this.units.powers[this.index()] != 1 || this.name.includes('°')) && !this.isComposite());
-    };
-    Unit.prototype.index = function () {
+    }
+    index() {
         for (var i = 0; i < 7; i++)
             if (this.units.powers[i] != 0)
                 return i;
         return -1;
-    };
-    Unit.prototype.names = function () {
+    }
+    names() {
         var un = ['', '', '', '', '', '', ''];
         if (this.isComplex()) {
             for (var i = 0; i < 7; i++)
@@ -315,9 +368,8 @@ var Unit = (function () {
                 un[findUnitByName(terms[i]).index()] = terms[i];
         }
         return un;
-    };
-    return Unit;
-}());
+    }
+}
 var listOfUnits = [];
 function findUnitByName(name) {
     for (var i = 0; i < listOfUnits.length; i++)
@@ -331,9 +383,8 @@ function findUnit(powers, name) {
             return listOfUnits[i];
     return undefined;
 }
-var Constant = (function () {
-    function Constant(shortUnits, value, name, group, desc, altName) {
-        if (altName === void 0) { altName = undefined; }
+class Constant {
+    constructor(shortUnits, value, name, group, desc, altName = undefined) {
         this.units = new ShortUnits(shortUnits);
         this.value = value;
         this.name = name;
@@ -344,14 +395,13 @@ var Constant = (function () {
         else
             this.altName = altName;
     }
-    Constant.prototype.toMeasure = function () {
+    toMeasure() {
         return new Measurement(this.value, this.units.powers);
-    };
-    return Constant;
-}());
+    }
+}
 var listOfConstants = [];
-var Measurement = (function () {
-    function Measurement(value, unitPowers, unitNames, complex, formulaVar) {
+class Measurement {
+    constructor(value, unitPowers, unitNames, complex, formulaVar) {
         this.value = value;
         this.complexUnits = complex;
         this.formulaVar = formulaVar;
@@ -370,8 +420,27 @@ var Measurement = (function () {
         else
             this.unitNames = unitNames.slice();
     }
-    Measurement.prototype.toString = function () {
-        var superscripts = ['', '', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹'];
+    copy() {
+        return new Measurement(this.value, this.unitPowers, this.unitNames, this.complexUnits, this.formulaVar);
+    }
+    factor() {
+        var ret = 1;
+        var unit = findUnit(this.unitPowers, this.complexUnits);
+        if (unit)
+            return unit.factor;
+        for (var i = 0; i < 7; i++) {
+            if (this.unitPowers[i] != 0) {
+                var searchUnit = [0, 0, 0, 0, 0, 0, 0];
+                searchUnit[i] = 1;
+                unit = findUnit(searchUnit, this.unitNames[i]);
+                if (unit)
+                    ret *= unit.factor ** this.unitPowers[i];
+            }
+        }
+        return ret;
+    }
+    toString() {
+        const superscripts = ['', '', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹'];
         var unit;
         if (this.unitPowers.toString() == [0, 0, 0, 0, 0, 0, 0].toString() && currentMode != 'mode-unit')
             return format(this.value);
@@ -391,7 +460,7 @@ var Measurement = (function () {
                         numerator += ' ' + unit.name + superscripts[this.unitPowers[i]];
                     else
                         denominator += ' ' + unit.name + superscripts[-this.unitPowers[i]];
-                    factor *= Math.pow(unit.factor, this.unitPowers[i]);
+                    factor *= unit.factor ** this.unitPowers[i];
                 }
             }
         }
@@ -410,18 +479,17 @@ var Measurement = (function () {
         else
             unitStr = numerator;
         return format(this.value / factor) + unitStr;
-    };
-    Measurement.prototype.nPowers = function () {
+    }
+    nPowers() {
         var n = 0;
         for (var i = 0; i < 7; i++)
             if (this.unitPowers[i] != 0)
                 n++;
         return n;
-    };
-    return Measurement;
-}());
-var Formulas = (function () {
-    function Formulas(description, group, solutions, varShortUnits) {
+    }
+}
+class Formulas {
+    constructor(description, group, solutions, varShortUnits) {
         this.desc = description;
         this.group = group;
         this.solutions = solutions;
@@ -434,15 +502,15 @@ var Formulas = (function () {
                 this.varUnits[i] = new ShortUnits(v[1]);
             }
     }
-    Formulas.prototype.copy = function () {
+    copy() {
         var f = new Formulas(this.desc, this.group, this.solutions.slice());
         f.matching = this.matching;
         f.varNames = this.varNames.slice();
         for (var i = 0; i < this.varUnits.length; i++)
             f.varUnits[i] = this.varUnits[i].copy();
         return f;
-    };
-    Formulas.prototype.matchVariables = function () {
+    }
+    matchVariables() {
         for (var i = 0; i < knowns.length; i++)
             knowns[i].formulaVar = '';
         for (var i = 0; i < this.varUnits.length; i++) {
@@ -454,8 +522,8 @@ var Formulas = (function () {
                     }
                 }
         }
-    };
-    Formulas.prototype.findMatchsForUnknown = function () {
+    }
+    findMatchsForUnknown() {
         var solutions = [];
         for (var i = 0; i < this.solutions.length; i++) {
             var formula = this.solutions[i];
@@ -464,8 +532,8 @@ var Formulas = (function () {
                 solutions.push(formula);
         }
         return solutions;
-    };
-    Formulas.prototype.solve = function () {
+    }
+    solve() {
         var java = this.matching;
         java = java.replace(/PI/g, 'Math.PI');
         java = java.replace(/exp/g, 'Math.exp');
@@ -488,8 +556,8 @@ var Formulas = (function () {
         str += 'var ' + java + '; ';
         str += 'return ' + knowns[0].formulaVar;
         return Function(str)();
-    };
-    Formulas.prototype.prettyMatching = function () {
+    }
+    prettyMatching() {
         var pretty = this.matching;
         for (var i = 0; i < listOfConstants.length; i++)
             if (listOfConstants[i].name != listOfConstants[i].altName) {
@@ -511,9 +579,8 @@ var Formulas = (function () {
         pretty = pretty.replace(/root4/g, '∜');
         pretty = pretty.replace(/delta_/g, 'Δ');
         return pretty;
-    };
-    return Formulas;
-}());
+    }
+}
 var listOfFormulas = [];
 function findExactFormulas() {
     var grouping;
@@ -611,9 +678,10 @@ function findExactFormulas() {
 }
 var mantisa = '';
 var exponent = '';
-var entryMode = "number";
+var entryMode = 'number';
 var operators = [];
 var operands = [];
+var memory = new Measurement(0);
 var unitSign = 1;
 var currentMode;
 var exactFormulas;
@@ -643,13 +711,28 @@ window.onload = function () {
     setButtonMode('mode-norm');
     setupScroll();
 };
+var landscapeMediaQuery = window.matchMedia("only screen and (orientation: landscape)");
+landscapeMediaQuery.addEventListener('change', function () { setButtonMode(currentMode); });
 function setButtonMode(newMode) {
-    var buttons = document.getElementsByClassName("button");
-    for (var i = 0; i < buttons.length; i++)
-        if (buttons[i].getAttribute(newMode) == '')
-            buttons[i].innerHTML = '&nbsp;';
-        else
-            buttons[i].innerHTML = buttons[i].getAttribute(newMode);
+    var modes = ['mode-norm', 'mode-2nd', 'mode-unit', 'mode-const'];
+    var mInx = modes.indexOf(newMode);
+    for (var [key] of buttonElements)
+        buttonElements.set(key, undefined);
+    for (var i = 0; i < 5; i++)
+        for (var j = 0; j < 8; j++) {
+            var button;
+            if (landscapeMediaQuery.matches)
+                button = document.getElementById('x' + j.toString() + 'y' + i.toString());
+            else {
+                if ((newMode == 'mode-norm' || newMode == 'mode-2nd') && j >= 3)
+                    button = document.getElementById('x' + (j - 3).toString() + 'y' + (i + 3).toString());
+                else
+                    button = document.getElementById('x' + i.toString() + 'y' + j.toString());
+            }
+            button.innerHTML = arrayOfButtons[i][j][mInx];
+            if (buttonElements.has(button.innerHTML.toLowerCase()))
+                buttonElements.set(button.innerHTML.toLowerCase(), button);
+        }
     currentMode = newMode;
     boldButton('cnst', false);
     boldButton('unit', false);
@@ -664,12 +747,12 @@ function fillTreeInHTML(listForTree, treeView, funcName) {
     var str = '';
     for (i = 0; i < groups.length; i++) {
         var symName = treeView + '-' + groups[i];
-        str += "<li> <span class=\"caret\">" + groups[i] + "</span><ul id=\"" + symName + "\" class=\"nested\"> </ul> </li>";
+        str += `<li> <span class="caret">${groups[i]}</span><ul id="${symName}" class="nested"> </ul> </li>`;
     }
     document.getElementById(treeView).innerHTML = str;
     for (var i = 0; i < listForTree.length; i++) {
         var unit = listForTree[i];
-        var li = "<li onclick=\"" + funcName + "('" + unit.name + "',true)\">" + unit.desc + " (" + unit.name + ")</li>";
+        var li = `<li onclick="${funcName}('${unit.name}',true)">${unit.desc} (${unit.name})</li>`;
         document.getElementById(treeView + '-' + unit.group).innerHTML += li;
     }
 }
@@ -728,7 +811,7 @@ function digitButton(symbol) {
     updateDisplay();
 }
 function eeButton() {
-    if (entryMode == "number" || entryMode == "infix") {
+    if (entryMode == 'number' || entryMode == 'infix') {
         var val = parseFloat(getDisplay());
         if (getDisplay().indexOf('E') == -1 &&
             getDisplay().indexOf('e') == -1)
@@ -862,10 +945,10 @@ function infixButton(ch) {
             evaluateAtAndAbovePrecedence(-1);
             break;
         default:
-            if (entryMode == "infix" && operators.length > 0)
+            if (entryMode == 'infix' && operators.length > 0)
                 operators.pop();
             evaluateAtAndAbovePrecedence(precedence(ch));
-            entryMode = "infix";
+            entryMode = 'infix';
             operators.push(ch);
     }
     setDisplay(operands[operands.length - 1].toString());
@@ -887,18 +970,17 @@ function clearButton(all) {
     setDisplay('0');
     mantisa = '';
     exponent = '';
-    entryMode = "number";
-    setButtonMode("mode-norm");
+    entryMode = 'number';
+    setButtonMode('mode-norm');
 }
-function selectUnitByName(name, tree) {
-    if (tree === void 0) { tree = false; }
+function selectUnitByName(name, tree = false) {
     finishEntry();
     var unit = findUnitByName(name);
     var top = operands[operands.length - 1];
     if (unit.isComplex() || unit.isComposite()) {
         if (top.unitPowers.toString() == [0, 0, 0, 0, 0, 0, 0].toString()) {
             top.value -= unit.offset;
-            top.value *= Math.pow(unit.factor, unitSign);
+            top.value *= unit.factor ** unitSign;
         }
         else if (top.unitPowers.toString() != unit.units.powers.toString()) {
             setMessage('Units differs');
@@ -909,7 +991,7 @@ function selectUnitByName(name, tree) {
     }
     else {
         if (top.unitPowers[unit.index()] == 0 || (top.unitNames[unit.index()] == unit.name && top.complexUnits == ""))
-            top.value *= Math.pow(unit.factor, unitSign) * unit.units.powers[unit.index()];
+            top.value *= unit.factor ** unitSign * unit.units.powers[unit.index()];
         if (top.unitNames[unit.index()] == unit.name && top.complexUnits == "")
             top.unitPowers[unit.index()] += unitSign * unit.units.powers[unit.index()];
         else if (top.unitPowers[unit.index()] == 0)
@@ -924,10 +1006,9 @@ function selectUnitByName(name, tree) {
     document.getElementById("unitTreeDiv").style.display = 'none';
     document.getElementById("calculator").hidden = false;
     if (tree)
-        setButtonMode("mode-norm");
+        setButtonMode('mode-norm');
 }
-function selectConstByName(button, tree) {
-    if (tree === void 0) { tree = false; }
+function selectConstByName(button, tree = false) {
     function findConstantByName(name) {
         for (var i = 0; i < listOfConstants.length; i++)
             if (name == listOfConstants[i].name)
@@ -941,7 +1022,7 @@ function selectConstByName(button, tree) {
     document.getElementById("constTreeDiv").style.display = 'none';
     document.getElementById("calculator").hidden = false;
     if (tree)
-        setButtonMode("mode-norm");
+        setButtonMode('mode-norm');
 }
 function powMeasurement(top, power) {
     var undo = top.unitPowers.slice();
@@ -953,7 +1034,7 @@ function powMeasurement(top, power) {
             return;
         }
     }
-    top.value = Math.pow(top.value, power);
+    top.value = top.value ** power;
 }
 function transcendentalOp(top, newValue) {
     if (top.nPowers() != 0) {
@@ -1006,7 +1087,7 @@ function unaryButton(op) {
             transcendentalOp(top, Math.log(top.value));
             break;
         case '10^x':
-            transcendentalOp(top, Math.pow(10, top.value));
+            transcendentalOp(top, 10 ** top.value);
             break;
         case 'exp':
             transcendentalOp(top, Math.exp(top.value));
@@ -1057,7 +1138,7 @@ function findImplicitFormula() {
         recurse(0, [0, 0, 0, 0, 0, 0, 0]);
     if (nSolutions == 0)
         return [];
-    var roots = ['', '', 'sqrt(', 'cbrt(', 'root4('];
+    const roots = ['', '', 'sqrt(', 'cbrt(', 'root4('];
     var formula = 'u = ' + roots[-bestSolution[0]];
     var units = new ShortUnits(undefined, knowns[0].unitPowers);
     var vars = ['u' + '=' + units.toString()];
@@ -1138,7 +1219,7 @@ function populateList() {
 function toggleUnitMode() {
     finishEntry();
     if (currentMode == 'mode-unit')
-        setButtonMode("mode-norm");
+        setButtonMode('mode-norm');
     else
         setButtonMode("mode-unit");
     unitSign = 1;
@@ -1146,8 +1227,8 @@ function toggleUnitMode() {
     setDisplay(operands[operands.length - 1].toString());
 }
 function boldButton(name, bold) {
-    var id = document.getElementById(name);
-    id.style.fontWeight = (bold ? 'bold' : 'normal');
+    if (buttonElements.get(name))
+        buttonElements.get(name).style.fontWeight = (bold ? 'bold' : 'normal');
 }
 function keyButton(evnt) {
     setMessage();
@@ -1155,11 +1236,10 @@ function keyButton(evnt) {
         evnt = window.event;
     var elemt = (evnt.target || evnt.srcElement);
     var top = operands[operands.length - 1];
-    switch (elemt.innerHTML) {
-        case 'CE/C':
-            if (entryMode == "number" || entryMode == "infix") {
+    switch (elemt.innerHTML.toLowerCase()) {
+        case 'ce/c':
+            if (entryMode == 'number' || entryMode == 'infix')
                 clearButton(true);
-            }
             else
                 clearButton(false);
             break;
@@ -1183,14 +1263,14 @@ function keyButton(evnt) {
             }
             break;
         case 'cnst':
-            setButtonMode((currentMode == 'mode-const') ? "mode-norm" : "mode-const");
+            setButtonMode((currentMode == 'mode-const') ? 'mode-norm' : 'mode-const');
             break;
         case 'help':
             window.open('help.html', '_blank');
             break;
         default:
             if (currentMode == 'mode-unit') {
-                switch (elemt.innerHTML) {
+                switch (elemt.innerHTML.toLowerCase()) {
                     case 'list':
                         document.getElementById("unitTreeDiv").style.display = 'block';
                         document.getElementById("calculator").hidden = true;
@@ -1200,9 +1280,10 @@ function keyButton(evnt) {
                         setDisplay(top.toString());
                         break;
                     case '#':
+                        top.value = top.value / top.factor();
                         top.unitPowers = [0, 0, 0, 0, 0, 0, 0];
                         top.unitNames = ['', '', '', '', '', '', ''];
-                        setDisplay(top.toString());
+                        setDisplay(top.value.toString());
                         break;
                     default:
                         selectUnitByName(elemt.innerHTML, false);
@@ -1220,12 +1301,12 @@ function keyButton(evnt) {
                 }
             }
             else {
-                switch (elemt.innerHTML) {
+                switch (elemt.innerHTML.toLowerCase()) {
                     case 'π':
                         selectConstByName(elemt.innerHTML);
                         break;
                     case '2nd':
-                        setButtonMode((currentMode == 'mode-2nd') ? "mode-norm" : "mode-2nd");
+                        setButtonMode((currentMode == 'mode-2nd') ? 'mode-norm' : 'mode-2nd');
                         break;
                     case 'list':
                         document.getElementById("listDiv").style.display = 'block';
@@ -1260,7 +1341,7 @@ function keyButton(evnt) {
                     case '±':
                         plusMinusButton();
                         break;
-                    case 'EE':
+                    case 'ee':
                         eeButton();
                         break;
                     case '¹/ₓ':
@@ -1304,14 +1385,42 @@ function keyButton(evnt) {
                     case 'x³':
                         unaryButton('x^3');
                         break;
+                    case 'str':
+                        finishEntry();
+                        top = operands[operands.length - 1];
+                        memory = top.copy();
+                        break;
+                    case 'rcl':
+                        if (entryMode == 'number' || entryMode == 'infix') {
+                            operands.push(memory);
+                            setDisplay(operands[operands.length - 1].toString());
+                        }
+                        break;
+                    case 'sum':
+                        finishEntry();
+                        top = operands[operands.length - 1];
+                        if (memory.unitPowers.toString() != top.unitPowers.toString()) {
+                            memory.unitPowers = [0, 0, 0, 0, 0, 0, 0];
+                            setMessage("Mixed units, converted to scalar");
+                        }
+                        memory.value += top.value;
+                        break;
+                    case 'exch':
+                        finishEntry();
+                        top = operands[operands.length - 1];
+                        var temp = top.copy();
+                        top = memory;
+                        memory = temp;
+                        setDisplay(top.toString());
+                        break;
                 }
             }
     }
     if (elemt.innerHTML != '2nd' && currentMode == 'mode-2nd')
         setButtonMode('mode-norm');
     var nFormulas = exactFormulas.length + implicitFormula.length + missingTermFormulas.length + extraTermFormulas.length;
-    boldButton('un1', (currentMode == 'mode-unit' && unitSign == -1));
-    boldButton('nd2', (currentMode == 'mode-2nd'));
+    boldButton('1/un', (currentMode == 'mode-unit' && unitSign == -1));
+    boldButton('2nd', (currentMode == 'mode-2nd'));
     boldButton('cnst', (currentMode == 'mode-const'));
     boldButton('unit', (currentMode == 'mode-unit'));
     boldButton('list', (currentMode == 'mode-norm') && nFormulas > 0);
@@ -1381,3 +1490,49 @@ function onResize() {
     setupScroll();
 }
 window.onresize = onResize;
+document.addEventListener('keydown', handleKeydown);
+function handleKeydown(e) {
+    switch (e.key) {
+        case '0':
+        case '1':
+        case '2':
+        case '3':
+        case '4':
+        case '5':
+        case '6':
+        case '7':
+        case '8':
+        case '9':
+        case '.':
+            digitButton(e.key);
+            break;
+        case '+':
+        case '-':
+        case '*':
+        case '/':
+        case '(':
+        case ')':
+        case '=':
+            infixButton(e.key);
+            break;
+        case 'm':
+        case 'M':
+            plusMinusButton();
+            break;
+        case 'e':
+        case 'E':
+            eeButton();
+            break;
+        case 'Enter':
+            infixButton('=');
+            break;
+        case 'Escape':
+        case 'Esc':
+            if (entryMode == 'number' || entryMode == 'infix')
+                clearButton(true);
+            else
+                clearButton(false);
+            break;
+    }
+}
+//# sourceMappingURL=script.js.map

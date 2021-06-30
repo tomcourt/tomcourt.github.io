@@ -46,6 +46,10 @@ html, body {
   .button {
     width: 87px;
   }
+
+  .vert {
+    display: none;
+  }
 }
 
 /* iphone, fullscreen */
@@ -53,13 +57,37 @@ html, body {
   .button {
     width: 11.2vmax;
   }
+
+  .vert {
+    display: none;
+  }
+}
+
+@media only screen and (orientation: landscape) {
+  .vert {
+    display: none;
+  }
+
+  .horiz{
+    display: table-cell;
+  }
+}
+
+@media only screen and (orientation: portrait) {
+  .vert {
+    display: table-row
+  }
+
+  .horiz{
+    display: none;
+  }
 }
 
 /* tablet or computer, fixed size */
 @media only screen and (min-height : 429px) {
   .button {
     height: 55px;
-    font-size: 28px;
+    font-size: 24px;
   }
 
   #display {
@@ -70,7 +98,7 @@ html, body {
 @media only screen and (max-height : 430px) {
   .button {
     height: calc(calc(100vmin - 130px) / 6);
-    font-size: calc(calc(100vmin - 130px) / 8);
+    font-size: calc(calc(100vmin - 130px) / 10);
     line-height: calc(calc(100vmin - 130px) / 8);
   }
 

@@ -12,61 +12,90 @@
 </head>
 
 <body><div id=page>
-
   <table border="1" id="calculator">
     <caption id="message"></caption>
     <tr>
       <td colspan="9" style="padding-left:10px;padding-right:10px" id="display"></td>
     </tr>
     <tr>
-      <td><p class="button" mode-norm="CE/C" mode-2nd="CE/C" mode-unit="CE/C" mode-const="CE/C" onclick="keyButton()"></p></td>
-      <td><p class="button" mode-norm="π"    mode-2nd="π"    mode-unit="m"    mode-const="π"    onclick="keyButton()"></p></td>
-      <td><p class="button" mode-norm="ln"   mode-2nd="log"  mode-unit="mm"   mode-const="c"    onclick="keyButton()"></p></td>
-      <td><p class="button" mode-norm="EE"   mode-2nd="EE"   mode-unit="km"   mode-const="h"    onclick="keyButton()"></p></td>
-      <td><p class="button" mode-norm="("    mode-2nd="("    mode-unit="ft"   mode-const="ħ"    onclick="keyButton()"></p></td>
-      <td><p class="button" mode-norm=")"    mode-2nd=")"    mode-unit="in"   mode-const=""     onclick="keyButton()"></p></td>
-      <td><p class="button" mode-norm="÷"    mode-2nd="÷"    mode-unit="mi"   mode-const="ε₀"   onclick="keyButton()"></p></td>
-      <td><p class="button" mode-norm="¹/ₓ"  mode-2nd="¹/ₓ"  mode-unit="1/un" mode-const=""     id="un1"  onclick="keyButton()"></p></td>
+      <td><p class="button" id="x0y0" onclick="keyButton()"></p></td>
+      <td><p class="button" id="x1y0" onclick="keyButton()"></p></td>
+      <td><p class="button" id="x2y0" onclick="keyButton()"></p></td>
+      <td><p class="button" id="x3y0" onclick="keyButton()"></p></td>
+      <td><p class="button" id="x4y0" onclick="keyButton()"></p></td>
+      <td class="horiz"><p class="button" id="x5y0" onclick="keyButton()"></p></td>
+      <td class="horiz"><p class="button" id="x6y0" onclick="keyButton()"></p></td>
+      <td class="horiz"><p class="button" id="x7y0" onclick="keyButton()"></p></td>
     </tr>
     <tr>
-      <td><p class="button" mode-norm="mode" mode-2nd="mode" mode-unit="kwn"  mode-const=""     onclick="keyButton()"></p></td>
-      <td><p class="button" mode-norm=""     mode-2nd=""     mode-unit="kg"   mode-const="µ₀"   onclick="keyButton()"></p></td>
-      <td><p class="button" mode-norm="eˣ"   mode-2nd="10ˣ"  mode-unit="g"    mode-const="Z₀"   onclick="keyButton()"></p></td>
-      <td><p class="button" mode-norm="7"    mode-2nd="7"    mode-unit="mg"   mode-const="e"    onclick="keyButton()"></p></td>
-      <td><p class="button" mode-norm="8"    mode-2nd="8"    mode-unit="lb"   mode-const="L"    onclick="keyButton()"></p></td>
-      <td><p class="button" mode-norm="9"    mode-2nd="9"    mode-unit="oz"   mode-const="k"    onclick="keyButton()"></p></td>
-      <td><p class="button" mode-norm="×"    mode-2nd="×"    mode-unit="gal"  mode-const=""     onclick="keyButton()"></p></td>
-      <td><p class="button" mode-norm="yˣ"   mode-2nd="ˣ√y"  mode-unit="l"    mode-const="R"    onclick="keyButton()"></p></td>
+      <td><p class="button" id="x0y1" onclick="keyButton()"></p></td>
+      <td><p class="button" id="x1y1" onclick="keyButton()"></p></td>
+      <td><p class="button" id="x2y1" onclick="keyButton()"></p></td>
+      <td><p class="button" id="x3y1" onclick="keyButton()"></p></td>
+      <td><p class="button" id="x4y1" onclick="keyButton()"></p></td>
+      <td class="horiz"><p class="button" id="x5y1" onclick="keyButton()"></p></td>
+      <td class="horiz"><p class="button" id="x6y1" onclick="keyButton()"></p></td>
+      <td class="horiz"><p class="button" id="x7y1" onclick="keyButton()"></p></td>
     </tr>
     <tr>
-      <td><p class="button" mode-norm="2nd"  mode-2nd="2nd"  mode-unit="unkn" mode-const=""     id="nd2" onclick="keyButton()"></p></td>
-      <td><p class="button" mode-norm=""     mode-2nd=""     mode-unit="s"    mode-const=""     onclick="keyButton()"></p></td>
-      <td><p class="button" mode-norm="sin"  mode-2nd="sin⁻¹" mode-unit="min" mode-const=""     onclick="keyButton()"></p></td>
-      <td><p class="button" mode-norm="4"    mode-2nd="4"    mode-unit="h"    mode-const=""     onclick="keyButton()"></p></td>
-      <td><p class="button" mode-norm="5"    mode-2nd="5"    mode-unit="d"    mode-const=""     onclick="keyButton()"></p></td>
-      <td><p class="button" mode-norm="6"    mode-2nd="6"    mode-unit="yr"   mode-const=""     onclick="keyButton()"></p></td>
-      <td><p class="button" mode-norm="-"    mode-2nd="-"    mode-unit=""     mode-const=""     onclick="keyButton()"></p></td>
-      <td><p class="button" mode-norm="√x"   mode-2nd="³√x"  mode-unit=""     mode-const=""     onclick="keyButton()"></p></td>
+      <td><p class="button" id="x0y2" onclick="keyButton()"></p></td>
+      <td><p class="button" id="x1y2" onclick="keyButton()"></p></td>
+      <td><p class="button" id="x2y2" onclick="keyButton()"></p></td>
+      <td><p class="button" id="x3y2" onclick="keyButton()"></p></td>
+      <td><p class="button" id="x4y2" onclick="keyButton()"></p></td>
+      <td class="horiz"><p class="button" id="x5y2" onclick="keyButton()"></p></td>
+      <td class="horiz"><p class="button" id="x6y2" onclick="keyButton()"></p></td>
+      <td class="horiz"><p class="button" id="x7y2" onclick="keyButton()"></p></td>
     </tr>
     <tr>
-      <td><p class="button" mode-norm="cnst" mode-2nd="cnst" mode-unit="cnst" mode-const="cnst" id="cnst" onclick="keyButton()"></p></td>
-      <td><p class="button" mode-norm=""     mode-2nd=""     mode-unit="A"    mode-const=""     onclick="keyButton()"></p></td>
-      <td><p class="button" mode-norm="cos"  mode-2nd="cos⁻¹" mode-unit="V"   mode-const=""     onclick="keyButton()"></p></td>
-      <td><p class="button" mode-norm="1"    mode-2nd="1"    mode-unit="Ω"    mode-const=""     onclick="keyButton()"></p></td>
-      <td><p class="button" mode-norm="2"    mode-2nd="2"    mode-unit="J"    mode-const=""     onclick="keyButton()"></p></td>
-      <td><p class="button" mode-norm="3"    mode-2nd="3"    mode-unit="W"    mode-const=""     onclick="keyButton()"></p></td>
-      <td><p class="button" mode-norm="+"    mode-2nd="+"    mode-unit="N"    mode-const=""     onclick="keyButton()"></p></td>
-      <td><p class="button" mode-norm="x²"   mode-2nd="x³"   mode-unit="Pa"   mode-const=""     onclick="keyButton()"></p></td>
+      <td><p class="button" id="x0y3" onclick="keyButton()"></p></td>
+      <td><p class="button" id="x1y3" onclick="keyButton()"></p></td>
+      <td><p class="button" id="x2y3" onclick="keyButton()"></p></td>
+      <td><p class="button" id="x3y3" onclick="keyButton()"></p></td>
+      <td><p class="button" id="x4y3" onclick="keyButton()"></p></td>
+      <td class="horiz"><p class="button" id="x5y3" onclick="keyButton()"></p></td>
+      <td class="horiz"><p class="button" id="x6y3" onclick="keyButton()"></p></td>
+      <td class="horiz"><p class="button" id="x7y3" onclick="keyButton()"></p></td>
     </tr>
     <tr>
-      <td><p class="button" mode-norm="unit" mode-2nd="unit" mode-unit="unit" mode-const=""     id="unit" onclick="keyButton()"></p></td>
-      <td><p class="button" mode-norm="help" mode-2nd=""     mode-unit="K"    mode-const="G"    onclick="keyButton()"></p></td>
-      <td><p class="button" mode-norm="tan" mode-2nd="tan⁻¹" mode-unit="°C"   mode-const="g₀"   onclick="keyButton()"></p></td>
-      <td><p class="button" mode-norm="0"    mode-2nd="0"    mode-unit="°F"   mode-const="M⊙"   onclick="keyButton()"></p></td>
-      <td><p class="button" mode-norm="."    mode-2nd="."    mode-unit="cd"   mode-const="M🜨"   onclick="keyButton()"></p></td>
-      <td><p class="button" mode-norm="±"    mode-2nd="±"    mode-unit="mol"  mode-const="au"   onclick="keyButton()"></p></td>
-      <td><p class="button" mode-norm="="    mode-2nd="="    mode-unit="#"    mode-const="R🜨"   onclick="keyButton()"></p></td>
-      <td><p class="button" mode-norm="list" mode-2nd="list" mode-unit="list" mode-const="list" id="list" onclick="keyButton()"></p></td>
+      <td><p class="button" id="x0y4" onclick="keyButton()"></p></td>
+      <td><p class="button" id="x1y4" onclick="keyButton()"></p></td>
+      <td><p class="button" id="x2y4" onclick="keyButton()"></p></td>
+      <td><p class="button" id="x3y4" onclick="keyButton()"></p></td>
+      <td><p class="button" id="x4y4" onclick="keyButton()"></p></td>
+      <td class="horiz"><p class="button" id="x5y4" onclick="keyButton()"></p></td>
+      <td class="horiz"><p class="button" id="x6y4" onclick="keyButton()"></p></td>
+      <td class="horiz"><p class="button" id="x7y4" onclick="keyButton()"></p></td>
+    </tr>
+    <tr class="vert">
+      <td><p class="button" id="x0y5" onclick="keyButton()"></p></td>
+      <td><p class="button" id="x1y5" onclick="keyButton()"></p></td>
+      <td><p class="button" id="x2y5" onclick="keyButton()"></p></td>
+      <td><p class="button" id="x3y5" onclick="keyButton()"></p></td>
+      <td><p class="button" id="x4y5" onclick="keyButton()"></p></td>
+      <td class="horiz"><p class="button" id="x5y5" onclick="keyButton()"></p></td>
+      <td class="horiz"><p class="button" id="x6y5" onclick="keyButton()"></p></td>
+      <td class="horiz"><p class="button" id="x7y5" onclick="keyButton()"></p></td>
+    </tr>
+    <tr class="vert">
+      <td><p class="button" id="x0y6" onclick="keyButton()"></p></td>
+      <td><p class="button" id="x1y6" onclick="keyButton()"></p></td>
+      <td><p class="button" id="x2y6" onclick="keyButton()"></p></td>
+      <td><p class="button" id="x3y6" onclick="keyButton()"></p></td>
+      <td><p class="button" id="x4y6" onclick="keyButton()"></p></td>
+      <td class="horiz"><p class="button" id="x5y6" onclick="keyButton()"></p></td>
+      <td class="horiz"><p class="button" id="x6y6" onclick="keyButton()"></p></td>
+      <td class="horiz"><p class="button" id="x7y6" onclick="keyButton()"></p></td>
+    </tr>
+    <tr class="vert">
+      <td><p class="button" id="x0y7" onclick="keyButton()"></p></td>
+      <td><p class="button" id="x1y7" onclick="keyButton()"></p></td>
+      <td><p class="button" id="x2y7" onclick="keyButton()"></p></td>
+      <td><p class="button" id="x3y7" onclick="keyButton()"></p></td>
+      <td><p class="button" id="x4y7" onclick="keyButton()"></p></td>
+      <td class="horiz"><p class="button" id="x5y7" onclick="keyButton()"></p></td>
+      <td class="horiz"><p class="button" id="x6y7" onclick="keyButton()"></p></td>
+      <td class="horiz"><p class="button" id="x7y7" onclick="keyButton()"></p></td>
     </tr>
   </table>
 
@@ -76,7 +105,6 @@
     <!--  dynamically populated -->
     <!--  <li> <span class="caret">mass</span> <ul id="tree-mass" class="nested"> </ul> </li> -->
     <!--  <li onclick="unitSelected('kg', 1, '')"                > kilogram (kg)     </li> -->
-
   </ul>
   </div> </div>
 
@@ -107,6 +135,7 @@
       <tr> <td id="list4">&nbsp</td> <td id="list9">&nbsp</td> </tr>
     </table>
   </div> </div>
+  <div style="position: fixed; left: 0; top: 0;" onclick="keyButton()">Help</div>
 </div>
 </body>
 </html>
