@@ -1,4 +1,4 @@
-table { /* disable selection of buttons, etc.  */
+#noselect, table { /* disable selection of buttons, etc.  */
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
      -khtml-user-select: none; /* Konqueror HTML */
@@ -15,6 +15,7 @@ table { /* disable selection of buttons, etc.  */
         -ms-user-select: auto; /* Internet Explorer/Edge */
             user-select: auto; /* others */
 }
+
 
 html, body {
   margin: 0;
@@ -33,7 +34,7 @@ html, body {
 .button {
   background-color: #0010FF;
   color: white;
-  border-color: #0010FF;
+  border: 2px outset;
   font-family: "system-ui";
   text-align: center;
   border-radius: 2vw;
@@ -110,7 +111,6 @@ html, body {
 #display {
   text-align: right;
   background-color: white;
-  border-color: black;
   width: 100%;
   font-family: 'Lucida Console', Monaco, monospace;
 }
@@ -167,4 +167,9 @@ ul, #constTreeView, #unitTreeView {
 /* Show the nested list when the user clicks on the caret/arrow (with JavaScript) */
 .active {
   display: block;
+}
+
+table {
+  background-color: gray;
+
 }

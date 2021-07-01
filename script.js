@@ -196,65 +196,84 @@ const arrayOfFormula = [
 ];
 const arrayOfButtons = [
     [
-        ["CE/C", "CE/C", "CE/C", "CE/C"],
-        ["π", "π", "m", "π"],
-        ["LN", "LOG", "mm", "c"],
-        ["EE", "EE", "km", "h"],
-        ["(", "(", "ft", "ħ"],
-        [")", ")", "in", ""],
-        ["÷", "÷", "mi", "ε₀"],
-        ["¹/ₓ", "¹/ₓ", "1/UN", ""]
+        ['CE/C', 'CE/C', 'CE/C', 'CE/C'],
+        ['π', 'π', 'm', 'π'],
+        ['LN', 'LOG', 'mm', 'c'],
+        ['EE', 'EE', 'km', 'h'],
+        ['(', '(', 'ft', 'ħ'],
+        [')', ')', 'in', ''],
+        ['÷', '÷', 'mi', 'ε₀'],
+        ['¹/ₓ', '¹/ₓ', '1/UN', '']
     ], [
-        ["MODE", "MODE", "kwn", ""],
-        ["STR", "SUM", "kg", "µ₀"],
-        ["eˣ", "10ˣ", "g", "Z₀"],
-        ["7", "7", "mg", "e"],
-        ["8", "8", "lb", "L"],
-        ["9", "9", "oz", "k"],
-        ["×", "×", "gal", ""],
-        ["yˣ", "ˣ√y", "l", "R"]
+        ['MODE', 'MODE', 'KWN', ''],
+        ['STR', 'SUM', 'kg', 'µ₀'],
+        ['eˣ', '10ˣ', 'g', 'Z₀'],
+        ['7', '7', 'mg', 'e'],
+        ['8', '8', 'lb', 'L'],
+        ['9', '9', 'oz', 'k'],
+        ['×', '×', 'gal', ''],
+        ['yˣ', 'ˣ√y', 'l', 'R']
     ], [
-        ["2nd", "2nd", "unkn", ""],
-        ["RCL", "EXCH", "s", ""],
-        ["SIN", "SIN⁻¹", "min", ""],
-        ["4", "4", "h", ""],
-        ["5", "5", "d", ""],
-        ["6", "6", "yr", ""],
-        ["-", "-", "", ""],
-        ["√x", "³√x", "", ""]
+        ['2nd', '2nd', 'UNKN', ''],
+        ['RCL', 'EXCH', 's', ''],
+        ['SIN', 'SIN⁻¹', 'min', ''],
+        ['4', '4', 'h', ''],
+        ['5', '5', 'd', ''],
+        ['6', '6', 'yr', ''],
+        ['-', '-', '', ''],
+        ['√x', '³√x', '', '']
     ], [
-        ["CNST", "CNST", "", "CNST"],
-        ["", "", "A", ""],
-        ["COS", "COS⁻¹", "V", ""],
-        ["1", "1", "Ω", ""],
-        ["2", "2", "J", ""],
-        ["3", "3", "W", ""],
-        ["+", "+", "N", ""],
-        ["x²", "x³", "Pa", ""]
+        ['CNST', 'CNST', '', 'CNST'],
+        ['', '', 'A', ''],
+        ['COS', 'COS⁻¹', 'V', ''],
+        ['1', '1', 'Ω', ''],
+        ['2', '2', 'J', ''],
+        ['3', '3', 'W', ''],
+        ['+', '+', 'N', ''],
+        ['x²', 'x³', 'Pa', '']
     ], [
-        ["UNIT", "UNIT", "UNIT", ""],
-        ["", "", "K", "G"],
-        ["TAN", "TAN⁻¹", "°C", "g₀"],
-        ["0", "0", "°F", "M⊙"],
-        [".", ".", "cd", "M🜨"],
-        ["±", "±", "mol", "au"],
-        ["=", "=", "#", "R🜨"],
-        ["LIST", "LIST", "LIST", "LIST"]
+        ['UNIT', 'UNIT', 'UNIT', ''],
+        ['', '', 'K', 'G'],
+        ['TAN', 'TAN⁻¹', '°C', 'g₀'],
+        ['0', '0', '°F', 'M⊙'],
+        ['.', '.', 'cd', 'M🜨'],
+        ['±', '±', 'mol', 'au'],
+        ['=', '=', '#', 'R🜨'],
+        ['LIST', 'LIST', 'LIST', 'LIST']
     ]
 ];
 var buttonElements = new Map([
-    ['unit', undefined],
-    ['list', undefined],
-    ['cnst', undefined],
+    ['UNIT', undefined],
+    ['LIST', undefined],
+    ['CNST', undefined],
     ['2nd', undefined],
-    ['1/un', undefined],
+    ['1/UN', undefined]
 ]);
+const buttonColorKeys = [
+    ['CE/C', 'MODE', 'CNST', 'UNIT', '2nd', 'LIST', '1/UN', '#'],
+    ['.', '±', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'EE'],
+    ['+', '-', '×', '÷', '=', '(', ')'],
+    ['π', 'STR', 'RCL', 'SIN', 'COS', 'TAN', 'LN', 'eˣ', 'yˣ', '¹/ₓ', '√x', 'x²', 'LOG',
+        ,
+        'SUM', 'EXCH', '10ˣ', 'ˣ√y', '³√x', 'x³', 'SIN⁻¹', 'COS⁻¹', 'TAN⁻¹']
+];
+function hsl(h, s, l) {
+    var a = s * Math.min(l, 1 - l);
+    function f(n) {
+        var k = (n + h / 30) % 12;
+        var color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+        return ('0' + Math.round(255 * color).toString(16)).slice(-2);
+    }
+    ;
+    return `#${f(0)}${f(8)}${f(4)}`;
+}
+const buttonColors = [hsl(30, 1, .2), hsl(210, 1, .2), hsl(75, 1, .2), hsl(270, 1, .2), hsl(165, 1, .2), hsl(330, 1, .2)];
 function format(n) {
     var p = n.toPrecision(8);
     if (/^-?0.0?0?[1-9]/.test(p))
         p = p.substr(0, 10);
     if (p.includes('.') && !p.includes('e')) {
-        p = p.replace(/0+$/, "");
+        p = p.replace(/0+$/, '');
         if (p.substr(p.length - 1) == '.')
             p = p.substr(0, p.length - 1);
     }
@@ -546,7 +565,7 @@ class Formulas {
         java = java.replace(/atan/g, 'Math.atan');
         java = java.replace(/sqrt/g, 'Math.sqrt');
         java = java.replace(/cbrt/g, 'Math.cbrt');
-        var str = '"use strict"; ';
+        var str = "'use strict'; ";
         for (var i = 0; i < listOfConstants.length; i++)
             str += 'var $' + listOfConstants[i].altName + ' = ' + listOfConstants[i].value + '; ';
         str += 'function root4(x) { return x**(1/4) } ';
@@ -711,13 +730,17 @@ window.onload = function () {
     setButtonMode('mode-norm');
     setupScroll();
 };
-var landscapeMediaQuery = window.matchMedia("only screen and (orientation: landscape)");
+var landscapeMediaQuery = window.matchMedia('only screen and (orientation: landscape)');
 landscapeMediaQuery.addEventListener('change', function () { setButtonMode(currentMode); });
 function setButtonMode(newMode) {
     var modes = ['mode-norm', 'mode-2nd', 'mode-unit', 'mode-const'];
     var mInx = modes.indexOf(newMode);
     for (var [key] of buttonElements)
         buttonElements.set(key, undefined);
+    var groups = [];
+    for (k = 0; k < listOfConstants.length; k++)
+        if (!(groups.includes(listOfConstants[k].group)))
+            groups.push(listOfConstants[k].group);
     for (var i = 0; i < 5; i++)
         for (var j = 0; j < 8; j++) {
             var button;
@@ -730,13 +753,60 @@ function setButtonMode(newMode) {
                     button = document.getElementById('x' + i.toString() + 'y' + j.toString());
             }
             button.innerHTML = arrayOfButtons[i][j][mInx];
-            if (buttonElements.has(button.innerHTML.toLowerCase()))
-                buttonElements.set(button.innerHTML.toLowerCase(), button);
+            if (newMode == 'mode-norm' || newMode == 'mode-2nd') {
+                for (var k = 0; k < buttonColorKeys.length; k++)
+                    if (buttonColorKeys[k].includes(button.innerHTML)) {
+                        button.style.backgroundColor = buttonColors[k];
+                        break;
+                    }
+                if (k == buttonColorKeys.length)
+                    button.style.backgroundColor = buttonColors[0];
+            }
+            else if (newMode == 'mode-unit') {
+                var unit = findUnitByName(button.innerHTML);
+                if (buttonColorKeys[0].includes(button.innerHTML))
+                    button.style.backgroundColor = buttonColors[0];
+                else if (unit) {
+                    if (unit.units.isEqual(new ShortUnits('m')))
+                        button.style.backgroundColor = buttonColors[1];
+                    else if (unit.units.isEqual(new ShortUnits('kg')))
+                        button.style.backgroundColor = buttonColors[2];
+                    else if (unit.units.isEqual(new ShortUnits('s')))
+                        button.style.backgroundColor = buttonColors[3];
+                    else if (unit.units.isEqual(new ShortUnits('K')) || unit.units.isEqual(new ShortUnits('A')) || unit.units.isEqual(new ShortUnits('mol')) || unit.units.isEqual(new ShortUnits('cd')))
+                        button.style.backgroundColor = buttonColors[4];
+                    else
+                        button.style.backgroundColor = buttonColors[5];
+                }
+                else
+                    button.style.backgroundColor = buttonColors[0];
+            }
+            else if (newMode == 'mode-const') {
+                var cnst = findConstantByName(button.innerHTML);
+                if (buttonColorKeys[0].includes(button.innerHTML))
+                    button.style.backgroundColor = buttonColors[0];
+                else if (cnst) {
+                    var inx = groups.indexOf(cnst.group);
+                    if (inx >= 4)
+                        button.style.backgroundColor = buttonColors[5];
+                    else if (inx < 0)
+                        button.style.backgroundColor = buttonColors[0];
+                    else
+                        button.style.backgroundColor = buttonColors[inx + 1];
+                }
+                else
+                    button.style.backgroundColor = buttonColors[0];
+            }
+            if (buttonElements.has(button.innerHTML))
+                buttonElements.set(button.innerHTML, button);
         }
     currentMode = newMode;
-    boldButton('cnst', false);
-    boldButton('unit', false);
-    boldButton('list', false);
+    var nFormulas = exactFormulas.length + implicitFormula.length + missingTermFormulas.length + extraTermFormulas.length;
+    boldButton('1/UN', (currentMode == 'mode-unit' && unitSign == -1));
+    boldButton('2nd', (currentMode == 'mode-2nd'));
+    boldButton('CNST', (currentMode == 'mode-const'));
+    boldButton('UNIT', (currentMode == 'mode-unit'));
+    boldButton('LIST', (currentMode == 'mode-norm') && nFormulas > 0);
 }
 function fillTreeInHTML(listForTree, treeView, funcName) {
     var groups = [];
@@ -747,55 +817,55 @@ function fillTreeInHTML(listForTree, treeView, funcName) {
     var str = '';
     for (i = 0; i < groups.length; i++) {
         var symName = treeView + '-' + groups[i];
-        str += `<li> <span class="caret">${groups[i]}</span><ul id="${symName}" class="nested"> </ul> </li>`;
+        str += `<li> <span class='caret'>${groups[i]}</span><ul id='${symName}' class='nested'> </ul> </li>`;
     }
     document.getElementById(treeView).innerHTML = str;
     for (var i = 0; i < listForTree.length; i++) {
         var unit = listForTree[i];
-        var li = `<li onclick="${funcName}('${unit.name}',true)">${unit.desc} (${unit.name})</li>`;
+        var li = `<li onclick='${funcName}('${unit.name}',true)'>${unit.desc} (${unit.name})</li>`;
         document.getElementById(treeView + '-' + unit.group).innerHTML += li;
     }
 }
 function wireUpTreeTogglerInHTML() {
-    var toggler = document.getElementsByClassName("caret");
+    var toggler = document.getElementsByClassName('caret');
     for (var i = 0; i < toggler.length; i++) {
-        toggler[i].addEventListener("click", function () {
-            this.parentElement.querySelector(".nested").classList.toggle("active");
-            this.classList.toggle("caret-down");
+        toggler[i].addEventListener('click', function () {
+            this.parentElement.querySelector('.nested').classList.toggle('active');
+            this.classList.toggle('caret-down');
         });
     }
 }
 function debug() {
     var i;
-    document.getElementById("operators").innerHTML = "---operators---";
+    document.getElementById('operators').innerHTML = '---operators---';
     for (i = 0; i < operators.length; i++)
-        document.getElementById("operators").innerHTML += "<br>" + operators[i];
-    document.getElementById("operands").innerHTML = "----operands----";
+        document.getElementById('operators').innerHTML += '<br>' + operators[i];
+    document.getElementById('operands').innerHTML = '----operands----';
     for (i = 0; i < operands.length; i++)
-        document.getElementById("operands").innerHTML += "<br>" + JSON.stringify(operands[i]);
-    document.getElementById("entryMode").innerHTML = "----entryMode----<BR>" + entryMode;
+        document.getElementById('operands').innerHTML += '<br>' + JSON.stringify(operands[i]);
+    document.getElementById('entryMode').innerHTML = '----entryMode----<BR>' + entryMode;
 }
 function setMessage(message) {
     if (message == undefined)
-        message = "Physical Calculator";
-    document.getElementById("message").innerHTML = message;
+        message = 'Physical Calculator';
+    document.getElementById('message').innerHTML = message;
 }
 function setDisplay(display) {
-    document.getElementById("display").innerHTML = display;
+    document.getElementById('display').innerHTML = display;
 }
 function getDisplay() {
-    return document.getElementById("display").innerHTML;
+    return document.getElementById('display').innerHTML;
 }
 function updateDisplay() {
     if (exponent == '')
         setDisplay(mantisa);
     else
-        setDisplay(mantisa + "E" + exponent);
+        setDisplay(mantisa + 'E' + exponent);
 }
 function digitButton(symbol) {
     if (entryMode == 'number')
         operands.pop();
-    if (entryMode == "exponent") {
+    if (entryMode == 'exponent') {
         if (exponent == '0')
             exponent = symbol;
         else
@@ -806,7 +876,7 @@ function digitButton(symbol) {
             mantisa = symbol;
         else
             mantisa += symbol;
-        entryMode = "mantisa";
+        entryMode = 'mantisa';
     }
     updateDisplay();
 }
@@ -822,12 +892,12 @@ function eeButton() {
     else {
         if (exponent == '')
             exponent = '0';
-        entryMode = "exponent";
+        entryMode = 'exponent';
         updateDisplay();
     }
 }
 function plusMinusButton() {
-    if (entryMode == "exponent") {
+    if (entryMode == 'exponent') {
         if (exponent.slice(0, 1) == '-')
             exponent = exponent.slice(1);
         else {
@@ -881,14 +951,14 @@ function evaluateTopOperator() {
             ret.value = x.value + y.value;
             if (x.unitPowers.toString() != y.unitPowers.toString()) {
                 ret.unitPowers = [0, 0, 0, 0, 0, 0, 0];
-                setMessage("Mixed units, converted to scalar");
+                setMessage('Mixed units, converted to scalar');
             }
             break;
         case '-':
             ret.value = x.value - y.value;
             if (x.unitPowers.toString() != y.unitPowers.toString()) {
                 ret.unitPowers = [0, 0, 0, 0, 0, 0, 0];
-                setMessage("Mixed units, converted to scalar");
+                setMessage('Mixed units, converted to scalar');
             }
             break;
         case '*':
@@ -913,7 +983,7 @@ function evaluateTopOperator() {
             if (y.unitPowers.toString() == [0, 0, 0, 0, 0, 0, 0].toString())
                 powMeasurement(ret, y.value);
             else
-                setMessage("Power must be scalar");
+                setMessage('Power must be scalar');
             break;
     }
     return ret;
@@ -990,9 +1060,9 @@ function selectUnitByName(name, tree = false) {
         top.unitNames = unit.names();
     }
     else {
-        if (top.unitPowers[unit.index()] == 0 || (top.unitNames[unit.index()] == unit.name && top.complexUnits == ""))
+        if (top.unitPowers[unit.index()] == 0 || (top.unitNames[unit.index()] == unit.name && top.complexUnits == ''))
             top.value *= unit.factor ** unitSign * unit.units.powers[unit.index()];
-        if (top.unitNames[unit.index()] == unit.name && top.complexUnits == "")
+        if (top.unitNames[unit.index()] == unit.name && top.complexUnits == '')
             top.unitPowers[unit.index()] += unitSign * unit.units.powers[unit.index()];
         else if (top.unitPowers[unit.index()] == 0)
             top.unitPowers[unit.index()] = unitSign * unit.units.powers[unit.index()];
@@ -1003,24 +1073,24 @@ function selectUnitByName(name, tree = false) {
     }
     top.complexUnits = (unit.isComplex() ? unit.name : '');
     setDisplay(operands[operands.length - 1].toString());
-    document.getElementById("unitTreeDiv").style.display = 'none';
-    document.getElementById("calculator").hidden = false;
+    document.getElementById('unitTreeDiv').style.display = 'none';
+    document.getElementById('calculator').hidden = false;
     if (tree)
         setButtonMode('mode-norm');
 }
+function findConstantByName(name) {
+    for (var i = 0; i < listOfConstants.length; i++)
+        if (name == listOfConstants[i].name)
+            return listOfConstants[i];
+    return undefined;
+}
 function selectConstByName(button, tree = false) {
-    function findConstantByName(name) {
-        for (var i = 0; i < listOfConstants.length; i++)
-            if (name == listOfConstants[i].name)
-                return listOfConstants[i];
-        return undefined;
-    }
     if (entryMode == 'number')
         operands.pop();
     operands.push(findConstantByName(button).toMeasure());
     setDisplay(operands[operands.length - 1].toString());
-    document.getElementById("constTreeDiv").style.display = 'none';
-    document.getElementById("calculator").hidden = false;
+    document.getElementById('constTreeDiv').style.display = 'none';
+    document.getElementById('calculator').hidden = false;
     if (tree)
         setButtonMode('mode-norm');
 }
@@ -1030,7 +1100,7 @@ function powMeasurement(top, power) {
         top.unitPowers[i] *= power;
         if (!Number.isInteger(top.unitPowers[i])) {
             top.unitPowers = undo;
-            setMessage("Fractional unit powers not allowed");
+            setMessage('Fractional unit powers not allowed');
             return;
         }
     }
@@ -1038,7 +1108,7 @@ function powMeasurement(top, power) {
 }
 function transcendentalOp(top, newValue) {
     if (top.nPowers() != 0) {
-        setMessage("Transcendental functions require scalar");
+        setMessage('Transcendental functions require scalar');
         return;
     }
     top.value = newValue;
@@ -1221,7 +1291,7 @@ function toggleUnitMode() {
     if (currentMode == 'mode-unit')
         setButtonMode('mode-norm');
     else
-        setButtonMode("mode-unit");
+        setButtonMode('mode-unit');
     unitSign = 1;
     finishEntry();
     setDisplay(operands[operands.length - 1].toString());
@@ -1235,6 +1305,9 @@ function keyButton(evnt) {
     if (!evnt)
         evnt = window.event;
     var elemt = (evnt.target || evnt.srcElement);
+    elemt.style.borderStyle = 'inset';
+    var closure = function () { elemt.style.borderStyle = 'outset'; };
+    setTimeout(closure, 200);
     var top = operands[operands.length - 1];
     switch (elemt.innerHTML.toLowerCase()) {
         case 'ce/c':
@@ -1272,8 +1345,8 @@ function keyButton(evnt) {
             if (currentMode == 'mode-unit') {
                 switch (elemt.innerHTML.toLowerCase()) {
                     case 'list':
-                        document.getElementById("unitTreeDiv").style.display = 'block';
-                        document.getElementById("calculator").hidden = true;
+                        document.getElementById('unitTreeDiv').style.display = 'block';
+                        document.getElementById('calculator').hidden = true;
                         break;
                     case '1/un':
                         unitSign = -unitSign;
@@ -1291,9 +1364,9 @@ function keyButton(evnt) {
                 }
             }
             else if (currentMode == 'mode-const') {
-                if (elemt.innerHTML == 'list') {
-                    document.getElementById("constTreeDiv").style.display = 'block';
-                    document.getElementById("calculator").hidden = true;
+                if (elemt.innerHTML.toLowerCase() == 'list') {
+                    document.getElementById('constTreeDiv').style.display = 'block';
+                    document.getElementById('calculator').hidden = true;
                 }
                 else {
                     selectConstByName(elemt.innerHTML);
@@ -1309,8 +1382,8 @@ function keyButton(evnt) {
                         setButtonMode((currentMode == 'mode-2nd') ? 'mode-norm' : 'mode-2nd');
                         break;
                     case 'list':
-                        document.getElementById("listDiv").style.display = 'block';
-                        document.getElementById("calculator").hidden = true;
+                        document.getElementById('listDiv').style.display = 'block';
+                        document.getElementById('calculator').hidden = true;
                         break;
                     case '0':
                     case '1':
@@ -1401,7 +1474,7 @@ function keyButton(evnt) {
                         top = operands[operands.length - 1];
                         if (memory.unitPowers.toString() != top.unitPowers.toString()) {
                             memory.unitPowers = [0, 0, 0, 0, 0, 0, 0];
-                            setMessage("Mixed units, converted to scalar");
+                            setMessage('Mixed units, converted to scalar');
                         }
                         memory.value += top.value;
                         break;
@@ -1418,12 +1491,6 @@ function keyButton(evnt) {
     }
     if (elemt.innerHTML != '2nd' && currentMode == 'mode-2nd')
         setButtonMode('mode-norm');
-    var nFormulas = exactFormulas.length + implicitFormula.length + missingTermFormulas.length + extraTermFormulas.length;
-    boldButton('1/un', (currentMode == 'mode-unit' && unitSign == -1));
-    boldButton('2nd', (currentMode == 'mode-2nd'));
-    boldButton('cnst', (currentMode == 'mode-const'));
-    boldButton('unit', (currentMode == 'mode-unit'));
-    boldButton('list', (currentMode == 'mode-norm') && nFormulas > 0);
 }
 function cancelTreeButton(tree) {
     document.getElementById(tree + 'TreeDiv').style.display = 'none';

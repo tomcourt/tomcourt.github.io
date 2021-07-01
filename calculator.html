@@ -12,10 +12,10 @@
 </head>
 
 <body><div id=page>
-  <table border="1" id="calculator">
+  <table id="calculator" style="border:4px outset; border-radius: 2vw;">
     <caption id="message"></caption>
     <tr>
-      <td colspan="9" style="padding-left:10px;padding-right:10px" id="display"></td>
+      <td colspan="9" style="padding-left:10px; padding-right:10px; border: 2px inset; border-radius: 2vw;" id="display"></td>
     </tr>
     <tr>
       <td><p class="button" id="x0y0" onclick="keyButton()"></p></td>
@@ -135,7 +135,7 @@
       <tr> <td id="list4">&nbsp</td> <td id="list9">&nbsp</td> </tr>
     </table>
   </div> </div>
-  <div style="position: fixed; left: 0; top: 0;" onclick="keyButton()">Help</div>
+  <div class="noselect" style="position: fixed; left: 0; top: 0;" onclick="keyButton()">Help</div>
 </div>
 </body>
 </html>
