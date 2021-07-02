@@ -1,4 +1,4 @@
-#noselect, table { /* disable selection of buttons, etc.  */
+.noselect, table { /* disable selection of buttons, etc.  */
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
      -khtml-user-select: none; /* Konqueror HTML */
