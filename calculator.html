@@ -12,10 +12,10 @@
 </head>
 
 <body><div id=page>
-  <table id="calculator" style="border:4px outset; border-radius: 2vw;">
+  <table id="calculator" class="calculator">
     <caption id="message"></caption>
     <tr>
-      <td colspan="9" style="padding-left:10px; padding-right:10px; border: 2px inset; border-radius: 2vw;" id="display"></td>
+      <td colspan="9" id="display"></td>
     </tr>
     <tr>
       <td><p class="button" id="x0y0" onclick="keyButton()"></p></td>
@@ -100,42 +100,44 @@
   </table>
 
   <div id="constTreeDiv" style="display:none"> <div style="display:inherit;">
-  <input type="button" value="&#10005;" onclick="cancelTreeButton('const')" />
+  <input type="button" value="&#10005;" onclick="cancelButton()" />
   <ul id="constTreeView">
     <!--  dynamically populated -->
     <!--  <li> <span class="caret">mass</span> <ul id="tree-mass" class="nested"> </ul> </li> -->
-    <!--  <li onclick="unitSelected('kg', 1, '')"                > kilogram (kg)     </li> -->
+    <!--  <li onclick="selectUnitByName('kg', 1, '')"                > kilogram (kg)     </li> -->
   </ul>
   </div> </div>
 
   <div id="unitTreeDiv" style="display:none"> <div style="display:inherit;">
-  <input type="button" value="&#10005;" onclick="cancelTreeButton('unit')" />
+  <input type="button" value="&#10005;" onclick="cancelButton()" />
   <ul id="unitTreeView">
-    <!--  dynamically populated, like const -->
+    <!--  dynamically populated -->
+    <!--  <li> <span class="caret">physics</span> <ul id="tree-mass" class="nested"> </ul> </li> -->
+    <!--  <li onclick="selectConstByName('c', 1, '')"                > speed of light </li> -->
   </ul>
   </div> </div>
 
   <div id="listDiv" style="display:none;"> <div style="display:inherit; position:relative; top:40px;">
-    <span style="display:inline">
-      <input type="button" value="&#10005;" onclick="cancelListButton()" />
-      <input type="button" value="Exact"   id="exactButton"      onclick="exactListButton()" />
-      <input type="button" value="Missing" id="missingButton"    onclick="missingListButton()" />
-      <input type="button" value="Extra"   id="extraButton"      onclick="extraListButton()" />
-      <input type="button" value="Implict" id="implicitButton"   onclick="implicitListButton()" />
-      <input type="button" value="&#8678;" id="leftArrowButton"  onclick="leftArrowListButton()" />
+    <div style="background-color: gray; display: inline-block; border: 4px solid gray"><span style="display:inline">
+      <input type="button" class="variableButton" value="&#10005;" onclick="cancelButton()" />
+      <input type="button" class="variableButton" value="Exact"   id="exactButton"      onclick="exactListButton()" />
+      <input type="button" class="variableButton" value="Missing" id="missingButton"    onclick="missingListButton()" />
+      <input type="button" class="variableButton" value="Extra"   id="extraButton"      onclick="extraListButton()" />
+      <input type="button" class="variableButton" value="Implict" id="implicitButton"   onclick="implicitListButton()" />
+      <input type="button" class="variableButton" value="&lt;" id="leftArrowButton"  onclick="leftArrowListButton()" />
       <span id="pageListText" style="font-size: 28px;">1 of 1</span>
-      <input type="button" value="&#8680;" id="rightArrowButton" onclick="rightArrowListButton()" />
-    </span>
-    <table id="listView" border="1" width="800px" style="table-layout:fixed;">
-      <tr> <td colspan="2" id="formula">&nbsp</td> </tr>
-      <tr> <td id="list0">&nbsp</td> <td id="list5">&nbsp</td> </tr>
-      <tr> <td id="list1">&nbsp</td> <td id="list6">&nbsp</td> </tr>
-      <tr> <td id="list2">&nbsp</td> <td id="list7">&nbsp</td> </tr>
-      <tr> <td id="list3">&nbsp</td> <td id="list8">&nbsp</td> </tr>
-      <tr> <td id="list4">&nbsp</td> <td id="list9">&nbsp</td> </tr>
+      <input type="button" class="variableButton" value="&gt;" id="rightArrowButton" onclick="rightArrowListButton()" />
+    </span></div>
+    <table id="listView" width="800px" style="table-layout:fixed; background-color: gray; border-spacing: 0px; border-collapse: collapse;">
+      <tr> <td colspan="2" id="formula" class="variables">&nbsp</td> </tr>
+      <tr> <td id="list0" class="variables">&nbsp</td> <td id="list5" class="variables">&nbsp</td> </tr>
+      <tr> <td id="list1" class="variables">&nbsp</td> <td id="list6" class="variables">&nbsp</td> </tr>
+      <tr> <td id="list2" class="variables">&nbsp</td> <td id="list7" class="variables">&nbsp</td> </tr>
+      <tr> <td id="list3" class="variables">&nbsp</td> <td id="list8" class="variables">&nbsp</td> </tr>
+      <tr> <td id="list4" class="variables">&nbsp</td> <td id="list9" class="variables">&nbsp</td> </tr>
     </table>
   </div> </div>
-  <div class="noselect" style="position: fixed; left: 0; top: 0;" onclick="keyButton()">Help</div>
+  <div class="noselect" id="help" style="position: fixed; left: 0; top: 0;" onclick="keyButton()">Help</div>
 </div>
 </body>
 </html>

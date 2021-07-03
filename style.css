@@ -7,6 +7,7 @@
             user-select: none; /* others */
 }
 
+
 #display { /* allow select in display */
   -webkit-touch-callout: auto; /* iOS Safari */
     -webkit-user-select: auto; /* Safari */
@@ -14,6 +15,10 @@
        -moz-user-select: auto; /* Firefox */
         -ms-user-select: auto; /* Internet Explorer/Edge */
             user-select: auto; /* others */
+  padding-left:10px; 
+  padding-right:10px; 
+  border: 2px inset; 
+  border-radius: 2vw;
 }
 
 
@@ -22,6 +27,7 @@ html, body {
   padding: 0;
 }
 
+
 #page {
   position: absolute;
   width: 100%;
@@ -29,6 +35,7 @@ html, body {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
+
 
 /* calculator buttons */
 .button {
@@ -42,6 +49,32 @@ html, body {
   vertical-align: middle;
 }
 
+
+/* calculator table */
+.calculator {
+  border:4px outset; 
+  border-radius: 2vw;
+  background-color: gray;
+}
+
+
+/* variables page */
+.variables {
+  background-color: white;
+  border: 6px solid gray;
+}
+
+
+.variableButton {
+  -webkit-appearance: none;
+  font-size: 20px;
+  height: 40px;
+  background-color:gray;
+  color: white;
+  border-color: white;
+}
+
+
 /* tablet or computer, fixed size */
 @media only screen and (min-width : 799px) {
   .button {
@@ -52,6 +85,7 @@ html, body {
     display: none;
   }
 }
+
 
 /* iphone, fullscreen */
 @media only screen and (max-width : 800px) {
@@ -64,6 +98,7 @@ html, body {
   }
 }
 
+
 @media only screen and (orientation: landscape) {
   .vert {
     display: none;
@@ -74,6 +109,7 @@ html, body {
   }
 }
 
+
 @media only screen and (orientation: portrait) {
   .vert {
     display: table-row
@@ -83,6 +119,7 @@ html, body {
     display: none;
   }
 }
+
 
 /* tablet or computer, fixed size */
 @media only screen and (min-height : 429px) {
@@ -96,6 +133,7 @@ html, body {
   }
 }
 
+
 @media only screen and (max-height : 430px) {
   .button {
     height: calc(calc(100vmin - 130px) / 6);
@@ -108,6 +146,7 @@ html, body {
   }
 }
 
+
 #display {
   text-align: right;
   background-color: white;
@@ -115,24 +154,17 @@ html, body {
   font-family: 'Lucida Console', Monaco, monospace;
 }
 
+
 #listView {
   font-size: 24px;
 }
 
-input[type=button] {
-  -webkit-appearance: none;
-  font-size: 20px;
-  height: 40px;
-  background-color: #0010FF;
-  color: white;
-  border-color: #0010FF;
-  border-radius: 10px;
-}
 
 /* Remove default bullets */
 ul, #constTreeView, #unitTreeView {
   list-style-type: none;
 }
+
 
 /* Remove margins and padding from the parent ul */
 #constTreeView, #unitTreeView {
@@ -140,11 +172,13 @@ ul, #constTreeView, #unitTreeView {
   padding: 0;
 }
 
+
 /* Style the caret/arrow */
 .caret {
   cursor: pointer;
   user-select: none; /* Prevent text selection */
 }
+
 
 /* Create the caret/arrow with a unicode, and style it */
 .caret::before {
@@ -154,22 +188,21 @@ ul, #constTreeView, #unitTreeView {
   margin-right: 6px;
 }
 
+
 /* Rotate the caret/arrow icon when clicked on (using JavaScript) */
 .caret-down::before {
   transform: rotate(90deg);
 }
+
 
 /* Hide the nested list */
 .nested {
   display: none;
 }
 
+
 /* Show the nested list when the user clicks on the caret/arrow (with JavaScript) */
 .active {
   display: block;
 }
 
-table {
-  background-color: gray;
-
-}
