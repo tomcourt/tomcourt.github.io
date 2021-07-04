@@ -601,85 +601,97 @@ class Formulas {
     }
 }
 var listOfFormulas = [];
-function findExactFormulas() {
-    var grouping;
+function findMatchingFormulas(type) {
+    var sortGrouping;
     var found = [];
-    function swap(f, i, j) {
+    function swapFormulaVars(f, i, j) {
         var n = f.varNames[i];
         f.varNames[i] = f.varNames[j];
         f.varNames[j] = n;
         var t = f.varUnits[i].copy();
         f.varUnits[i] = f.varUnits[j].copy();
         f.varUnits[j] = t;
-        var g = grouping[i];
-        grouping[i] = grouping[j];
-        grouping[j] = g;
+        var g = sortGrouping[i];
+        sortGrouping[i] = sortGrouping[j];
+        sortGrouping[j] = g;
     }
-    function permutateVarsAndAddToFound(formula, first, k) {
-        if (k == first + 1)
+    function permutateVarsAndAddToFound(formula, first, last) {
+        if (last == first + 1)
             found.push(formula.copy());
         else {
-            permutateVarsAndAddToFound(formula.copy(), first, k - 1);
-            for (var i = first; i < k - 1; i++) {
-                if (((k - first) & 1) == 0) {
-                    if (grouping[i] == grouping[k - 1]) {
-                        swap(formula, i, k - 1);
-                        permutateVarsAndAddToFound(formula.copy(), first, k - 1);
+            permutateVarsAndAddToFound(formula.copy(), first, last - 1);
+            for (var i = first; i < last - 1; i++) {
+                if (((last - first) & 1) == 0) {
+                    if (sortGrouping[i] == sortGrouping[last - 1]) {
+                        swapFormulaVars(formula, i, last - 1);
+                        permutateVarsAndAddToFound(formula.copy(), first, last - 1);
                     }
                 }
                 else {
-                    if (grouping[first] == grouping[k - 1]) {
-                        swap(formula, first, k - 1);
-                        permutateVarsAndAddToFound(formula.copy(), first, k - 1);
+                    if (sortGrouping[first] == sortGrouping[last - 1]) {
+                        swapFormulaVars(formula, first, last - 1);
+                        permutateVarsAndAddToFound(formula.copy(), first, last - 1);
                     }
                 }
             }
         }
     }
     function sortRepeatedVarsToEnd(formula, exclude) {
-        grouping = [];
-        for (var i = 0; i < formula.varUnits.length; i++)
-            grouping.push('');
+        sortGrouping = (new Array(formula.varUnits.length)).fill('');
         for (var i = 0; i < formula.varUnits.length; i++)
             for (var j = i + 1; j < formula.varUnits.length; j++)
-                if (formula.varUnits[i].isEqual(formula.varUnits[j]) &&
-                    formula.varNames[i] != exclude && formula.varNames[j] != exclude) {
-                    grouping[i] = formula.varUnits[i].toString();
-                    grouping[j] = formula.varUnits[i].toString();
+                if (formula.varUnits[i].isEqual(formula.varUnits[j]) && formula.varNames[i] != exclude && formula.varNames[j] != exclude) {
+                    sortGrouping[i] = formula.varUnits[i].toString();
+                    sortGrouping[j] = formula.varUnits[i].toString();
                 }
         var n = formula.varUnits.length;
         var didSwap;
         do {
             didSwap = false;
             for (i = 1; i < n; i++) {
-                if (grouping[i - 1] > grouping[i]) {
-                    swap(formula, i - 1, i);
+                if (sortGrouping[i - 1] > sortGrouping[i]) {
+                    swapFormulaVars(formula, i - 1, i);
                     didSwap = true;
                 }
             }
             n--;
         } while (didSwap);
         for (i = 0; i < formula.varUnits.length; i++)
-            if (grouping[i] != '')
+            if (sortGrouping[i] != '')
                 break;
         return i;
     }
     for (var i = 0; i < listOfFormulas.length; i++) {
         var formula = listOfFormulas[i];
-        var matches = [];
-        for (var j = 0; j < knowns.length; j++)
-            matches.push(false);
+        var knownMatches = (new Array(knowns.length)).fill(false);
         for (var j = 0; j < formula.varUnits.length; j++) {
             for (var k = 0; k < knowns.length; k++)
-                if (formula.varUnits[j].isEqualArray(knowns[k].unitPowers) && matches[k] == false) {
-                    matches[k] = true;
+                if (formula.varUnits[j].isEqualArray(knowns[k].unitPowers) && knownMatches[k] == false) {
+                    knownMatches[k] = true;
                     break;
                 }
         }
-        for (var j = 0; j < knowns.length; j++)
-            if (matches[j] == false)
+        var formulaMatches = (new Array(formula.varUnits.length)).fill(false);
+        for (var j = 0; j < formula.varUnits.length; j++) {
+            for (var k = 0; k < knowns.length; k++)
+                if (formula.varUnits[j].isEqualArray(knowns[k].unitPowers) && formulaMatches[j] == false) {
+                    formulaMatches[j] = true;
+                    break;
+                }
+        }
+        var match = false;
+        switch (type) {
+            case 'missing':
+                match = (!knownMatches.includes(false) && formulaMatches.includes(false));
                 break;
-        if ((j == formula.varUnits.length) && knowns.length == formula.varUnits.length) {
+            case 'extra':
+                match = (knownMatches.includes(false) && !formulaMatches.includes(false));
+                break;
+            case 'exact':
+                match = (!knownMatches.includes(false) && !formulaMatches.includes(false));
+                break;
+        }
+        if (match) {
             formula.matchVariables();
             var matchSubFormulas = formula.findMatchsForUnknown();
             for (var j = 0; j < matchSubFormulas.length; j++) {
@@ -1252,7 +1264,9 @@ function findImplicitFormula() {
 }
 function findFormula() {
     clearButton(false);
-    exactFormulas = findExactFormulas();
+    exactFormulas = findMatchingFormulas('exact');
+    missingTermFormulas = findMatchingFormulas('missing');
+    extraTermFormulas = findMatchingFormulas('extra');
     implicitFormula = findImplicitFormula();
     if (exactFormulas[0])
         listedFormulas = exactFormulas;
@@ -1277,9 +1291,12 @@ function populateList() {
     if (formula) {
         formula.matchVariables();
         setMessage(formula.desc + ': ' + formula.prettyMatching());
-        var top = new Measurement(formula.solve(), knowns[0].unitPowers, knowns[0].unitNames, knowns[0].complexUnits, knowns[0].formulaVar);
-        knowns[0] = top;
-        setDisplay(top.toString());
+        if (listedFormulas == missingTermFormulas)
+            setDisplay('no solution, missing term(s)');
+        else {
+            knowns[0] = new Measurement(formula.solve(), knowns[0].unitPowers, knowns[0].unitNames, knowns[0].complexUnits, knowns[0].formulaVar);
+            setDisplay(knowns[0].toString());
+        }
         document.getElementById('formula').innerHTML = formula.desc + ': ' + formula.prettyMatching();
         for (var i = 0; i < 9; i++)
             document.getElementById('list' + i.toString()).innerHTML = ((i < knowns.length) ? knowns[i].formulaVar + ' = ' + knowns[i].toString() : '&nbsp');
@@ -1480,7 +1497,7 @@ function keyButton(evnt) {
                         finishEntry();
                         top = operands[operands.length - 1];
                         if (memory.unitPowers.toString() != top.unitPowers.toString())
-                            setMessage("Can't sum, units differ");
+                            setMessage("Can't sum, units differ!");
                         else
                             memory.value += top.value;
                         break;
