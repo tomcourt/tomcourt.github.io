@@ -6,6 +6,7 @@ const arrayOfUnits = [
     ['K', 'K', 'temperature', 'kelvin', 1],
     ['cd', 'cd', 'other', 'candela', 1],
     ['mol', 'mol', 'other', 'mole', 1],
+    ['rad', 'rad', 'other', 'radian', 1],
     ['kg', 'mg', 'mass', 'milligram', 1e-6],
     ['kg', 'g', 'mass', 'gram', 1e-3],
     ['kg', 't', 'mass', 'metric ton', 1000],
@@ -91,26 +92,40 @@ const arrayOfUnits = [
     ['kg/s2 A', 'T', 'electromag', 'tesla', 1],
     ['kg m2/s2 A2', 'H', 'electromag', 'henry', 1],
     ['cd/m2', 'lx', 'other', 'lux', 1],
+    ['rad', 'deg', 'other', 'degree', Math.PI / 180],
 ];
 const arrayOfConstants = [
     ['1', Math.PI, 'π', 'basic', 'pi', 'pi'],
-    ['1/mol', 6.02214076E23, 'L', 'physics', 'Avogadro constant'],
-    ['kg m2/s2 K', 1.380649E-23, 'k', 'physics', 'Boltzmann constant'],
-    ['kg m3/s4 A2', 8.9875517923E9, 'ke', 'physics', 'Coulomb constant'],
+    ['m/s', 299792458, 'c', 'electromag', 'speed of light'],
+    ['m3/kg s2', 6.6743E-11, 'G', 'astronomy', 'newtonian gravitational constant'],
+    ['kg m2/s', 6.62607015E-34, 'h', 'particle', 'planck constant'],
+    ['kg m2/s', 1.054571817E-34, 'ħ', 'particle', 'reduced planck constant', 'hbar'],
     ['A s', 1.602176634E-19, 'e', 'particle', 'elementry charge'],
-    ['kg m2/s2 K mol', 8.31446261815324, 'R', 'physics', 'molar gas constant'],
-    ['m3/kg s2', 6.6743E-11, 'G', 'physics', 'newtonian gravitational constant'],
+    ['m/s2 A2', 1.25663706212E-6, 'µ₀', 'electromag', 'vacuum magnetic permittivity', 'mu0'],
+    ['s4 A2/m3 kg', 8.8541878128E-12, 'ε₀', 'electromag', 'vacuum electric permittivity', 'epsilon0'],
+    ['s2 A/kg m2', 483597.9E9, 'Kj', 'electromag', 'Josephson constant'],
+    ['kg m2/s3 A2', 25812.807, 'Rk', 'electromag', 'von Klitzing constant'],
+    ['kg m2/s2 A', 2.067833848E-15, 'Φ₀', 'electromag', 'magnetic flux quantum', 'phi0'],
+    ['s3 A2/kg m2', 7.748091729E-5, 'G₀', 'electromag', 'conductance quantum', 'G0'],
     ['kg', 9.1093837015E-31, 'Me', 'particle', 'electron mass'],
     ['kg', 1.67262192369E-27, 'Mp', 'particle', 'proton mass'],
+    ['1', 1836.15267343, 'Mp/e', 'particle', 'proton to electron mass ratio', 'Mp2Me'],
+    ['1', 7.2973525693E-3, 'α', 'particle', 'fine structure constant', 'alpha'],
+    ['1', 137.035999084, '1/α', 'particle', 'inverse fine structure constant', 'alpha1'],
+    ['1/s', 3.2898419602508E15, 'cR∞', 'particle', 'Rydberg frequency', 'cRinfity'],
+    ['kg m2/s2 K', 1.380649E-23, 'k', 'thermodyn', 'Boltzmann constant'],
+    ['1/mol', 6.02214076E23, 'L', 'particle', 'Avogadro constant'],
+    ['kg m2/s2 K mol', 8.31446261815324, 'R', 'thermodyn', 'molar gas constant'],
+    ['s A/mol', 96485.33212, 'F', 'electromag', 'Faraday constant'],
+    ['kg/s3 K4', 5.670374419E-8, 'σ', 'thermodyn', 'Stefan-Boltzmann constant', 'sigma'],
+    ['kg m2/s2', 1.602176634E-19, 'eV', 'electromag', 'electronvolt'],
+    ['kg', 1.6605390666E-27, 'u', 'particle', 'unified mass unit'],
     ['kg', 1.67492749804E-27, 'Mn', 'particle', 'neutron mass'],
-    ['s4 A2/m3 kg', 8.8541878128E-12, 'ε₀', 'physics', 'vacuum electric permittivity', 'epsilon0'],
-    ['m/s2 A2', 1.25663706212E-6, 'µ₀', 'physics', 'vacuum magnetic permittivity', 'mu0'],
-    ['kg m2/s', 6.62607015E-34, 'h', 'particle', 'planck constant'],
-    ['m/s', 299792458, 'c', 'physics', 'speed of light'],
-    ['kg', 1.6605390666E-27, 'u', 'physics', 'unified mass unit'],
-    ['kg m2/s', 1.054571817E-34, 'ħ', 'particle', 'reduced planck constant', 'hbar'],
-    ['kg m2/s3 A2', 376.730313668, 'Z₀', 'physics', 'characteristic impedance of vacuum', 'Z0'],
-    ['s3 A2/kg m2', 7.748091729E-5, 'G₀', 'physics', 'conductance quantum', 'G0'],
+    ['kg m3/s4 A2', 8.9875517923E9, 'ke', 'electromag', 'Coulomb constant'],
+    ['kg m2/s3 A2', 376.730313668, 'Z₀', 'electromag', 'characteristic impedance of vacuum', 'Z0'],
+    ['m2/s2', 333550, '♆HF', 'thermodyn', 'heat of fusion by mass of water', 'h2oHF'],
+    ['m2/s2', 2257000, '♆HV', 'thermodyn', 'heat of vaporization by mass of water', 'h2oHV'],
+    ['m2/s2 K', 4184, '♆HC', 'thermodyn', 'heat capacity of water by mass at 20C', 'h2oHC'],
     ['m/s2', 9.80665, 'g₀', 'astronomy', 'standard gravity', 'g0'],
     ['kg', 1.98847E30, 'M⊙', 'astronomy', 'mass of Sun', 'Msun'],
     ['kg', 5.9722E24, 'M🜨', 'astronomy', 'mass of Earth', 'Mearth'],
@@ -199,41 +214,41 @@ const arrayOfButtons = [
         ['CE/C', 'CE/C', 'CE/C', 'CE/C'],
         ['π', 'π', 'm', 'π'],
         ['LN', 'LOG', 'mm', 'c'],
-        ['EE', 'EE', 'km', 'h'],
-        ['(', '(', 'ft', 'ħ'],
-        [')', ')', 'in', ''],
-        ['÷', '÷', 'mi', 'ε₀'],
-        ['¹/ₓ', '¹/ₓ', '1/UN', '']
-    ], [
-        ['MODE', 'MODE', 'KWN', ''],
-        ['STR', 'SUM', 'kg', 'µ₀'],
-        ['eˣ', '10ˣ', 'g', 'Z₀'],
-        ['7', '7', 'mg', 'e'],
-        ['8', '8', 'lb', 'L'],
-        ['9', '9', 'oz', 'k'],
-        ['×', '×', 'gal', ''],
-        ['yˣ', 'ˣ√y', 'l', 'R']
-    ], [
-        ['2nd', '2nd', 'UNKN', ''],
-        ['RCL', 'EXCH', 's', ''],
-        ['SIN', 'SIN⁻¹', 'min', ''],
-        ['4', '4', 'h', ''],
-        ['5', '5', 'd', ''],
-        ['6', '6', 'yr', ''],
-        ['-', '-', '', ''],
-        ['√x', '³√x', '', '']
-    ], [
-        ['CNST', 'CNST', '', 'CNST'],
-        ['', '', 'A', ''],
-        ['COS', 'COS⁻¹', 'V', ''],
-        ['1', '1', 'Ω', ''],
-        ['2', '2', 'J', ''],
-        ['3', '3', 'W', ''],
-        ['+', '+', 'N', ''],
-        ['x²', 'x³', 'Pa', '']
+        ['EE', 'EE', 'km', 'µ₀'],
+        ['(', '(', 'ft', 'ε₀'],
+        [')', ')', 'in', 'G₀'],
+        ['÷', '÷', 'mi', 'Φ₀'],
+        ['¹/ₓ', '¹/ₓ', '1/UN', 'F']
     ], [
         ['UNIT', 'UNIT', 'UNIT', ''],
-        ['', '', 'K', 'G'],
+        ['STR', 'SUM', 'kg', 'k'],
+        ['eˣ', '10ˣ', 'g', 'R'],
+        ['7', '7', 'mg', 'σ'],
+        ['8', '8', 'lb', '♆HF'],
+        ['9', '9', 'oz', '♆HV'],
+        ['×', '×', 'l', '♆HC'],
+        ['yˣ', 'ˣ√y', 'gal', 'eV']
+    ], [
+        ['CNST', 'CNST', '', 'CNST'],
+        ['RCL', 'EXCH', 's', 'h'],
+        ['SIN', 'SIN⁻¹', 'min', 'ħ'],
+        ['4', '4', 'h', 'e'],
+        ['5', '5', 'd', 'cR∞'],
+        ['6', '6', 'yr', 'L'],
+        ['-', '-', 'rad', 'u'],
+        ['√x', '³√x', 'deg', 'ke']
+    ], [
+        ['2nd', '2nd', 'KWN', ''],
+        ['HYP', 'HYP', 'A', 'Me'],
+        ['COS', 'COS⁻¹', 'V', 'Mp'],
+        ['1', '1', 'Ω', 'Mp/e'],
+        ['2', '2', 'J', 'Mn'],
+        ['3', '3', 'W', 'α'],
+        ['+', '+', 'N', '1/α'],
+        ['x²', 'x³', 'Pa', 'Z₀']
+    ], [
+        ['FLT+', 'FLT+', 'UNKN', ''],
+        ['RAD+', 'RAD+', 'K', 'G'],
         ['TAN', 'TAN⁻¹', '°C', 'g₀'],
         ['0', '0', '°F', 'M⊙'],
         ['.', '.', 'cd', 'M🜨'],
@@ -247,10 +262,13 @@ var buttonElements = new Map([
     ['LIST', undefined],
     ['CNST', undefined],
     ['2nd', undefined],
-    ['1/UN', undefined]
+    ['1/UN', undefined],
+    ['HYP', undefined],
+    ['RAD+', undefined],
+    ['FLT+', undefined],
 ]);
 const buttonColorKeys = [
-    ['CE/C', 'MODE', 'CNST', 'UNIT', '2nd', 'LIST', 'KWN', 'UNKN', '1/UN', '#'],
+    ['CE/C', 'MODE', 'CNST', 'UNIT', '2nd', 'LIST', 'KWN', 'UNKN', '1/UN', '#', 'RAD+', 'FLT+', 'HYP'],
     ['.', '±', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'EE'],
     ['+', '-', '×', '÷', '=', '(', ')'],
     ['π', 'STR', 'RCL', 'SIN', 'COS', 'TAN', 'LN', 'eˣ', 'yˣ', '¹/ₓ', '√x', 'x²', 'LOG',
@@ -267,19 +285,39 @@ function hsl(h, s, l) {
     ;
     return `#${f(0)}${f(8)}${f(4)}`;
 }
-const buttonColors = [hsl(30, 1, .2), hsl(210, 1, .2), hsl(75, 1, .2), hsl(270, 1, .2), hsl(165, 1, .2), hsl(330, 1, .2), hsl(0, 0, .5)];
+const buttonColors = [hsl(30, 1, .2), hsl(210, 1, .2), hsl(90, 1, .15), hsl(255, 1, .15), hsl(165, 1, .2), hsl(330, 1, .2), hsl(0, 0, .5)];
 function format(n) {
-    var p = n.toPrecision(8);
-    if (/^-?0.0?0?[1-9]/.test(p))
-        p = p.substr(0, 10);
-    if (p.includes('.') && !p.includes('e')) {
-        p = p.replace(/0+$/, '');
-        if (p.substr(p.length - 1) == '.')
-            p = p.substr(0, p.length - 1);
+    if (!isFinite(n))
+        return n.toString();
+    const significantDigits = 8;
+    var components = ((n.toExponential()).toString()).split('e');
+    var mantisa = parseFloat(components[0]);
+    mantisa = parseFloat(mantisa.toFixed(significantDigits - 1));
+    var exponent = parseInt(components[1]);
+    if (fltSciEng == 'FLT+' && exponent < significantDigits && exponent >= -3) {
+        var digits = significantDigits - 1;
+        if (exponent < 0)
+            digits -= exponent;
+        return parseFloat(n.toFixed(digits)).toString();
     }
-    if (p.length > 10 || p.includes('e'))
-        return n.toExponential(4);
-    return p;
+    else {
+        if (fltSciEng == 'ENG+') {
+            var fix = exponent % 3;
+            if (fix == -1) {
+                mantisa *= 100;
+                exponent -= 2;
+            }
+            else if (fix == -2) {
+                mantisa *= 10;
+                exponent -= 1;
+            }
+            else {
+                mantisa *= 10 ** fix;
+                exponent -= fix;
+            }
+        }
+        return mantisa.toString() + '×10<sup><small>' + exponent.toString() + '</small></sup>';
+    }
 }
 class ShortUnits {
     constructor(str, powers) {
@@ -287,7 +325,7 @@ class ShortUnits {
             this.powers = powers.slice();
             return;
         }
-        this.powers = [0, 0, 0, 0, 0, 0, 0];
+        this.powers = [0, 0, 0, 0, 0, 0, 0, 0];
         var fraction = str.split('/');
         for (var i = 0; i < fraction.length; i++) {
             if (fraction[i] == '1')
@@ -321,7 +359,7 @@ class ShortUnits {
     }
     toString() {
         var ret = '';
-        for (var i = 0; i < 7; i++) {
+        for (var i = 0; i < 8; i++) {
             if (this.powers[i] > 1)
                 ret += ShortUnits.names[i] + this.powers[i].toString() + ' ';
             else if (this.powers[i] == 1)
@@ -331,7 +369,7 @@ class ShortUnits {
         if (ret == '')
             ret = '1';
         ret += '/';
-        for (var i = 0; i < 7; i++) {
+        for (var i = 0; i < 8; i++) {
             if (this.powers[i] < -1)
                 ret += ShortUnits.names[i] + (-this.powers[i].toString()) + ' ';
             else if (this.powers[i] == -1)
@@ -345,7 +383,7 @@ class ShortUnits {
         return ret;
     }
 }
-ShortUnits.names = ['kg', 'm', 's', 'K', 'A', 'cd', 'mol'];
+ShortUnits.names = ['kg', 'm', 's', 'K', 'A', 'cd', 'mol', 'rad'];
 class Unit {
     constructor(shortUnits, name, group, desc, factor, offset = 0) {
         this.units = new ShortUnits(shortUnits);
@@ -357,7 +395,7 @@ class Unit {
     }
     nPowers() {
         var n = 0;
-        for (var i = 0; i < 7; i++)
+        for (var i = 0; i < 8; i++)
             if (this.units.powers[i] != 0)
                 n++;
         return n;
@@ -369,15 +407,15 @@ class Unit {
         return ((this.nPowers() > 1 || this.units.powers[this.index()] != 1 || this.name.includes('°')) && !this.isComposite());
     }
     index() {
-        for (var i = 0; i < 7; i++)
+        for (var i = 0; i < 8; i++)
             if (this.units.powers[i] != 0)
                 return i;
         return -1;
     }
     names() {
-        var un = ['', '', '', '', '', '', ''];
+        var un = ['', '', '', '', '', '', '', ''];
         if (this.isComplex()) {
-            for (var i = 0; i < 7; i++)
+            for (var i = 0; i < 8; i++)
                 if (this.units.powers[i] != 0)
                     un[i] = ShortUnits.names[i];
         }
@@ -425,12 +463,12 @@ class Measurement {
         this.complexUnits = complex;
         this.formulaVar = formulaVar;
         if (unitPowers == undefined)
-            this.unitPowers = [0, 0, 0, 0, 0, 0, 0];
+            this.unitPowers = [0, 0, 0, 0, 0, 0, 0, 0];
         else
             this.unitPowers = unitPowers.slice();
         if (unitNames == undefined) {
             this.unitNames = [];
-            for (var i = 0; i < 7; i++)
+            for (var i = 0; i < 8; i++)
                 if (this.unitPowers[i] == 0)
                     this.unitNames.push('');
                 else
@@ -447,9 +485,9 @@ class Measurement {
         var unit = findUnit(this.unitPowers, this.complexUnits);
         if (unit)
             return unit.factor;
-        for (var i = 0; i < 7; i++) {
+        for (var i = 0; i < 8; i++) {
             if (this.unitPowers[i] != 0) {
-                var searchUnit = [0, 0, 0, 0, 0, 0, 0];
+                var searchUnit = [0, 0, 0, 0, 0, 0, 0, 0];
                 searchUnit[i] = 1;
                 unit = findUnit(searchUnit, this.unitNames[i]);
                 if (unit)
@@ -458,53 +496,57 @@ class Measurement {
         }
         return ret;
     }
-    toString() {
+    toDisplayForm() {
         const superscripts = ['', '', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹'];
         var unit;
-        if (this.unitPowers.toString() == [0, 0, 0, 0, 0, 0, 0].toString() && currentMode != 'mode-unit')
-            return format(this.value);
+        if (this.isScalar() && currentMode != 'mode-unit')
+            return { value: format(this.value), numerator: '', denominator: '' };
         unit = findUnit(this.unitPowers, this.complexUnits);
         if (unit)
-            return format(this.value / unit.factor + unit.offset) + ' ' + unit.name;
+            return { value: format(this.value / unit.factor + unit.offset), numerator: unit.name, denominator: '' };
         var factor = 1;
         var numerator = '';
         var denominator = '';
-        for (var i = 0; i < 7; i++) {
+        for (var i = 0; i < 8; i++) {
             if (this.unitPowers[i] != 0) {
-                var searchUnit = [0, 0, 0, 0, 0, 0, 0];
+                var searchUnit = [0, 0, 0, 0, 0, 0, 0, 0];
                 searchUnit[i] = 1;
                 unit = findUnit(searchUnit, this.unitNames[i]);
                 if (unit) {
                     if (this.unitPowers[i] > 0)
-                        numerator += ' ' + unit.name + superscripts[this.unitPowers[i]];
+                        numerator += unit.name + superscripts[this.unitPowers[i]] + ' ';
                     else
-                        denominator += ' ' + unit.name + superscripts[-this.unitPowers[i]];
+                        denominator += unit.name + superscripts[-this.unitPowers[i]] + ' ';
                     factor *= unit.factor ** this.unitPowers[i];
                 }
             }
         }
         if (currentMode == 'mode-unit') {
             if (unitSign == 1)
-                numerator += ' ◆';
+                numerator += '◆';
             else
-                denominator += ' ◆';
+                denominator += '◆';
         }
-        var unitStr = '';
-        if (denominator != '') {
-            if (numerator == '')
-                numerator = ' 1';
-            unitStr = numerator + '/' + denominator.trim();
-        }
-        else
-            unitStr = numerator;
-        return format(this.value / factor) + unitStr;
+        if (denominator != '' && numerator == '')
+            numerator = '1';
+        numerator = numerator.trim();
+        denominator = denominator.trim();
+        return { value: format(this.value / factor), numerator: numerator, denominator: denominator };
     }
     nPowers() {
         var n = 0;
-        for (var i = 0; i < 7; i++)
+        for (var i = 0; i < 8; i++)
             if (this.unitPowers[i] != 0)
                 n++;
         return n;
+    }
+    isScalar() {
+        return this.unitPowers.toString() == [0, 0, 0, 0, 0, 0, 0, 0].toString();
+    }
+    isScalarOrRadian() {
+        var pows = this.unitPowers.slice();
+        pows[7] = 0;
+        return pows.toString() == [0, 0, 0, 0, 0, 0, 0, 0].toString();
     }
 }
 class Formulas {
@@ -715,6 +757,9 @@ var operands = [];
 var memory = new Measurement(0);
 var unitSign = 1;
 var currentMode;
+var hyper = false;
+var degRad = 'RAD+';
+var fltSciEng = 'FLT+';
 var exactFormulas;
 var implicitFormula;
 var missingTermFormulas;
@@ -785,7 +830,9 @@ function setButtonMode(newMode) {
                         button.style.backgroundColor = buttonColors[2];
                     else if (unit.units.isEqual(new ShortUnits('s')))
                         button.style.backgroundColor = buttonColors[3];
-                    else if (unit.units.isEqual(new ShortUnits('K')) || unit.units.isEqual(new ShortUnits('A')) || unit.units.isEqual(new ShortUnits('mol')) || unit.units.isEqual(new ShortUnits('cd')))
+                    else if (unit.units.isEqual(new ShortUnits('K')) || unit.units.isEqual(new ShortUnits('A')) ||
+                        unit.units.isEqual(new ShortUnits('mol')) || unit.units.isEqual(new ShortUnits('cd')) ||
+                        unit.units.isEqual(new ShortUnits('rad')))
                         button.style.backgroundColor = buttonColors[4];
                     else
                         button.style.backgroundColor = buttonColors[5];
@@ -819,6 +866,11 @@ function setButtonMode(newMode) {
     boldButton('CNST', (currentMode == 'mode-const'));
     boldButton('UNIT', (currentMode == 'mode-unit'));
     boldButton('LIST', (currentMode == 'mode-norm') && nFormulas > 0);
+    boldButton('HYP', hyper);
+    if (newMode == 'mode-norm' || newMode == 'mode-2nd') {
+        buttonElements.get('RAD+').innerHTML = degRad;
+        buttonElements.get('FLT+').innerHTML = fltSciEng;
+    }
 }
 function fillTreeInHTML(listForTree, treeView, funcName) {
     var groups = [];
@@ -862,17 +914,23 @@ function setMessage(message) {
         message = 'Physical Calculator';
     document.getElementById('message').innerHTML = message;
 }
-function setDisplay(display) {
-    document.getElementById('display').innerHTML = display;
-}
-function getDisplay() {
-    return document.getElementById('display').innerHTML;
+function setDisplay(measure) {
+    var m = measure.toDisplayForm();
+    document.getElementById('value').innerHTML = m.value;
+    if (m.numerator == '')
+        document.getElementById('numerator').innerHTML = '';
+    else
+        document.getElementById('numerator').innerHTML = '&nbsp;' + m.numerator + '&nbsp;';
+    if (m.denominator == '')
+        document.getElementById('denominator').innerHTML = '';
+    else
+        document.getElementById('denominator').innerHTML = m.denominator;
 }
 function updateDisplay() {
     if (exponent == '')
-        setDisplay(mantisa);
+        document.getElementById('value').innerHTML = mantisa;
     else
-        setDisplay(mantisa + 'E' + exponent);
+        document.getElementById('value').innerHTML = mantisa + '×10<sup><small>' + exponent.toString() + '</small></sup>';
 }
 function digitButton(symbol) {
     if (entryMode == 'number')
@@ -893,20 +951,10 @@ function digitButton(symbol) {
     updateDisplay();
 }
 function eeButton() {
-    if (entryMode == 'number' || entryMode == 'infix') {
-        var val = parseFloat(getDisplay());
-        if (getDisplay().indexOf('E') == -1 &&
-            getDisplay().indexOf('e') == -1)
-            setDisplay(val.toExponential(4));
-        else
-            setDisplay(format(val));
-    }
-    else {
-        if (exponent == '')
-            exponent = '0';
-        entryMode = 'exponent';
-        updateDisplay();
-    }
+    if (exponent == '')
+        exponent = '0';
+    entryMode = 'exponent';
+    updateDisplay();
 }
 function plusMinusButton() {
     if (entryMode == 'exponent') {
@@ -928,7 +976,9 @@ function plusMinusButton() {
 }
 function finishEntry() {
     if (entryMode == 'mantisa' || entryMode == 'exponent') {
-        operands.push(new Measurement(parseFloat(getDisplay())));
+        var disp = document.getElementById('value').innerHTML;
+        disp = disp.replace('×10<sup><small>', 'E').replace('</small></sup>', '');
+        operands.push(new Measurement(parseFloat(disp)));
         mantisa = '';
         exponent = '';
         entryMode = 'number';
@@ -973,7 +1023,7 @@ function evaluateTopOperator() {
             break;
         case '*':
             ret.value = x.value * y.value;
-            for (i = 0; i < 7; i++) {
+            for (i = 0; i < 8; i++) {
                 ret.unitPowers[i] = x.unitPowers[i] + y.unitPowers[i];
                 if (y.unitNames[i] != '')
                     ret.unitNames[i] = y.unitNames[i];
@@ -981,7 +1031,7 @@ function evaluateTopOperator() {
             break;
         case '/':
             ret.value = x.value / y.value;
-            for (i = 0; i < 7; i++) {
+            for (i = 0; i < 8; i++) {
                 ret.unitPowers[i] = x.unitPowers[i] - y.unitPowers[i];
                 if (y.unitNames[i] != '')
                     ret.unitNames[i] = y.unitNames[i];
@@ -990,7 +1040,7 @@ function evaluateTopOperator() {
         case 'root':
             y.value = 1 / y.value;
         case '^':
-            if (y.unitPowers.toString() == [0, 0, 0, 0, 0, 0, 0].toString())
+            if (y.isScalar())
                 powMeasurement(ret, y.value);
             else
                 setMessage('Power must be scalar!');
@@ -1031,7 +1081,7 @@ function infixButton(ch) {
             entryMode = 'infix';
             operators.push(ch);
     }
-    setDisplay(operands[operands.length - 1].toString());
+    setDisplay(operands[operands.length - 1]);
 }
 function clearButton(all) {
     if (all) {
@@ -1047,7 +1097,7 @@ function clearButton(all) {
         populateList();
         setMessage();
     }
-    setDisplay('0');
+    setDisplay(new Measurement(0));
     mantisa = '';
     exponent = '';
     entryMode = 'number';
@@ -1059,10 +1109,10 @@ function selectUnitByName(name, tree = false) {
     var top = operands[operands.length - 1];
     if (unit) {
         if (unit.isComplex() || unit.isComposite()) {
-            if (top.unitPowers.toString() != [0, 0, 0, 0, 0, 0, 0].toString() && top.unitPowers.toString() != unit.units.powers.toString())
+            if (!top.isScalar() && top.unitPowers.toString() != unit.units.powers.toString())
                 setMessage("Units differ, can't convert!");
             else {
-                if (top.unitPowers.toString() == [0, 0, 0, 0, 0, 0, 0].toString()) {
+                if (top.isScalar()) {
                     top.value -= unit.offset;
                     top.value *= unit.factor ** unitSign;
                 }
@@ -1083,7 +1133,7 @@ function selectUnitByName(name, tree = false) {
                 top.unitNames[unit.index()] = unit.names()[unit.index()];
         }
         top.complexUnits = (unit.isComplex() ? unit.name : '');
-        setDisplay(top.toString());
+        setDisplay(top);
     }
     if (tree) {
         document.getElementById('unitTreeDiv').style.display = 'none';
@@ -1104,7 +1154,7 @@ function selectConstByName(button, tree = false) {
     var cnst = findConstantByName(button);
     if (cnst) {
         operands.push(cnst.toMeasure());
-        setDisplay(operands[operands.length - 1].toString());
+        setDisplay(operands[operands.length - 1]);
     }
     if (tree) {
         document.getElementById('constTreeDiv').style.display = 'none';
@@ -1115,7 +1165,7 @@ function selectConstByName(button, tree = false) {
 }
 function powMeasurement(top, power) {
     var undo = top.unitPowers.slice();
-    for (var i = 0; i < 7; i++) {
+    for (var i = 0; i < 8; i++) {
         top.unitPowers[i] *= power;
         if (!Number.isInteger(top.unitPowers[i])) {
             top.unitPowers = undo;
@@ -1126,16 +1176,17 @@ function powMeasurement(top, power) {
     top.value = top.value ** power;
 }
 function transcendentalOp(top, newValue) {
-    if (top.nPowers() != 0) {
+    if (!top.isScalarOrRadian()) {
         setMessage('Transcendental functions require scalar!');
         return;
     }
+    top.unitPowers = [0, 0, 0, 0, 0, 0, 0, 0];
     top.value = newValue;
 }
 function unaryButton(op) {
     finishEntry();
     var top = operands[operands.length - 1];
-    switch (op) {
+    switch (op.toLowerCase()) {
         case '1/x':
             powMeasurement(top, -1);
             break;
@@ -1152,22 +1203,61 @@ function unaryButton(op) {
             powMeasurement(top, 1 / 3);
             break;
         case 'sin':
-            transcendentalOp(top, Math.sin(top.value));
+            if (hyper)
+                transcendentalOp(top, Math.sinh(top.value));
+            else {
+                if (degRad == 'DEG+' && top.isScalar())
+                    top.value = top.value * Math.PI / 180;
+                transcendentalOp(top, Math.sin(top.value));
+            }
             break;
         case 'cos':
-            transcendentalOp(top, Math.cos(top.value));
+            if (hyper)
+                transcendentalOp(top, Math.cosh(top.value));
+            else {
+                if (degRad == 'DEG+' && top.isScalar())
+                    top.value = top.value * Math.PI / 180;
+                transcendentalOp(top, Math.cos(top.value));
+            }
             break;
         case 'tan':
-            transcendentalOp(top, Math.tan(top.value));
+            if (hyper)
+                transcendentalOp(top, Math.tanh(top.value));
+            else {
+                if (degRad == 'DEG+' && top.isScalar())
+                    top.value = top.value * Math.PI / 180;
+                transcendentalOp(top, Math.tan(top.value));
+            }
             break;
         case 'sin-1':
-            transcendentalOp(top, Math.asin(top.value));
+            if (hyper)
+                transcendentalOp(top, Math.asinh(top.value));
+            else {
+                transcendentalOp(top, Math.asin(top.value));
+                selectUnitByName('rad');
+                if (degRad == 'DEG+')
+                    selectUnitByName('deg');
+            }
             break;
         case 'cos-1':
-            transcendentalOp(top, Math.acos(top.value));
+            if (hyper)
+                transcendentalOp(top, Math.acosh(top.value));
+            else {
+                transcendentalOp(top, Math.acos(top.value));
+                selectUnitByName('rad');
+                if (degRad == 'DEG+')
+                    selectUnitByName('deg');
+            }
             break;
         case 'tan-1':
-            transcendentalOp(top, Math.atan(top.value));
+            if (hyper)
+                transcendentalOp(top, Math.atanh(top.value));
+            else {
+                transcendentalOp(top, Math.atan(top.value));
+                selectUnitByName('rad');
+                if (degRad == 'DEG+')
+                    selectUnitByName('deg');
+            }
             break;
         case 'log':
             transcendentalOp(top, Math.log10(top.value));
@@ -1182,7 +1272,7 @@ function unaryButton(op) {
             transcendentalOp(top, Math.exp(top.value));
             break;
     }
-    setDisplay(operands[operands.length - 1].toString());
+    setDisplay(top);
 }
 function findImplicitFormula() {
     var nSolutions = 0;
@@ -1205,8 +1295,8 @@ function findImplicitFormula() {
         for (var i = -4; i <= end; i++) {
             pows[depth] = i;
             var abs = 0;
-            var sums2 = [0, 0, 0, 0, 0, 0, 0];
-            for (var k = 0; k < 7; k++) {
+            var sums2 = [0, 0, 0, 0, 0, 0, 0, 0];
+            for (var k = 0; k < 8; k++) {
                 var element = sums[k] + i * knowns[depth].unitPowers[k];
                 sums2[k] = element;
                 abs += Math.abs(element);
@@ -1224,7 +1314,7 @@ function findImplicitFormula() {
         }
     }
     if (knowns.length >= 3 && knowns[0].nPowers() != 0)
-        recurse(0, [0, 0, 0, 0, 0, 0, 0]);
+        recurse(0, [0, 0, 0, 0, 0, 0, 0, 0]);
     if (nSolutions == 0)
         return [];
     const roots = ['', '', 'sqrt(', 'cbrt(', 'root4('];
@@ -1292,22 +1382,22 @@ function populateList() {
         formula.matchVariables();
         setMessage(formula.desc + ': ' + formula.prettyMatching());
         if (listedFormulas == missingTermFormulas)
-            setDisplay('no solution, missing term(s)');
+            document.getElementById('value').innerHTML = 'missing term(s)!';
         else {
             knowns[0] = new Measurement(formula.solve(), knowns[0].unitPowers, knowns[0].unitNames, knowns[0].complexUnits, knowns[0].formulaVar);
-            setDisplay(knowns[0].toString());
+            setDisplay(knowns[0]);
         }
         document.getElementById('formula').innerHTML = formula.desc + ': ' + formula.prettyMatching();
         for (var i = 0; i < 9; i++)
-            document.getElementById('list' + i.toString()).innerHTML = ((i < knowns.length) ? knowns[i].formulaVar + ' = ' + knowns[i].toString() : '&nbsp');
+            document.getElementById('list' + i.toString()).innerHTML = ((i < knowns.length) ? knowns[i].formulaVar + ' = ' + knowns[i].toDisplayForm() : '&nbsp');
     }
     else {
         var unknown = ((knowns[0].nPowers() == 0) ? '0' : '1');
         setMessage('unknown ' + unknown + ' = ' + (knowns.length - 1).toString() + ' known');
         document.getElementById('formula').innerHTML = 'no formula found';
-        document.getElementById('list0').innerHTML = 'u = ' + knowns[0].toString();
+        document.getElementById('list0').innerHTML = 'u = ' + knowns[0].toDisplayForm();
         for (var i = 1; i < 9; i++)
-            document.getElementById('list' + i.toString()).innerHTML = ((i < knowns.length) ? 'k' + i.toString() + ' = ' + knowns[i].toString() : '&nbsp');
+            document.getElementById('list' + i.toString()).innerHTML = ((i < knowns.length) ? 'k' + i.toString() + ' = ' + knowns[i].toDisplayForm() : '&nbsp');
     }
 }
 function toggleUnitMode() {
@@ -1318,7 +1408,7 @@ function toggleUnitMode() {
         setButtonMode('mode-unit');
     unitSign = 1;
     finishEntry();
-    setDisplay(operands[operands.length - 1].toString());
+    setDisplay(operands[operands.length - 1]);
 }
 function boldButton(name, bold) {
     if (buttonElements.get(name))
@@ -1372,13 +1462,13 @@ function keyButton(evnt) {
                         break;
                     case '1/un':
                         unitSign = -unitSign;
-                        setDisplay(top.toString());
+                        setDisplay(top);
                         break;
                     case '#':
                         top.value = top.value / top.factor();
-                        top.unitPowers = [0, 0, 0, 0, 0, 0, 0];
-                        top.unitNames = ['', '', '', '', '', '', ''];
-                        setDisplay(top.value.toString());
+                        top.unitPowers = [0, 0, 0, 0, 0, 0, 0, 0];
+                        top.unitNames = ['', '', '', '', '', '', '', ''];
+                        setDisplay(top);
                         break;
                     default:
                         selectUnitByName(elemt.innerHTML, false);
@@ -1403,6 +1493,40 @@ function keyButton(evnt) {
                         break;
                     case '2nd':
                         setButtonMode((currentMode == 'mode-2nd') ? 'mode-norm' : 'mode-2nd');
+                        break;
+                    case 'hyp':
+                        hyper = !hyper;
+                        setButtonMode(currentMode);
+                        break;
+                    case 'deg+':
+                        degRad = 'RAD+';
+                        setButtonMode(currentMode);
+                        if (top.isScalarOrRadian() && !top.isScalar() && top.unitNames[7] == 'deg')
+                            selectUnitByName('rad');
+                        break;
+                    case 'rad+':
+                        degRad = 'DEG+';
+                        setButtonMode(currentMode);
+                        if (top.isScalarOrRadian() && !top.isScalar() && top.unitNames[7] == 'rad')
+                            selectUnitByName('deg');
+                        break;
+                    case 'flt+':
+                        fltSciEng = 'SCI+';
+                        setButtonMode(currentMode);
+                        if (top)
+                            setDisplay(top);
+                        break;
+                    case 'sci+':
+                        fltSciEng = 'ENG+';
+                        setButtonMode(currentMode);
+                        if (top)
+                            setDisplay(top);
+                        break;
+                    case 'eng+':
+                        fltSciEng = 'FLT+';
+                        setButtonMode(currentMode);
+                        if (top)
+                            setDisplay(top);
                         break;
                     case 'list':
                         document.getElementById('listDiv').style.display = 'block';
@@ -1465,8 +1589,10 @@ function keyButton(evnt) {
                         break;
                     case 'sin⁻¹':
                         unaryButton('sin-1');
+                        break;
                     case 'cos⁻¹':
                         unaryButton('cos-1');
+                        break;
                     case 'tan⁻¹':
                         unaryButton('tan-1');
                         break;
@@ -1490,7 +1616,7 @@ function keyButton(evnt) {
                     case 'rcl':
                         if (entryMode == 'number' || entryMode == 'infix') {
                             operands.push(memory);
-                            setDisplay(operands[operands.length - 1].toString());
+                            setDisplay(operands[operands.length - 1]);
                         }
                         break;
                     case 'sum':
@@ -1507,7 +1633,7 @@ function keyButton(evnt) {
                         var temp = top.copy();
                         top = memory;
                         memory = temp;
-                        setDisplay(top.toString());
+                        setDisplay(top);
                         break;
                 }
             }

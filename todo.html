@@ -2,25 +2,16 @@
 <span style="white-space: pre; font-size:20px;">
 
 * bug? first press of unit key such as m to deconstruct watts doesn't add m factor
-* degrees<->radians, radians<->degrees key(s) (or use units for conversion)
-* add angle units? breaks strictly following SI-units but would assist formula finding, radians would be scalar equivelent for unit check
 * More constants, see: https://en.wikipedia.org/wiki/List_of_physical_constants
 * More formulas, see: https://www.madison-lake.k12.oh.us/userfiles/680/Classes/16192/IED-Review%20Engineering%20Formula%20Sheet.pdf
-* Mode button (and mode indicators on display):
--   hyper sin/cos/tan (hyper button would be 'sticky')
--   mode degree, radian
--   mode float, scientific, engineering (always scientific and always a power of 10^3)
--   mode set-precision (default to 8 digits)
 * program button for units/constants, show on list, press 'program', list item and finally key to replace
 * method of adding new units, constants or formulas by user,
 -   integrity checks (no duplicates, bad shortUnits) for units and constants
-* eliminate 'E' for scientific notation, show in 10^(superscript) form
-* show units on two lines (numerator/denominator) in smaller text
 * mixed units, highlight N, W, J keys when possible, also m, s and kg
 -   J = W s, W = J/s, J = N m, N = J/m, W = N m/s, N = W s/m
 -   pressing time unit after will only change the 'detached' units, such as s (to support W/h)
 -   even better, be able to handle generic mixed units, field strength V/m for example,
--   add an SI key to units screen, that cycles between
+-   add an 'SI' key to units screen, that cycles between, most compact, partially broken out, fully broken out
 * formula filter button on list screen, reset shows all, allows filtering formulas shown
 -   shows number of matching formulas under each group
 -   hide button on each group, sticky
@@ -28,9 +19,7 @@
 
 App like features:
 * 'legend' group at start of list for units and constants for keys in keyboard
-* animate units being added / canceled ?
 * animate hiding keyboard when lists or units is shown, slide new keys in or flip animation
 * typescript formulas: https://jkorpela.fi/math/ or http://docs.mathjax.org/en/latest/ (partially doing so now with unicode)
 * progressive web app: https://medium.com/@firt/progressive-web-apps-on-ios-are-here-d00430dee3a7
-
 </span>

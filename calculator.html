@@ -15,7 +15,13 @@
   <table id="calculator" class="calculator">
     <caption id="message"></caption>
     <tr>
-      <td colspan="9" id="display"></td>
+      <td colspan="9" class="display">
+        <div class="grid" style="float: right;">
+          <div class="value" id="value"></div>
+          <div class="numerator" id="numerator"></div>
+          <div class="denominator" id="denominator"></div>
+        </div>
+      </td>
     </tr>
     <tr>
       <td><p class="button" id="x0y0" onclick="keyButton()"></p></td>

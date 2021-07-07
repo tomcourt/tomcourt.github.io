@@ -8,17 +8,14 @@
 }
 
 
-#display { /* allow select in display */
-  -webkit-touch-callout: auto; /* iOS Safari */
-    -webkit-user-select: auto; /* Safari */
-     -khtml-user-select: auto; /* Konqueror HTML */
-       -moz-user-select: auto; /* Firefox */
-        -ms-user-select: auto; /* Internet Explorer/Edge */
-            user-select: auto; /* others */
-  padding-left:10px; 
-  padding-right:10px; 
+.display { 
+  padding-left:12px; 
+  padding-right:12px; 
   border: 2px inset; 
   border-radius: 2vw;
+  text-align: right;
+  background-color: white;
+  width: 100%;
 }
 
 
@@ -78,6 +75,43 @@ html, body {
   color: darkgray;
 }
 
+.grid { 
+  display: grid;
+  grid-template-columns: max-content max-content;
+  grid-template-rows: 50% 50%;
+  grid-template-areas: 
+  "value numerator"
+  "value denominator";
+}
+
+.value { 
+  grid-area: value;
+  text-align: right;
+  vertical-align: middle;
+  font-family: 'Lucida Console', Monaco, monospace;
+  padding-right: 8px;
+  /* allow select of value */
+  -webkit-touch-callout: auto; /* iOS Safari */
+  -webkit-user-select: auto; /* Safari */
+   -khtml-user-select: auto; /* Konqueror HTML */
+     -moz-user-select: auto; /* Firefox */
+      -ms-user-select: auto; /* Internet Explorer/Edge */
+          user-select: auto; /* others */
+}
+
+.numerator { 
+  grid-area: numerator;
+  text-align: center;
+  font: bold "system-ui";
+  border-bottom: 2px solid black;
+}
+
+.denominator { 
+  grid-area: denominator;
+  text-align: center;
+  font: bold "system-ui"; 
+}
+
 /* tablet or computer, fixed size */
 @media only screen and (min-width : 799px) {
   .button {
@@ -131,8 +165,16 @@ html, body {
     font-size: 24px;
   }
 
-  #display {
-    font-size: 35px;
+  .value {
+    font-size: 36px;
+  }
+
+  .numerator {
+    font-size: 20px;
+  }
+
+  .denominator {
+    font-size: 20px;
   }
 }
 
@@ -144,17 +186,17 @@ html, body {
     line-height: calc(calc(100vmin - 130px) / 8);
   }
 
-  #display {
+  .value {
     font-size: 10vmin;
   }
-}
 
+  .numerator {
+    font-size: 5.5vmin;
+  }
 
-#display {
-  text-align: right;
-  background-color: white;
-  width: 100%;
-  font-family: 'Lucida Console', Monaco, monospace;
+  .denominator {
+    font-size: 5.5vmin;
+  }
 }
 
 
