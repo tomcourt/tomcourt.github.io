@@ -503,7 +503,7 @@ class Measurement {
             return { value: format(this.value), numerator: '', denominator: '' };
         unit = findUnit(this.unitPowers, this.complexUnits);
         if (unit)
-            return { value: format(this.value / unit.factor + unit.offset), numerator: unit.name, denominator: '' };
+            return { value: format(this.value / unit.factor + unit.offset), numerator: unit.name, denominator: '&nbsp;' };
         var factor = 1;
         var numerator = '';
         var denominator = '';
@@ -531,6 +531,8 @@ class Measurement {
             numerator = '1';
         numerator = numerator.trim();
         denominator = denominator.trim();
+        if (numerator != '' && denominator == '')
+            denominator = '&nbsp;';
         return { value: format(this.value / factor), numerator: numerator, denominator: denominator };
     }
     nPowers() {
