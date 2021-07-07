@@ -87,10 +87,10 @@ html, body {
 .value { 
   grid-area: value;
   text-align: right;
+  line-height: normal;
   vertical-align: middle;
   font-family: 'Lucida Console', Monaco, monospace;
   padding-right: 8px;
-  display: table-cell;
   /* allow select of value */
   -webkit-touch-callout: auto; /* iOS Safari */
   -webkit-user-select: auto; /* Safari */
