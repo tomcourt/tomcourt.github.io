@@ -87,6 +87,7 @@ html, body {
 .value { 
   grid-area: value;
   text-align: right;
+  vertical-align: middle;
   font-family: 'Lucida Console', Monaco, monospace;
   padding-right: 8px;
   /* allow select of value */
@@ -166,13 +167,8 @@ html, body {
     font-size: 24px;
   }
 
-  .grid {
-    height: 40px;
-  }
   .value {
     font-size: 36px;
-    height: 40px;
-    line-height: 40px;
   }
 
   .numerator {
@@ -192,14 +188,9 @@ html, body {
     line-height: calc(calc(100vmin - 130px) / 8);
   }
 
-  .grid {
-    height: 11vmin;
-  }
-
   .value {
     font-size: 10vmin;
-    height: 11vmin;
-    line-height: 11vmin;  }
+  }
 
   .numerator {
     font-size: 5.5vmin;
