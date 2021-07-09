@@ -502,7 +502,7 @@ class Measurement {
         if (this.isScalar() && currentMode != 'mode-unit')
             return { value: format(this.value), numerator: '', denominator: '' };
         unit = findUnit(this.unitPowers, this.complexUnits);
-        if (unit)
+        if (unit && this.complexUnits && this.complexUnits != '')
             return { value: format(this.value / unit.factor + unit.offset), numerator: unit.name, denominator: '&nbsp;' };
         var factor = 1;
         var numerator = '';
@@ -531,9 +531,16 @@ class Measurement {
             numerator = '1';
         numerator = numerator.trim();
         denominator = denominator.trim();
-        if (numerator != '' && denominator == '')
-            denominator = '&nbsp;';
         return { value: format(this.value / factor), numerator: numerator, denominator: denominator };
+    }
+    toSolidusForm() {
+        var d = this.toDisplayForm();
+        if (d.numerator == '')
+            return d.value;
+        else if (d.denominator == '')
+            return d.value + ' ' + d.numerator;
+        else
+            return d.value + ' ' + d.numerator + '/' + d.denominator;
     }
     nPowers() {
         var n = 0;
@@ -923,7 +930,9 @@ function setDisplay(measure) {
         document.getElementById('numerator').innerHTML = '';
     else
         document.getElementById('numerator').innerHTML = '&nbsp;' + m.numerator + '&nbsp;';
-    if (m.denominator == '')
+    if (m.numerator != '' && m.denominator == '')
+        document.getElementById('denominator').innerHTML = '&nbsp;';
+    else if (m.denominator == '')
         document.getElementById('denominator').innerHTML = '';
     else
         document.getElementById('denominator').innerHTML = m.denominator;
@@ -967,14 +976,19 @@ function plusMinusButton() {
                 exponent = exponent.slice(1);
             exponent = '-' + exponent;
         }
+        updateDisplay();
     }
-    else {
+    else if (entryMode == 'mantisa') {
         if (mantisa.slice(0, 1) == '-')
             mantisa = mantisa.slice(1);
         else
             mantisa = '-' + mantisa;
+        updateDisplay();
     }
-    updateDisplay();
+    else if (operands.length > 0) {
+        operands[operands.length - 1].value = -operands[operands.length - 1].value;
+        setDisplay(operands[operands.length - 1]);
+    }
 }
 function finishEntry() {
     if (entryMode == 'mantisa' || entryMode == 'exponent') {
@@ -1391,7 +1405,7 @@ function populateList() {
         }
         document.getElementById('formula').innerHTML = formula.desc + ': ' + formula.prettyMatching();
         for (var i = 0; i < 9; i++)
-            document.getElementById('list' + i.toString()).innerHTML = ((i < knowns.length) ? knowns[i].formulaVar + ' = ' + knowns[i].toDisplayForm() : '&nbsp');
+            document.getElementById('list' + i.toString()).innerHTML = ((i < knowns.length) ? knowns[i].formulaVar + ' = ' + knowns[i].toSolidusForm() : '&nbsp');
     }
     else {
         var unknown = ((knowns[0].nPowers() == 0) ? '0' : '1');
@@ -1399,7 +1413,7 @@ function populateList() {
         document.getElementById('formula').innerHTML = 'no formula found';
         document.getElementById('list0').innerHTML = 'u = ' + knowns[0].toDisplayForm();
         for (var i = 1; i < 9; i++)
-            document.getElementById('list' + i.toString()).innerHTML = ((i < knowns.length) ? 'k' + i.toString() + ' = ' + knowns[i].toDisplayForm() : '&nbsp');
+            document.getElementById('list' + i.toString()).innerHTML = ((i < knowns.length) ? 'k' + i.toString() + ' = ' + knowns[i].toSolidusForm() : '&nbsp');
     }
 }
 function toggleUnitMode() {

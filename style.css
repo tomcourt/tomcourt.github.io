@@ -168,7 +168,7 @@ html, body {
   }
 
   .value {
-    font-size: 36px;
+    font-size: 40px;
   }
 
   .numerator {
@@ -193,11 +193,11 @@ html, body {
   }
 
   .numerator {
-    font-size: 5.5vmin;
+    font-size: 4.5vmin;
   }
 
   .denominator {
-    font-size: 5.5vmin;
+    font-size: 4.5vmin;
   }
 }
 
