@@ -60,11 +60,9 @@ Conversions
   the new unit. This works for more complex units also, such as m/s being changed
   to mi/h.
 
-  Note - be careful with energy conversions, for example Joules (Watt Seconds) to
-  Watt Hours. You may try to simply press 'h' in units for hours to do so, this
-  will lead to non-sense results. Use 'list' to find Watt hours instead. This is
-  because Watt Seconds (kg m^2 s/s^3) is internally (kg m^2/s^2) and 'h' changes
-  the denominator factors when it should only change the (missing) numerator factor.
+  The SI+ key can be used to cycle between various SI unit forms of complex units,
+  for example, W cycles between J/s, A V and kg m^2 / s^3, see list of derived units
+  below for details.
 
 Constants
 
@@ -94,14 +92,85 @@ Explicit formulas
   Some implicit correct formulas are also included in explicit form to put a
   name to the physical law and assist in showing the result is correct.
 
-  When 'list' is shown (and 'explicit' is selected), multiple solutions may be
+  When 'list' is pressed and 'explicit' is selected, multiple solutions may be
   provided. These can be scrolled through using the arrow keys provided.
 
-Keyboard shortcuts
+  Missing and Extra will show partial matches with missing or extra terms to 
+  assist in finding the correct formula. 
+
+Keyboard shortcuts (for PC use)
 
   0-9, ., +, -, *, /, =, (, ), E(for EE), M(for +/-), Escape(for CE/C), Enter(shortcut for =)
 
-Note
+Derived and complex units
 
-  The 'mode' button is not yet implemented.
+  hertz	    	frequency	                                                    Hz, 1/s
+  steradian		solid angle	                                                  sr, rad2
+  newton	    force, weight	                                                N, kg m/s2	
+  pascal	    pressure, stress	                                            Pa, N/m2, kg/m s2
+  joule	    	energy, work, heat	                                          J, m N, C V, W s, kg m2/s2
+  watt	    	power, radiant flux	                                          W, J/s, V A, kg m2/s3
+  coulomb	    electric charge or quantity of electricity	                  C, F V, s A
+  volt	    	voltage, electrical potential difference, electromotive force	V, W/A, J/C, kg m2/s3 A
+  farad	    	electrical capacitance	                                      F, C/V, s/Ω, s4 A2/kg m2
+  ohm	        electrical resistance, impedance, reactance	                  Ω, 1/S, V/A, kg m2/s3 A2
+  siemens	    electrical conductance	                                      S, 1/Ω, A/V, s3 A2/kg m2
+  weber	    	magnetic flux	                                                Wb, J/A, T m2, V s,	kg m2/s2 A
+  tesla	    	magnetic induction, magnetic flux density	                    T, V s/m2, Wb/m2, N/A m, kg/s2 A
+  henry	    	electrical inductance	                                        H, V s/A, Ω s, Wb/A, kg m2/s2 A2
+  lumen	    	luminous flux	                                                lm, cd
+  lux	        illuminance	                                                  lx, lm/m2, cd/m2
+  becquerel		radioactivity (decays per unit time)	                        Bq, 1/s	
+  gray	    	absorbed dose (of ionizing radiation)	                        Gy, J/kg, m2/s2
+  sievert	    equivalent dose (of ionizing radiation)	                      Sv, J/kg, m2/s2
+  katal	    	catalytic activity	                                          kat, mol/s
+
+  newton second	              momentum, impulse	                            N s, m kg/s
+  newton metre second	        angular momentum	                            N m s, m2 kg/s
+  newton metre	              torque, moment of force	                      N m, m2 kg/s2
+  newton per second		        yank	                                        N/s, m kg/s3
+  joule second	              action	                                      J s, m2 kg/s
+  joule per kilogram		      specific energy	                              J/kg, m2/s2
+  joule per cubic metre		    energy density	                              J/m3, kg/m s2
+  newton per metre		        surface tension, stiffness	                  N/m, J/m2, kg/s2
+  watt per square metre	    	heat flux density, irradiance	                W/m2, kg/s3
+  pascal second		            dynamic viscosity	                            Pa s, N s/m2, kg/m s
+  watt per steradian square metre	  radiance	                              W/sr m2, kg s3
+  watt per steradian cubic metre	  spectral radiance	                      W/sr m3, kg m s3
+  watt per metre		          spectral power	                              W/m, m kg/s3
+  gray per second		          absorbed dose rate	                          Gy/s, m2/s3
+  watt per cubic metre	    	spectral irradiance, power density	          W/m3, kg/m s3
+  joule per square metre second	  energy flux density	                      J/m2 s,	kg/s3
+  reciprocal pascal	          compressibility	                              1/Pa, m s2/kg
+  joule per square metre	    radiant exposure	                            J/m2, kg/s2
+  newton metre second per kilogram	specific angular momentum	              N m s/kg, m2/s
+  watt per steradian		      radiant intensity	                            W/sr, m2 kg/s3
+  watt per steradian metre		spectral intensity	                          W/sr m, m kg/s3
+
+  coulomb per square metre	electric displacement field, polarization density	C/m2, s A/m2
+  coulomb per cubic metre		  electric charge density	                      C/m3, s A/m3
+  siemens per metre		        electrical conductivity	                      S/m,  s3 A2/m3 kg
+  farad per metre	            permittivity	                                s3 A2, s4 A2/m3 kg
+  henry per metre	            magnetic permeability	                        H/m, m kg/s2 A2
+  volt per metre	            electric field strength	                      V/m, m kg/s3 A
+  coulomb per kilogram	    	exposure (X and gamma rays)                   C/kg, s A/kg	
+  ohm metre	                  resistivity	                                  Ω m, m3 kg/s3 A2
+  coulomb per metre		        linear charge density	                        C/m, s A/m
+  joule per tesla		          magnetic dipole moment	                      J/T, m2 A
+  square metre per volt second	electron mobility	                          m2/V s, s2 A/kg
+  reciprocal henry	          magnetic reluctance	                          1/H, s2 A2/m2 kg
+  weber per metre		          magnetic vector potential	                    Wb/m, m kg/s2 A
+  weber metre		              magnetic moment	                              Wb m, m3 kg/s2 A
+  tesla metre	                magnetic rigidity	                            T m, m kg/s2 A
+  metre per henry		          magnetic susceptibility	                      m/H, s2 A2/m kg
+
+  lumen second		            luminous energy	                              lm s, s cd
+  lux second	                luminous exposure	                            lx s, s cd/m2
+  candela per square metre		luminance	                                    cd/m2, cd/m2
+  lumen per watt		          luminous efficacy	                            lm/W, s3 cd/m2 kg
+
+  joule per kelvin	          heat capacity, entropy	                      J/K, m2 kg/s2 K
+  joule per kilogram kelvin		specific heat capacity, specific entropy	    J/K kg, m2/s2 K
+  watt per metre kelvin	    	thermal conductivity	                        W/m K, m kg/s3 K
+  kelvin per watt		          thermal resistance	                          K/W, s3 K/m2 kg
 </span>
